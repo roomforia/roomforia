@@ -8,17 +8,16 @@ export default function HeroInteractive() {
 
   const targetX = useRef(0.5);
   const currentX = useRef(0.5);
-  const velocity = useRef(0);
 
   const dragging = useRef(false);
-  const userInteracted = useRef(false); // ✅ контроль авто демо
+  const userInteracted = useRef(false);
 
   /* ================= AUTO DEMO ================= */
   useEffect(() => {
     const steps = [
-      { to: 0.8, duration: 900 },
-      { to: 0.2, duration: 1100 },
-      { to: 0.55, duration: 800 },
+      { to: 0.75, duration: 1200 },
+      { to: 0.25, duration: 1400 },
+      { to: 0.55, duration: 1000 },
     ];
 
     let i = 0;
@@ -37,7 +36,6 @@ export default function HeroInteractive() {
         progress += 16;
         const t = Math.min(progress / duration, 1);
 
-        // easeOutCubic
         const eased = 1 - Math.pow(1 - t, 3);
 
         targetX.current = start + (to - start) * eased;
@@ -46,14 +44,14 @@ export default function HeroInteractive() {
           requestAnimationFrame(frame);
         } else {
           i++;
-          setTimeout(run, 200);
+          setTimeout(run, 300);
         }
       };
 
       frame();
     };
 
-    const timeout = setTimeout(run, 500);
+    const timeout = setTimeout(run, 600);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -67,7 +65,7 @@ export default function HeroInteractive() {
       const rect = containerRef.current.getBoundingClientRect();
       const percent = (e.clientX - rect.left) / rect.width;
 
-      targetX.current = Math.max(0.1, Math.min(0.9, percent));
+      targetX.current = Math.max(0.15, Math.min(0.85, percent));
     };
 
     const handleTouchStart = () => {
@@ -82,7 +80,7 @@ export default function HeroInteractive() {
       const percent =
         (e.touches[0].clientX - rect.left) / rect.width;
 
-      targetX.current = Math.max(0.1, Math.min(0.9, percent));
+      targetX.current = Math.max(0.15, Math.min(0.85, percent));
     };
 
     const handleTouchEnd = () => {
@@ -94,18 +92,16 @@ export default function HeroInteractive() {
     window.addEventListener("touchmove", handleTouchMove);
     window.addEventListener("touchend", handleTouchEnd);
 
-    /* ================= ANIMATION LOOP ================= */
+    /* ================= SMOOTH ANIMATION ================= */
     const animate = () => {
       const diff = targetX.current - currentX.current;
 
-      velocity.current += diff * 0.08;
-      velocity.current *= 0.85;
-
-      currentX.current += velocity.current;
+      // 🔥 МЕДЛЕННЕЕ И ПЛАВНЕЕ
+      currentX.current += diff * 0.06;
 
       currentX.current = Math.max(
-        0.05,
-        Math.min(0.95, currentX.current)
+        0.12,
+        Math.min(0.88, currentX.current)
       );
 
       if (phoneRef.current) {
@@ -137,7 +133,7 @@ export default function HeroInteractive() {
   }, []);
 
   return (
-    <section className="py-16 px-4 overflow-x-hidden">
+    <section className="py-16 px-4 overflow-hidden">
       {/* TEXT */}
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-5xl font-semibold mb-4">
@@ -167,13 +163,10 @@ export default function HeroInteractive() {
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        {/* SOFT SHADOW */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
-
         {/* PHONE */}
         <div
           ref={phoneRef}
-          className="absolute top-1/2 z-20 will-change-transform"
+          className="absolute top-1/2 z-20"
           style={{
             left: "50%",
             transform: "translate(-50%, -50%)",
@@ -182,7 +175,7 @@ export default function HeroInteractive() {
           <div
             className="
               relative
-              w-[170px] sm:w-[200px] md:w-[258px]
+              w-[190px] sm:w-[220px] md:w-[258px]
               aspect-[9/19.5]
               rounded-[32px] md:rounded-[36px]
               overflow-hidden
@@ -206,6 +199,9 @@ export default function HeroInteractive() {
             <div className="absolute top-2 left-1/2 -translate-x-1/2 w-[45%] md:w-[40%] h-[8px] md:h-[10px] bg-black rounded-full" />
           </div>
         </div>
+
+        {/* SOFT OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
       </div>
 
       {/* HINT */}

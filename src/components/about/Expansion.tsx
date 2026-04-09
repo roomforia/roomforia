@@ -4,8 +4,8 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 
 const regions = [
-  { name: "Беларусь", status: "Запуск и первые проекты" },
-  { name: "Казахстан", status: "Открытие офиса" },
+  { name: "Россия", status: "Запуск и первые проекты" },
+  { name: "Беларусь", status: "Открытие офиса" },
   { name: "СНГ", status: "Масштабирование рынка" },
 ]
 

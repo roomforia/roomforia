@@ -5,7 +5,7 @@ import { Clock, Users, CheckCircle } from "lucide-react"
 
 const items = [
   { icon: Clock, title: "Быстро продаём объекты" },
-  { icon: Users, title: "Приводим клиентов с спросом" },
+  { icon: Users, title: "Приводим клиентов со спросом" },
   { icon: CheckCircle, title: "Помогаем принять решение" },
 ]
 

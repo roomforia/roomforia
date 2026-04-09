@@ -26,15 +26,15 @@ export default function AboutHero() {
           transition={{ duration: 1 }}
         >
           <h1 className="text-5xl md:text-6xl font-semibold mb-6 leading-tight">
-            Мы строим
+            Дизайн
             <br />
-            инфраструктуру продаж
+            который продает
             <br />
-            в строительстве
+            эффективно
           </h1>
 
           <p className="text-gray-500 text-lg mb-8 max-w-lg">
-            Roomforia объединяет рынок в единую систему, где визуализация = конверсия.
+          Через передовую визуализацию мы создаем мощный инструмент для дизайнеров, где эстетика и функциональность напрямую ведут к росту продаж.
           </p>
 
           <button className="bg-[#C47A2C] text-white px-6 py-3 rounded-xl hover:scale-105 transition">
