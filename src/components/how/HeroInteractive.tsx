@@ -35,7 +35,6 @@ export default function HeroInteractive() {
 
         progress += 16;
         const t = Math.min(progress / duration, 1);
-
         const eased = 1 - Math.pow(1 - t, 3);
 
         targetX.current = start + (to - start) * eased;
@@ -96,7 +95,6 @@ export default function HeroInteractive() {
     const animate = () => {
       const diff = targetX.current - currentX.current;
 
-      // 🔥 мягкое "инерционное" движение
       currentX.current += diff * 0.055;
 
       currentX.current = Math.max(
@@ -104,20 +102,19 @@ export default function HeroInteractive() {
         Math.min(0.85, currentX.current)
       );
 
-      if (phoneRef.current && containerRef.current) {
-        const containerWidth =
-          containerRef.current.getBoundingClientRect().width;
+      if (phoneRef.current) {
+        const translateX = (currentX.current - 0.5) * 100;
 
-        const x = currentX.current * 100;
-
-        phoneRef.current.style.left = `${x}%`;
-        phoneRef.current.style.transform = `translate(-50%, -50%)`;
+        phoneRef.current.style.transform = `
+          translate(${translateX}%, -50%)
+        `;
 
         const inner = phoneRef.current.querySelector(
           ".phone-image"
         ) as HTMLElement;
 
         if (inner) {
+          const x = currentX.current * 100;
           inner.style.backgroundPosition = `${x}% center`;
         }
       }
@@ -170,10 +167,9 @@ export default function HeroInteractive() {
         {/* PHONE */}
         <div
           ref={phoneRef}
-          className="absolute top-1/2 z-20 max-w-full pointer-events-none"
+          className="absolute top-1/2 left-1/2 z-20 pointer-events-none"
           style={{
-            left: "50%",
-            transform: "translate(-50%, -50%)",
+            transform: "translate(0%, -50%)",
           }}
         >
           <div
@@ -206,6 +202,29 @@ export default function HeroInteractive() {
 
         {/* OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
+      </div>
+
+      {/* CTA */}
+      <div className="mt-10 flex justify-center">
+        <a
+          href="https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
+          target="_blank"
+          className="
+            flex items-center gap-3
+            px-6 py-4
+            rounded-full
+            bg-[#5B4A3C]
+            text-white text-lg
+            hover:scale-105 transition
+          "
+        >
+          {/* FIGMA ICON */}
+          <div className="w-6 h-6 flex items-center justify-center bg-white rounded-full">
+            <div className="w-3 h-3 bg-[#F24E1E] rounded-full" />
+          </div>
+
+          Попробовать демо
+        </a>
       </div>
 
       {/* HINT */}
