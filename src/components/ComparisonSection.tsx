@@ -38,7 +38,7 @@ export default function ComparisonSection() {
           className="w-full rounded-3xl overflow-hidden mb-10 shadow-[0_20px_60px_rgba(0,0,0,0.1)]"
         >
           <img
-            src="/images/comparison/comparison.jpg"
+            src="/images/comparison/comparison-v2.jpg"
             alt="Roomforia — преимущества"
             className="w-full h-auto object-cover"
           />
