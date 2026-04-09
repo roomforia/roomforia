@@ -65,3 +65,12 @@ h2 {
 p {
   line-height: 1.6;
 }
+
+html {
+  color-scheme: light;
+}
+
+body {
+  color: #1E1E1E;
+  background: #F6F4F1;
+}

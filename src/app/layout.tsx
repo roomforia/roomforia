@@ -35,16 +35,27 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={`${jakarta.variable} ${inter.variable}`}
+      style={{ colorScheme: "light" }} // ✅ ключевой фикс Safari
     >
+      <head>
+        {/* ✅ фикс авто-темы iOS */}
+        <meta name="color-scheme" content="light only" />
+      </head>
+
       <body
         className="
           relative
           bg-[#F6F4F1] text-[#1E1E1E]
-          antialiased overflow-x-hidden
+          antialiased
+          overflow-x-hidden
           font-[var(--font-jakarta)]
         "
+        style={{
+          color: "#1E1E1E", // ✅ форс текста
+          backgroundColor: "#F6F4F1", // ✅ форс фона
+        }}
       >
-        {/* ✅ SMOOTH SCROLL (Lenis) */}
+        {/* ================= SMOOTH SCROLL ================= */}
         <SmoothScroll />
 
         {/* ================= GLOBAL BACKGROUND ================= */}

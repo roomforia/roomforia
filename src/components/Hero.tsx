@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
+import PartnerModal from "./PartnerModal"
+
 
 type Hotspot = {
   id: number
@@ -39,6 +41,7 @@ const HOTSPOTS: Hotspot[] = [
 ]
 
 export default function Hero() {
+  const [open, setOpen] = useState(false)
   const [position, setPosition] = useState(50)
   const [drag, setDrag] = useState(false)
   const [active, setActive] = useState<number | null>(null)
@@ -126,7 +129,9 @@ export default function Hero() {
 <div className="flex items-center justify-center gap-3 mb-12 flex-wrap">
 
   {/* B2C */}
-  <button className="bg-[#2D1F1A] text-white px-6 py-3 rounded-full hover:scale-105 transition">
+  <button
+  onClick={() => setOpen(true)}
+   className="bg-[#2D1F1A] text-white px-6 py-3 rounded-full hover:scale-105 transition">
     Попробовать дизайн
   </button>
 
@@ -280,6 +285,7 @@ export default function Hero() {
         </p>
 
       </div>
+      <PartnerModal open={open} onClose={() => setOpen(false)} />
     </section>
   )
 }
