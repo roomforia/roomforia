@@ -15,9 +15,9 @@ export default function HeroInteractive() {
   /* ================= AUTO DEMO ================= */
   useEffect(() => {
     const steps = [
-      { to: 0.75, duration: 1200 },
-      { to: 0.25, duration: 1400 },
-      { to: 0.55, duration: 1000 },
+      { to: 0.72, duration: 1300 },
+      { to: 0.28, duration: 1500 },
+      { to: 0.55, duration: 1100 },
     ];
 
     let i = 0;
@@ -44,14 +44,14 @@ export default function HeroInteractive() {
           requestAnimationFrame(frame);
         } else {
           i++;
-          setTimeout(run, 300);
+          setTimeout(run, 400);
         }
       };
 
       frame();
     };
 
-    const timeout = setTimeout(run, 600);
+    const timeout = setTimeout(run, 700);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -65,7 +65,7 @@ export default function HeroInteractive() {
       const rect = containerRef.current.getBoundingClientRect();
       const percent = (e.clientX - rect.left) / rect.width;
 
-      targetX.current = Math.max(0.15, Math.min(0.85, percent));
+      targetX.current = Math.max(0.18, Math.min(0.82, percent));
     };
 
     const handleTouchStart = () => {
@@ -80,7 +80,7 @@ export default function HeroInteractive() {
       const percent =
         (e.touches[0].clientX - rect.left) / rect.width;
 
-      targetX.current = Math.max(0.15, Math.min(0.85, percent));
+      targetX.current = Math.max(0.18, Math.min(0.82, percent));
     };
 
     const handleTouchEnd = () => {
@@ -96,15 +96,18 @@ export default function HeroInteractive() {
     const animate = () => {
       const diff = targetX.current - currentX.current;
 
-      // 🔥 МЕДЛЕННЕЕ И ПЛАВНЕЕ
-      currentX.current += diff * 0.06;
+      // 🔥 мягкое "инерционное" движение
+      currentX.current += diff * 0.055;
 
       currentX.current = Math.max(
-        0.12,
-        Math.min(0.88, currentX.current)
+        0.15,
+        Math.min(0.85, currentX.current)
       );
 
-      if (phoneRef.current) {
+      if (phoneRef.current && containerRef.current) {
+        const containerWidth =
+          containerRef.current.getBoundingClientRect().width;
+
         const x = currentX.current * 100;
 
         phoneRef.current.style.left = `${x}%`;
@@ -133,7 +136,7 @@ export default function HeroInteractive() {
   }, []);
 
   return (
-    <section className="py-16 px-4 overflow-hidden">
+    <section className="py-16 px-4 overflow-x-hidden">
       {/* TEXT */}
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-5xl font-semibold mb-4">
@@ -155,6 +158,7 @@ export default function HeroInteractive() {
           h-[420px] md:h-[560px]
           rounded-[28px] md:rounded-[32px]
           overflow-hidden
+          isolate
         "
       >
         {/* BEFORE */}
@@ -166,7 +170,7 @@ export default function HeroInteractive() {
         {/* PHONE */}
         <div
           ref={phoneRef}
-          className="absolute top-1/2 z-20"
+          className="absolute top-1/2 z-20 max-w-full pointer-events-none"
           style={{
             left: "50%",
             transform: "translate(-50%, -50%)",
@@ -175,7 +179,7 @@ export default function HeroInteractive() {
           <div
             className="
               relative
-              w-[190px] sm:w-[220px] md:w-[258px]
+              w-[185px] sm:w-[215px] md:w-[258px]
               aspect-[9/19.5]
               rounded-[32px] md:rounded-[36px]
               overflow-hidden
@@ -200,7 +204,7 @@ export default function HeroInteractive() {
           </div>
         </div>
 
-        {/* SOFT OVERLAY */}
+        {/* OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
       </div>
 
