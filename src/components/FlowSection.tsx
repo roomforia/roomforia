@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
 const furnitureSpots = [
-  { id: 1, x: 50, y: 28, brand: "morestyle.by", name: "Картина Abstract", price: "8 900 ₽" },
-  { id: 2, x: 84, y: 48, brand: "morestyle.by", name: "Шкаф", price: "12 900 ₽" },
-  { id: 3, x: 35, y: 72, brand: "Divan.ru", name: "Диван SÖDERHAMN", price: "89 990 ₽" },
+  { id: 1, x: 70, y: 28, brand: "morestyle.by", name: "Картина Abstract", price: "8 900 ₽" },
+  { id: 2, x: 84, y: 58, brand: "morestyle.by", name: "Тумбочка", price: "12 900 ₽" },
+  { id: 3, x: 55, y: 72, brand: "Divan.ru", name: "Диван SÖDERHAMN", price: "89 990 ₽" },
 ]
 
 const steps = [
@@ -14,25 +14,25 @@ const steps = [
     id: 1,
     tag: "Шаг 1",
     title: "Отсканируй комнату или загрузи план квартиры",
-    image: "/images/flow/step-1.jpg",
+    image: "/images/flow/step-1.png",
   },
   {
     id: 2,
     tag: "Шаг 2",
     title: "Выбери стиль: сканди, лофт, минимализм — меняй стили и цвет",
-    image: "/images/flow/step-2.jpg",
+    image: "/images/flow/step-2.png",
   },
   {
     id: 3,
     tag: "Шаг 3",
     title: "AI создаёт дизайн интерьера прямо сейчас",
-    image: "/images/flow/step-3.jpg",
+    image: "/images/flow/step-3.png",
   },
   {
     id: 4,
     tag: "Шаг 4",
     title: "Кликай на мебель, переходи по ссылкам и заказывай",
-    image: "/images/flow/step-4.jpg",
+    image: "/images/flow/step-4.png",
     interactive: true,
   },
 ]
@@ -80,7 +80,7 @@ export default function FlowSection() {
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-3">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-3">
             Как работает{" "}
             <span style={{ fontFamily: "symphonyregular, serif" }} className="text-[#d66501]">
