@@ -78,3 +78,32 @@ body {
 html, body {
   overflow-x: hidden;
 }
+
+@font-face {
+  font-family: 'Symphony';
+  src: url('/fonts/symphonyregular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* скрыть scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE и Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}

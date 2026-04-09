@@ -90,7 +90,7 @@ export default function RootLayout({
             <rect width="100%" height="100%" filter="url(#noise)" />
           </svg>
         </div>
-
+        
         {children}
       </body>
     </html>

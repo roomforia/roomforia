@@ -1,92 +1,176 @@
 "use client";
 
+import { useRef, useState } from "react";
+
+const items = [
+  {
+    id: 1,
+    text: "ИИ подбирает решения, прогнозирует тренды и сочетает все это. Система анализирует актуальные дизайны и современные подходы, чтобы результат выглядел цельно.",
+  },
+  {
+    id: 2,
+    text: "Точные модели и реалистичная визуализация. Качественная проработка текстур товаров, цветов и освещения помогает увидеть результат максимально близко к реальности.",
+  },
+  {
+    id: 3,
+    text: "Удобное сравнение и замена товаров в уже готовом дизайне. Вы можете быстро переключаться между вариантами и выбирать лучшее решение без бесконечного поиска.",
+  },
+  {
+    id: 4,
+    text: "Только актуальная база. Каждый элемент можно открыть, изучить и перейти к следующему шагу — покупке.",
+  },
+];
+
 export default function CTASection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+
+    const { scrollLeft, offsetWidth } = scrollRef.current;
+    const index = Math.round(scrollLeft / (offsetWidth * 0.8));
+    setActive(index);
+  };
+
+  const scrollTo = (index: number) => {
+    if (!scrollRef.current) return;
+
+    const width = scrollRef.current.offsetWidth;
+    scrollRef.current.scrollTo({
+      left: width * 0.8 * index,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section className="py-32 px-4">
+    <section className="py-24 px-4">
       <div className="max-w-6xl mx-auto">
 
-        {/* TITLE */}
-        <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-semibold mb-4 leading-tight">
-            Создай интерьер{" "}
-            <span className="text-[#C47A2C]">за 30 секунд</span>
+        {/* HEADER */}
+        <div className="text-center mb-16">
+
+          <h1 className="font-[Symphony] text-4xl md:text-5xl mb-6">
+            Roomforia
+          </h1>
+
+          <h2 className="text-3xl md:text-5xl font-semibold leading-tight">
+            <span className="text-[#d66501]">
+              Визуализация и ИИ
+            </span>
+            <br />
+            <span className="text-[#d66501]">
+              в реальности
+            </span>
           </h2>
 
-          <p className="text-gray-500 text-lg">
-            Без дизайнера. Без ожиданий. С реальной мебелью
+          <p className="text-gray-500 text-lg mt-4">
+            От идеи до конкретного решения — быстрее и проще
           </p>
+
         </div>
 
-        {/* CARDS */}
-        <div className="grid md:grid-cols-2 gap-8">
+        {/* SLIDER */}
+        <div className="relative">
 
-          {/* USER */}
-          <div className="group relative p-8 rounded-[32px] bg-white/40 backdrop-blur-xl border border-white/30 
-          shadow-[0_20px_60px_rgba(0,0,0,0.05)] hover:scale-[1.02] transition-all duration-300">
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            onMouseDown={(e) => {
+              const slider = scrollRef.current;
+              if (!slider) return;
 
-            {/* subtle glow */}
-            <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition" />
+              let isDown = true;
+              const startX = e.pageX;
+              const startScrollLeft = slider.scrollLeft;
 
-            <div className="relative">
-              <h3 className="text-xl font-semibold mb-3">
-                Для пользователей
-              </h3>
+              const onMouseMove = (moveEvent: MouseEvent) => {
+                if (!isDown) return;
+                const walk = (moveEvent.pageX - startX) * 1.2;
+                slider.scrollLeft = startScrollLeft - walk;
+              };
 
-              <p className="text-gray-500 mb-6">
-                Загрузите фото комнаты и получите готовый дизайн с мебелью
-              </p>
+              const onMouseUp = () => {
+                isDown = false;
+                window.removeEventListener("mousemove", onMouseMove);
+                window.removeEventListener("mouseup", onMouseUp);
+              };
 
-              <button className="w-full bg-[#2D1F1A] text-white px-5 py-3 rounded-xl 
-              hover:opacity-90 active:scale-[0.98] transition">
-                Попробовать бесплатно
-              </button>
+              window.addEventListener("mousemove", onMouseMove);
+              window.addEventListener("mouseup", onMouseUp);
+            }}
+            className="
+              flex gap-6 overflow-x-scroll pb-6
+              snap-x snap-mandatory scroll-smooth
+              scrollbar-hide
+              cursor-grab active:cursor-grabbing
+            "
+          >
+            {items.map((item) => (
+              <div
+                key={item.id}
+                className="
+                  snap-start shrink-0
+                  w-[80%] sm:w-[60%] md:w-[45%] lg:w-[30%]
+                "
+              >
+                <div className="
+                  h-full p-8 rounded-[32px]
+                  bg-[#2D1F1A] text-white
+                  shadow-[0_30px_80px_rgba(0,0,0,0.25)]
+                  relative overflow-hidden
+                  transition-opacity duration-500
+                ">
 
-              <p className="text-xs text-gray-400 mt-3">
-                Без регистрации • результат за 30 секунд
-              </p>
-            </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d66501]/20 via-transparent to-transparent" />
+
+                  <div className="text-[64px] font-bold text-white/20 mb-4">
+                    {item.id}
+                  </div>
+
+                  <p className="text-white/80 leading-relaxed">
+                    {item.text}
+                  </p>
+
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* B2B */}
-          <div className="group relative p-8 rounded-[32px] bg-[#2D1F1A] text-white 
-          shadow-[0_30px_80px_rgba(0,0,0,0.2)] overflow-hidden 
-          hover:scale-[1.02] transition-all duration-300">
-
-            {/* glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#C47A2C]/25 via-transparent to-transparent opacity-80" />
-
-            {/* animated depth */}
-            <div className="absolute -right-10 -bottom-10 w-[200px] h-[200px] bg-[#C47A2C]/10 blur-3xl rounded-full" />
-
-            <div className="relative">
-              <h3 className="text-xl font-semibold mb-3">
-                Для поставщиков
-              </h3>
-
-              <p className="text-white/70 mb-6">
-                Показывайте товары внутри интерьеров и получайте клиентов напрямую
-              </p>
-
-              <button className="w-full bg-white text-black px-5 py-3 rounded-xl 
-              hover:bg-gray-100 active:scale-[0.98] transition">
-                Стать партнёром
-              </button>
-
-              <p className="text-xs text-white/50 mt-3">
-                Новые продажи без маркетинга
-              </p>
-            </div>
+          {/* DOTS */}
+          <div className="flex justify-center gap-3 mt-6">
+            {items.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => scrollTo(i)}
+                className={`
+                  w-2.5 h-2.5 rounded-full transition-all duration-300
+                  ${active === i ? "bg-[#d66501] w-5" : "bg-gray-300"}
+                `}
+              />
+            ))}
           </div>
+
         </div>
 
-        {/* TRUST / FINAL PUSH */}
-        <div className="text-center mt-16">
+        {/* CTA */}
+        <div className="flex justify-center mt-12">
+          <button className="
+            bg-[#d66501] text-white px-10 py-4 rounded-xl
+            text-lg font-medium
+            hover:opacity-90 active:scale-[0.98] transition
+          ">
+            Скачать
+          </button>
+        </div>
 
+        {/* TRUST */}
+        <div className="text-center mt-10">
           <p className="text-gray-500 text-sm">
             Уже используют дизайнеры, маркетплейсы и мебельные бренды
           </p>
-
         </div>
+
       </div>
     </section>
   );

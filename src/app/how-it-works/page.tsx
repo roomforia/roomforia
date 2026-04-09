@@ -6,6 +6,8 @@ import UnderTheHood from "@/components/how/UnderTheHood";
 import ProductsShowcase from "@/components/how/ProductsShowcase";
 import PartnersBlock from "@/components/how/PartnersBlock";
 import CTAHow from "@/components/how/CTAHow";
+import BrandsSection from "@/components/BrandsSection";
+
 
 
 import Footer from "@/components/Footer";
@@ -30,6 +32,8 @@ export default function Page() {
       <PartnersBlock />
 
       <CTAHow />
+
+      <BrandsSection />
 
 
     </main>

@@ -116,14 +116,16 @@ export default function Hero() {
 
         {/* TEXT */}
         {/* TEXT */}
-<h1 className="text-3xl md:text-6xl font-semibold mb-4 leading-tight">
-  Интерьер, который превращается в{" "}
-  <span className="text-[#C47A2C]">покупки</span>
+        <h1 className="text-3xl md:text-6xl font-semibold mb-4 leading-tight">
+        <span className="inline-flex items-center justify-center bg-[#855dda] text-white rounded-full w-16 h-16 md:w-20 md:h-20 text-2xl md:text-3xl mr-3" style={{ verticalAlign: "middle" }}>
+  AI
+</span>
+  Приложение для дизайна интерьера
 </h1>
 
-<p className="text-gray-500 mb-8 text-lg max-w-2xl mx-auto">
-  Создавай дизайн с реальными товарами.  
-  Пользователь видит интерьер → кликает → покупает у бренда
+<p className="text-black-500 mb-8 text-lg max-w-2xl mx-auto">
+  Создавай дизайн с реальными товарами.
+  Пользователь видит интерьер - кликает - покупает у бренда.
 </p>
 
 <div className="flex items-center justify-center gap-3 mb-12 flex-wrap">
@@ -131,15 +133,11 @@ export default function Hero() {
   {/* B2C */}
   <button
   onClick={() => setOpen(true)}
-   className="bg-[#2D1F1A] text-white px-6 py-3 rounded-full hover:scale-105 transition">
-    Попробовать дизайн
+   className="bg-[#d66501] text-white px-6 py-3 rounded-full hover:scale-105 transition">
+    Скачать
   </button>
 
-  {/* B2B */}
-  <button className="px-6 py-3 rounded-full border border-black/10 hover:bg-black hover:text-white transition">
-    Разместить товары
-  </button>
-
+  
 </div>
 
         {/* DEMO */}
@@ -280,7 +278,7 @@ export default function Hero() {
 
         </div>
 
-        <p className="mt-4 text-gray-500">
+        <p className="mt-4 text-black-600">
           Исследуй интерьер — нажми на элементы
         </p>
 

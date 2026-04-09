@@ -1,116 +1,124 @@
 "use client";
 
+import { motion } from "framer-motion";
+
+const advantages = [
+  {
+    num: "1",
+    text: "Экономите деньги: меньше случайных и ошибочных покупок",
+    highlighted: false,
+  },
+  {
+    num: "2",
+    text: "Получаете решение под своё пространство, а не абстрактные идеи",
+    highlighted: false,
+  },
+  {
+    num: "3",
+    text: "Получаете полную свободу выбора: стили, цвета, мебель и материалы можно менять и сравнивать",
+    highlighted: true,
+  },
+  {
+    num: "4",
+    text: "Сразу переходите к выбору мебели и материалов без лишнего поиска",
+    highlighted: false,
+  },
+];
+
 export default function ComparisonSection() {
   return (
-    <section className="py-32 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-24 px-6">
+      <div className="max-w-2xl mx-auto">
+
+        {/* BANNER IMAGE */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full rounded-3xl overflow-hidden mb-10 shadow-[0_20px_60px_rgba(0,0,0,0.1)]"
+        >
+          <img
+            src="/images/comparison/comparison.jpg"
+            alt="Roomforia — преимущества"
+            className="w-full h-auto object-cover"
+          />
+        </motion.div>
 
         {/* TITLE */}
-        <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-semibold mb-4 leading-tight">
-            Дизайнер или{" "}
-            <span className="text-[#C47A2C]">Roomforia</span>?
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-3"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
+            Преимущества{" "}
+            <span style={{ fontFamily: "symphonyregular, serif" }} className="text-[#d66501]">
+              Roomforia
+            </span>
           </h2>
+          
+        </motion.div>
 
-          <p className="text-gray-500 text-lg">
-            Выбор становится очевидным за 5 секунд
-          </p>
+        {/* SUBTITLE */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-gray-900 text-base md:text-lg font-semibold mb-10 leading-snug"
+        >
+          Быстро и понятно на каждом этапе.{" "}
+          Профессиональный результат за минуты.
+        </motion.p>
+
+        {/* ADVANTAGES LIST */}
+        <div className="flex flex-col gap-6 mb-10">
+          {advantages.map((item, i) => {
+            const isLast = i === advantages.length - 1;
+
+            // ЕДИНЫЙ КОМПОНЕНТ ДЛЯ НОМЕРА СО СТИЛЯМИ КРУЖКА
+            const NumberCircle = (
+              <span
+                className="flex-shrink-0 w-14 h-14 rounded-full border-2 border-[#855dda] flex items-center justify-center text-3xl font-bold text-gray-900 leading-none"
+                style={{ fontFamily: "symphonyregular, serif" }}
+              >
+                {item.num}
+              </span>
+            );
+
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+              >
+                {isLast ? (
+                  /* Last row: number + text + button on same line */
+                  <div className="flex items-center gap-4">
+                    {NumberCircle} {/* Используем единый компонент для номера */}
+                    <p className="text-gray-900 text-base leading-relaxed flex-1">
+                      {item.text}
+                    </p>
+                    <button className="flex-shrink-0 bg-[#d66501] hover:bg-[#bf5a01] text-white font-semibold text-base px-7 py-3 rounded-2xl transition-all duration-200 shadow-[0_6px_20px_rgba(214,101,1,0.35)] hover:scale-[1.02]">
+                      Скачать
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex items-start gap-4">
+                    {NumberCircle} {/* Используем единый компонент для номера */}
+                    {/* Text */}
+                    <p className="text-gray-900 text-base leading-relaxed pt-2">
+                      {item.text}
+                    </p>
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* CARDS */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
-
-          {/* DESIGNER */}
-          <div className="relative p-8 rounded-[32px] bg-white/40 backdrop-blur-xl border border-white/30 
-          shadow-[0_20px_60px_rgba(0,0,0,0.05)] opacity-80 hover:opacity-100 transition">
-
-            <h3 className="text-xl font-semibold mb-8 text-gray-700">
-              Дизайнер интерьера
-            </h3>
-
-            <ul className="space-y-4 text-gray-600 text-[15px]">
-              <li>⏳ 2–4 недели ожидания</li>
-              <li>💸 50 000 – 200 000 ₽</li>
-              <li>🔁 Несколько итераций</li>
-              <li>🤷 Результат неочевиден</li>
-              <li>🛒 Нет связи с товарами</li>
-            </ul>
-
-            {/* subtle fade */}
-            <div className="absolute inset-0 bg-gradient-to-br from-black/[0.02] to-transparent pointer-events-none rounded-[32px]" />
-          </div>
-
-          {/* ROOMFORIA */}
-          <div className="relative p-8 rounded-[32px] bg-[#2D1F1A] text-white 
-          shadow-[0_30px_80px_rgba(0,0,0,0.2)] overflow-hidden 
-          scale-[1.02] hover:scale-[1.04] transition-all duration-300">
-
-            {/* glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#C47A2C]/20 via-transparent to-transparent" />
-
-            {/* badge */}
-            <div className="absolute top-4 right-4 text-xs px-3 py-1 rounded-full bg-[#C47A2C] text-white shadow">
-              лучший выбор
-            </div>
-
-            <div className="relative">
-
-              <h3 className="text-xl font-semibold mb-8">
-                Roomforia
-              </h3>
-
-              <ul className="space-y-4 text-[15px]">
-                <li>⚡ 30 секунд</li>
-                <li>💰 Почти бесплатно</li>
-                <li>🎯 Без правок</li>
-                <li>👀 Видишь результат сразу</li>
-                <li>🛍 Готовый список товаров</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* STATS */}
-        <div className="grid md:grid-cols-3 gap-6 text-center">
-
-          <div className="p-6 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/30 
-          shadow-[0_15px_40px_rgba(0,0,0,0.05)] hover:scale-105 transition">
-
-            <div className="text-3xl md:text-4xl font-semibold mb-2 text-[#C47A2C]">
-              ×10
-            </div>
-
-            <p className="text-gray-600">
-              быстрее, чем дизайнер
-            </p>
-          </div>
-
-          <div className="p-6 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/30 
-          shadow-[0_15px_40px_rgba(0,0,0,0.05)] hover:scale-105 transition">
-
-            <div className="text-3xl md:text-4xl font-semibold mb-2 text-[#C47A2C]">
-              −90%
-            </div>
-
-            <p className="text-gray-600">
-              экономия бюджета
-            </p>
-          </div>
-
-          <div className="p-6 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/30 
-          shadow-[0_15px_40px_rgba(0,0,0,0.05)] hover:scale-105 transition">
-
-            <div className="text-3xl md:text-4xl font-semibold mb-2 text-[#C47A2C]">
-              100%
-            </div>
-
-            <p className="text-gray-600">
-              результат до ремонта
-            </p>
-          </div>
-
-        </div>
-      </div>
+     </div>
     </section>
   );
 }

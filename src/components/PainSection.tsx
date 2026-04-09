@@ -46,8 +46,8 @@ export default function PainSection() {
                 className="flex gap-4 items-start p-4 rounded-2xl bg-white/40 backdrop-blur 
                 border border-white/30 hover:scale-[1.02] transition"
               >
-                <div className="w-6 h-6 rounded-full bg-[#C47A2C]/20 flex items-center justify-center text-[#C47A2C] text-sm mt-1">
-                  •
+                <div className="w-6 h-6 rounded-full bg-[#855dda]/20 flex items-center justify-center mt-1">
+                  <div className="w-2 h-2 rounded-full bg-[#855dda]" />
                 </div>
 
                 <p className="text-gray-700">
