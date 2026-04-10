@@ -18,7 +18,7 @@ export default function Home() {
         <Hero />
         {/* <StyleSwitcher /> */}
         <FlowSection />
-        <PainSection />
+        {/* <PainSection />*/}
         <ComparisonSection />
         <CTASection />
         <BrandsSection />

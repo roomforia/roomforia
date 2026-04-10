@@ -1,109 +1,86 @@
 @import "tailwindcss";
 
+/* ===== CSS VARIABLES ===== */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1e1e1e;
+  --orange: #d66501;
+  --purple: #855dda;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-    opacity: 0.4;
-  }
-  50% {
-    transform: translateY(-40px);
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(0px);
-    opacity: 0.4;
-  }
-}
-
-@keyframes shine {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
-  100% { transform: translateX(100%); }
-}
-
-body {
-  font-family: var(--font-jakarta), var(--font-inter), sans-serif;
-}
-
-h1, h2, h3 {
-  letter-spacing: -0.02em;
-}
-
-h1 {
-  line-height: 1.1;
-}
-
-h2 {
-  line-height: 1.15;
-}
-
-p {
-  line-height: 1.6;
-}
-
+/* ===== FORCE LIGHT MODE ===== */
 html {
   color-scheme: light;
 }
 
+/* ===== BASE ===== */
 body {
-  color: #1E1E1E;
-  background: #F6F4F1;
+  background: #ffffff;
+  color: #1e1e1e;
+  font-family: var(--font-jakarta), var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html, body {
   overflow-x: hidden;
 }
 
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+}
+
+h1 { line-height: 1.05; }
+h2 { line-height: 1.1; }
+p  { line-height: 1.6; }
+
+/* ===== FONT: SYMPHONY ===== */
 @font-face {
-  font-family: 'Symphony';
+  font-family: 'symphonyregular';
   src: url('/fonts/symphonyregular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
-/* скрыть scrollbar */
-.scrollbar-hide {
-  -ms-overflow-style: none; /* IE и Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
-}
-
-/* hide scrollbar */
+/* ===== SCROLLBAR HIDE ===== */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;
+}
+
+/* ===== MARQUEE (бренды) ===== */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+/* ===== FADE UP (общая анимация появления) ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== SHINE (оставляем на случай если используется) ===== */
+@keyframes shine {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
 }

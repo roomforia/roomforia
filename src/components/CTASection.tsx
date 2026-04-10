@@ -1,6 +1,7 @@
-"use client";
+"use client"
 
-import { useRef, useState } from "react";
+import { useRef, useState } from "react"
+import { motion } from "framer-motion"
 
 const items = [
   {
@@ -19,159 +20,217 @@ const items = [
     id: 4,
     text: "Только актуальная база. Каждый элемент можно открыть, изучить и перейти к следующему шагу — покупке.",
   },
-];
+]
+
+const line1 = "Визуализация и ИИ".split("")
+const line2 = "в реальности".split("")
 
 export default function CTASection() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(0)
 
   const handleScroll = () => {
-    if (!scrollRef.current) return;
-
-    const { scrollLeft, offsetWidth } = scrollRef.current;
-    const index = Math.round(scrollLeft / (offsetWidth * 0.8));
-    setActive(index);
-  };
+    if (!scrollRef.current) return
+    const { scrollLeft, offsetWidth } = scrollRef.current
+    const index = Math.round(scrollLeft / (offsetWidth * 0.8))
+    setActive(index)
+  }
 
   const scrollTo = (index: number) => {
-    if (!scrollRef.current) return;
-
-    const width = scrollRef.current.offsetWidth;
+    if (!scrollRef.current) return
     scrollRef.current.scrollTo({
-      left: width * 0.8 * index,
+      left: scrollRef.current.offsetWidth * 0.8 * index,
       behavior: "smooth",
-    });
-  };
+    })
+  }
 
   return (
-    <section className="py-24 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-28 px-4 bg-white">
+      <div className="max-w-7xl mx-auto">
 
-        {/* HEADER */}
-        <div className="text-center mb-16">
+        {/* ===== HEADER ===== */}
+        <div className="mb-16">
 
-          <h1 className="font-[Symphony] text-4xl md:text-5xl mb-6">
-            Roomforia
-          </h1>
-
-          <h2 className="text-3xl md:text-5xl font-semibold leading-tight">
-            <span className="text-[#d66501]">
-              Визуализация и ИИ
-            </span>
-            <br />
-            <span className="text-[#d66501]">
-              в реальности
-            </span>
-          </h2>
-
-          <p className="text-gray-500 text-lg mt-4">
-            От идеи до конкретного решения — быстрее и проще
-          </p>
-
-        </div>
-
-        {/* SLIDER */}
-        <div className="relative">
-
-          <div
-            ref={scrollRef}
-            onScroll={handleScroll}
-            onMouseDown={(e) => {
-              const slider = scrollRef.current;
-              if (!slider) return;
-
-              let isDown = true;
-              const startX = e.pageX;
-              const startScrollLeft = slider.scrollLeft;
-
-              const onMouseMove = (moveEvent: MouseEvent) => {
-                if (!isDown) return;
-                const walk = (moveEvent.pageX - startX) * 1.2;
-                slider.scrollLeft = startScrollLeft - walk;
-              };
-
-              const onMouseUp = () => {
-                isDown = false;
-                window.removeEventListener("mousemove", onMouseMove);
-                window.removeEventListener("mouseup", onMouseUp);
-              };
-
-              window.addEventListener("mousemove", onMouseMove);
-              window.addEventListener("mouseup", onMouseUp);
-            }}
-            className="
-              flex gap-6 overflow-x-scroll pb-6
-              snap-x snap-mandatory scroll-smooth
-              scrollbar-hide
-              cursor-grab active:cursor-grabbing
-            "
+          {/* Roomforia — symphony сверху */}
+          <motion.div
+            initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0 }}
+            className="mb-2"
           >
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="
-                  snap-start shrink-0
-                  w-[80%] sm:w-[60%] md:w-[45%] lg:w-[30%]
-                "
+            <span
+              className="text-3xl md:text-4xl text-[#d66501]"
+              style={{ fontFamily: "symphonyregular, serif" }}
+            >
+              Roomforia
+            </span>
+          </motion.div>
+
+          {/* "Визуализация и ИИ" — побуквенно */}
+          <div className="flex flex-wrap items-end overflow-hidden mb-1">
+            {line1.map((char, i) => (
+              <motion.span
+                key={`l1-${i}`}
+                initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.55,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: 0.1 + i * 0.04,
+                }}
+                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#d66501] leading-[1.05]"
+                style={{
+                  display: char === " " ? "inline-block" : "inline",
+                  width: char === " " ? "0.28em" : "auto",
+                }}
               >
-                <div className="
-                  h-full p-8 rounded-[32px]
-                  bg-[#2D1F1A] text-white
-                  shadow-[0_30px_80px_rgba(0,0,0,0.25)]
-                  relative overflow-hidden
-                  transition-opacity duration-500
-                ">
-
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#d66501]/20 via-transparent to-transparent" />
-
-                  <div className="text-[64px] font-bold text-white/20 mb-4">
-                    {item.id}
-                  </div>
-
-                  <p className="text-white/80 leading-relaxed">
-                    {item.text}
-                  </p>
-
-                </div>
-              </div>
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
             ))}
           </div>
 
-          {/* DOTS */}
-          <div className="flex justify-center gap-3 mt-6">
+          {/* "в реальности" — побуквенно */}
+          <div className="flex flex-wrap items-end overflow-hidden mb-8">
+            {line2.map((char, i) => (
+              <motion.span
+                key={`l2-${i}`}
+                initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.55,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: 0.1 + (line1.length + i) * 0.04,
+                }}
+                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.05]"
+                style={{
+                  display: char === " " ? "inline-block" : "inline",
+                  width: char === " " ? "0.28em" : "auto",
+                }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
+
+          {/* Подзаголовок */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+              delay: 0.1 + (line1.length + line2.length) * 0.04 + 0.1,
+            }}
+            className="text-gray-400 text-lg md:text-xl max-w-xl"
+          >
+            От идеи до конкретного решения — быстрее и проще
+          </motion.p>
+        </div>
+
+        {/* ===== CARDS SLIDER ===== */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+          className="relative mb-10"
+        >
+            <div
+              ref={scrollRef}
+              onScroll={handleScroll}
+              onMouseDown={(e) => {
+                const slider = scrollRef.current
+                if (!slider) return
+                let isDown = true
+                const startX = e.pageX
+                const startScrollLeft = slider.scrollLeft
+                const onMouseMove = (moveEvent: MouseEvent) => {
+                  if (!isDown) return
+                  slider.scrollLeft = startScrollLeft - (moveEvent.pageX - startX) * 1.2
+                }
+                const onMouseUp = () => {
+                  isDown = false
+                  window.removeEventListener("mousemove", onMouseMove)
+                  window.removeEventListener("mouseup", onMouseUp)
+                }
+                window.addEventListener("mousemove", onMouseMove)
+                window.addEventListener("mouseup", onMouseUp)
+              }}
+              className="flex gap-5 overflow-x-scroll pb-4 snap-x snap-mandatory scroll-smooth scrollbar-hide cursor-grab active:cursor-grabbing select-none"
+            >
+            {items.map((item, i) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
+                className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[42%] lg:w-[30%]"
+              >
+                <div className="group h-full border border-gray-100 hover:border-[#855dda]/40 rounded-3xl p-8 transition-all duration-500 hover:shadow-[0_8px_40px_rgba(133,93,218,0.08)] bg-white">
+
+                  {/* Номер */}
+                  <div className="text-[64px] font-semibold text-gray-100 leading-none mb-6 group-hover:text-[#855dda]/20 transition-colors duration-500">
+                    {String(item.id).padStart(2, "0")}
+                  </div>
+
+                  {/* Разделитель */}
+                  <div className="relative h-[1px] overflow-hidden mb-6">
+                    <div className="absolute inset-0 bg-gray-100" />
+                    <div
+                      className="absolute inset-0 bg-[#855dda] origin-left scale-x-0 group-hover:scale-x-100"
+                      style={{ transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
+                    />
+                  </div>
+
+                  {/* Текст */}
+                  <p className="text-gray-600 leading-relaxed text-base">
+                    {item.text}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Dots */}
+          <div className="flex gap-2 mt-6">
             {items.map((_, i) => (
               <button
                 key={i}
                 onClick={() => scrollTo(i)}
-                className={`
-                  w-2.5 h-2.5 rounded-full transition-all duration-300
-                  ${active === i ? "bg-[#d66501] w-5" : "bg-gray-300"}
-                `}
+                className={`h-[3px] rounded-full transition-all duration-500 ${
+                  active === i ? "w-8 bg-[#d66501]" : "w-4 bg-gray-200 hover:bg-gray-300"
+                }`}
               />
             ))}
           </div>
+        </motion.div>
 
-        </div>
-
-        {/* CTA */}
-        <div className="flex justify-center mt-12">
-          <button className="
-            bg-[#d66501] text-white px-10 py-4 rounded-xl
-            text-lg font-medium
-            hover:opacity-90 active:scale-[0.98] transition
-          ">
-            Скачать
-          </button>
-        </div>
-
-        {/* TRUST */}
-        <div className="text-center mt-10">
-          <p className="text-gray-500 text-sm">
+        {/* ===== BOTTOM ROW: trust + CTA ===== */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pt-10 border-t border-gray-100"
+        >
+          <p className="text-gray-400 text-sm max-w-sm">
             Уже используют дизайнеры, маркетплейсы и мебельные бренды
           </p>
-        </div>
+
+          <button className="inline-flex items-center gap-3 bg-[#d66501] hover:bg-[#bf5a01] text-white font-semibold text-base px-10 py-4 rounded-full transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.35)] hover:shadow-[0_10px_32px_rgba(214,101,1,0.45)] hover:scale-[1.02]">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 2v10M9 12l-3-3M9 12l3-3M3 16h12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Скачать
+          </button>
+        </motion.div>
 
       </div>
     </section>
-  );
+  )
 }

@@ -1,121 +1,230 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 
 const items = [
   {
     title: "Анализ пространства",
     desc: "AI понимает геометрию комнаты, свет и расположение объектов",
     img: "/images/how/underhood/analysis.png",
+    rotate: -14,
+    x: -155,
+    y: 15,
+    accent: "#855dda",
   },
   {
     title: "Каталоги брендов",
-    desc: "Мы подключаем реальные товары партнеров и их каталоги",
+    desc: "Мы подключаем реальные товары партнёров и их каталоги",
     img: "/images/how/underhood/catalog.png",
+    rotate: 0,
+    x: 0,
+    y: -20,
+    accent: "#d66501",
   },
   {
     title: "Готовый интерьер",
     desc: "Дизайн собирается из реальных товаров, которые можно купить",
     img: "/images/how/underhood/result.png",
+    rotate: 14,
+    x: 155,
+    y: 15,
+    accent: "#855dda",
   },
-];
+]
+
+const titleChars = "Как это работает".split("")
+
+function Phone({ img }: { img: string }) {
+  return (
+    <div
+      className="relative overflow-hidden flex-shrink-0"
+      style={{
+        width: "200px",
+        height: "432px",
+        borderRadius: "36px",
+        border: "6px solid #111",
+        boxShadow: "0 24px 60px rgba(0,0,0,0.35)",
+      }}
+    >
+      <img
+        src={img}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+        draggable={false}
+      />
+      <div
+        className="absolute left-1/2 -translate-x-1/2 bg-black rounded-full z-20"
+        style={{ top: "10px", width: "68px", height: "20px" }}
+      />
+      <div
+        className="absolute left-1/2 -translate-x-1/2 rounded-full z-20"
+        style={{ bottom: "7px", width: "50px", height: "4px", backgroundColor: "rgba(255,255,255,0.35)" }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none z-10"
+        style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%)" }}
+      />
+    </div>
+  )
+}
 
 export default function UnderTheHood() {
+  const fanRef = useRef<HTMLDivElement>(null)
+
+  const isInView = useInView(fanRef, {
+    once: false,
+    margin: "-20% 0px -20% 0px",
+  })
+
   return (
-    <section className="py-40 px-6 max-w-6xl mx-auto text-center">
+    <section className="py-28 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-      {/* TITLE */}
-      <motion.h2
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-3xl md:text-5xl font-semibold mb-6"
-      >
-        Как это работает внутри
-      </motion.h2>
+        {/* HEADER */}
+        <div className="mb-20">
+          <div className="flex items-end flex-wrap overflow-hidden mb-2">
+            {titleChars.map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
+                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
 
-      <motion.p
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1, duration: 0.6 }}
-        className="text-gray-500 max-w-2xl mx-auto mb-20"
-      >
-        Мы не просто создаем интерьер.  
-        Мы собираем его из реальных товаров партнеров.
-      </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.7 }}
+            className="text-gray-400 text-lg md:text-xl"
+          >
+            Мы не просто создаём интерьер. Мы собираем его из реальных товаров партнёров.
+          </motion.p>
+        </div>
 
-      {/* LINE */}
-      <div className="relative">
+        {/* MAIN */}
+        <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
 
-        <div className="hidden md:block absolute top-1/2 left-0 w-full h-[2px] bg-neutral-200 -translate-y-1/2" />
-
-        <div className="grid md:grid-cols-3 gap-12 relative">
-
-          {items.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="group relative"
+          {/* LEFT — веер */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex justify-center"
+          >
+            <div
+              ref={fanRef}
+              className="relative"
+              style={{ width: "200px", height: "432px" }}
             >
+              {items.map((item, i) => {
+                const fanned = {
+                  rotate: item.rotate,
+                  x: item.x,
+                  y: item.y,
+                  zIndex: i === 1 ? 10 : 5,
+                }
+                const stacked = {
+                  rotate: i === 0 ? -4 : i === 2 ? 4 : 0,
+                  x: i === 0 ? -8 : i === 2 ? 8 : 0,
+                  y: i === 1 ? 0 : 8,
+                  zIndex: i === 1 ? 10 : 5,
+                }
 
-              {/* DOT */}
-              <div className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-black text-white mx-auto mb-6 z-10 relative">
-                {i + 1}
-              </div>
+                return (
+                  <motion.div
+                    key={i}
+                    className="absolute top-0 left-0"
+                    animate={isInView ? fanned : stacked}
+                    transition={{
+                      duration: 0.55,
+                      ease: [0.22, 1, 0.36, 1],
+                      delay: 0, // без задержки — все одновременно
+                    }}
+                    style={{ transformOrigin: "bottom center" }}
+                  >
+                    {/* Яркое свечение — всегда видно когда развёрнуто */}
+                    <motion.div
+                      animate={{
+                        opacity: isInView ? 0.45 : 0,
+                        scale: isInView ? 1 : 0.8,
+                      }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute -z-10"
+                      style={{
+                        inset: "-30px",
+                        borderRadius: "56px",
+                        backgroundColor: item.accent,
+                        filter: "blur(40px)",
+                      }}
+                    />
+                    <Phone img={item.img} />
+                  </motion.div>
+                )
+              })}
+            </div>
+          </motion.div>
 
-              {/* IMAGE */}
-              <div className="flex justify-center mb-6">
+          {/* RIGHT — список */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+          >
+            <div className="flex flex-col">
+              {items.map((item, i) => (
+                <motion.div
+                  key={i}
+                  className="group relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 + i * 0.1 }}
+                >
+                  <div className="relative h-[1px] overflow-hidden">
+                    <div className="absolute inset-0 bg-gray-100" />
+                    <div
+                      className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100"
+                      style={{
+                        backgroundColor: item.accent,
+                        transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+                      }}
+                    />
+                  </div>
 
-  <div className="relative w-[180px] md:w-[200px]">
-
-    {/* PHONE FRAME */}
-    <div className="
-      relative
-      rounded-[36px]
-      border-[6px] border-black
-      overflow-hidden
-      shadow-xl
-      bg-black
-    ">
-
-      {/* SCREEN */}
-      <div className="relative w-full aspect-[9/19.5] bg-black">
-
-        <img
-          src={item.img}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-
-        {/* NOTCH */}
-        <div className="
-          absolute top-2 left-1/2 -translate-x-1/2
-          w-[40%] h-[10px]
-          bg-black rounded-full
-          z-10
-        " />
-      </div>
-    </div>
-
-  </div>
-</div>
-
-              {/* TEXT */}
-              <h3 className="text-lg font-medium mb-2">
-                {item.title}
-              </h3>
-
-              <p className="text-sm text-gray-500 leading-relaxed max-w-xs mx-auto">
-                {item.desc}
-              </p>
-
-            </motion.div>
-          ))}
+                  <div className="flex items-start gap-6 py-8">
+                    <span className="text-xs font-mono text-gray-300 flex-shrink-0 w-6 mt-1 group-hover:text-[#855dda] transition-colors duration-500">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="flex-1">
+                      <h3 className="text-xl md:text-2xl font-semibold text-[#1E1E1E] mb-2 leading-snug">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">{item.desc}</p>
+                    </div>
+                    <div
+                      className="w-2 h-2 rounded-full flex-shrink-0 mt-2 opacity-0 group-hover:opacity-100 transition-all duration-500"
+                      style={{ backgroundColor: item.accent }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+              <div className="h-[1px] bg-gray-100" />
+            </div>
+          </motion.div>
 
         </div>
       </div>
-
     </section>
-  );
+  )
 }

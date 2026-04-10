@@ -1,77 +1,120 @@
+"use client"
+
 import Link from "next/link"
+import { motion } from "framer-motion"
+
+const nav = [
+  { href: "/", label: "Главная" },
+  { href: "/how-it-works", label: "Как это работает" },
+  { href: "/partners", label: "Партнёрам" },
+  { href: "/about", label: "О нас" },
+]
 
 export default function Footer() {
   return (
-    <footer className="mt-0  bg-[#1F1F1F] text-white rounded-t-3xl">
+    <footer className="bg-[#111] text-white">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-      <div className="max-w-6xl mx-auto px-6 py-16">
+        {/* ===== TOP ===== */}
+        <div className="pt-20 pb-16 border-b border-white/10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
 
-        <div className="grid md:grid-cols-4 gap-10">
+            {/* LEFT — логотип + описание */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-sm"
+            >
+              <div className="font-semibold text-2xl mb-4 tracking-tight">
+                Roomforia
+              </div>
+              <p className="text-white/40 text-sm leading-relaxed">
+                AI-платформа для дизайна и продаж в строительстве и интерьерах
+              </p>
+            </motion.div>
 
-          {/* LOGO */}
-          <div>
-            <div className="font-semibold text-lg mb-4">
-              Roomforia
-            </div>
-            <p className="text-sm text-white/60">
-              AI-платформа для дизайна и продаж в строительстве и интерьерах
-            </p>
+            {/* RIGHT — nav + contact + email */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+              className="flex flex-col sm:flex-row gap-12"
+            >
+              {/* Навигация */}
+              <div>
+                <p className="text-xs uppercase tracking-[0.15em] text-white/30 mb-5 font-medium">
+                  Навигация
+                </p>
+                <div className="flex flex-col gap-3">
+                  {nav.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="text-sm text-white/60 hover:text-white transition-colors duration-200"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Контакты */}
+              <div>
+                <p className="text-xs uppercase tracking-[0.15em] text-white/30 mb-5 font-medium">
+                  Контакты
+                </p>
+                
+                <a
+                  href="mailto:hello@roomforia.com"
+                  className="text-sm text-white/60 hover:text-white transition-colors duration-200"
+                >
+                  hello@roomforia.com
+                </a>
+
+                {/* Подписка */}
+                <p className="text-xs uppercase tracking-[0.15em] text-white/30 mb-3 font-medium mt-8">
+                  Подписка
+                </p>
+                <div className="flex gap-2">
+                  <input
+                    placeholder="Email"
+                    className="flex-1 px-4 py-2.5 rounded-full bg-white/8 border border-white/10 text-sm outline-none text-white placeholder:text-white/30 focus:border-white/30 transition-colors duration-200 min-w-0 w-40"
+                  />
+                  <button className="px-5 py-2.5 rounded-full bg-[#d66501] text-white text-sm font-medium hover:bg-[#bf5a01] transition-colors duration-200">
+                    OK
+                  </button>
+                </div>
+                <p className="text-xs text-white/25 mt-2">
+                  Без спама. Только важное.
+                </p>
+              </div>
+            </motion.div>
+
           </div>
-
-          {/* NAV */}
-          <div>
-            <div className="text-sm mb-4 text-white/40">Навигация</div>
-            <div className="flex flex-col gap-2 text-sm">
-              <Link href="/">Главная</Link>
-              <Link href="/partners">Партнёрам</Link>
-              <Link href="/about">О нас</Link>
-            </div>
-          </div>
-
-          {/* CONTACT */}
-          <div>
-            <div className="text-sm mb-4 text-white/40">Контакты</div>
-            <div className="text-sm text-white/70">
-              hello@roomforia.com
-            </div>
-          </div>
-
-          {/* NEWSLETTER */}
-          <div>
-            <div className="text-sm mb-4 text-white/40">
-              Подписка
-            </div>
-
-            <div className="flex gap-2">
-              <input
-                placeholder="Email"
-                className="flex-1 px-3 py-2 rounded-full bg-white/10 text-sm outline-none"
-              />
-              <button className="px-4 py-2 rounded-full bg-white text-black text-sm">
-                OK
-              </button>
-            </div>
-
-            <div className="text-xs text-white/40 mt-3">
-              Без спама. Только важное.
-            </div>
-          </div>
-
         </div>
 
-        {/* BOTTOM */}
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between text-xs text-white/40 gap-4">
-
-          <div>
-            © 2025 Roomforia
-          </div>
+        {/* ===== BOTTOM ===== */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          className="py-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-white/25"
+        >
+          <span>© 2025 Roomforia</span>
 
           <div className="flex gap-6">
-            <span>Политика конфиденциальности</span>
-            <span>Пользовательское соглашение</span>
+            <span className="hover:text-white/50 cursor-pointer transition-colors duration-200">
+              Политика конфиденциальности
+            </span>
+            <span className="hover:text-white/50 cursor-pointer transition-colors duration-200">
+              Пользовательское соглашение
+            </span>
           </div>
-
-        </div>
+        </motion.div>
 
       </div>
     </footer>

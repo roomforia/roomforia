@@ -1,155 +1,290 @@
-"use client";
+"use client"
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import PhoneMockup from "./PhoneMockup";
+import { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const steps = [
-  { step: "01", title: "Создай проект", desc: "Начни новый интерьер за секунды — просто нажми кнопку и дай название." },
-  { step: "02", title: "Выбери сценарий", desc: "Квартира, дом или офис — выбери тип пространства для точного результата." },
-  { step: "03", title: "Загрузи фото", desc: "Сфотографируй комнату или загрузи готовое фото. AI распознаёт геометрию мгновенно." },
-  { step: "04", title: "AI анализирует", desc: "Нейросеть считывает свет, пропорции и планировку — как профессиональный дизайнер." },
-  { step: "05", title: "Выбери стиль", desc: "Сканди, лофт, модерн, классика — смотри результат мгновенно при переключении." },
-  { step: "06", title: "Генерация", desc: "AI создаёт готовый интерьер с реальной мебелью из каталогов партнёров." },
-  { step: "07", title: "Твой интерьер готов", desc: "Скачай дизайн и получи список мебели с ценами и ссылками прямо в приложении." },
-];
+  { num: "01", title: "Загрузи фото комнаты", desc: "AI мгновенно распознаёт пространство, геометрию и свет", image: "/images/how/flow/step1.png" },
+  { num: "02", title: "Выбери стиль", desc: "Сканди, лофт, модерн — переключай в один клик", image: "/images/how/flow/step2.png" },
+  { num: "03", title: "AI анализирует", desc: "Нейросеть считывает пропорции как профессиональный дизайнер", image: "/images/how/flow/step3.png" },
+  { num: "04", title: "Генерация дизайна", desc: "Интерьер собирается из реальных товаров партнёров", image: "/images/how/flow/step4.png" },
+  { num: "05", title: "Выбери мебель", desc: "Кликай на элементы — смотри бренд, цену и ссылку", image: "/images/how/flow/step5.png" },
+  { num: "06", title: "Сравни варианты", desc: "Меняй и сравнивай без ограничений", image: "/images/how/flow/step6.png" },
+  { num: "07", title: "Готово к покупке", desc: "Весь список мебели с ценами и ссылками у тебя", image: "/images/how/flow/step7.png" },
+]
+
+const titleChars = "Как работает".split("")
 
 export default function FlowStory() {
-  const ref = useRef<HTMLElement>(null);
-  const [stepIndex, setStepIndex] = useState(0);
-  const [sectionTop, setSectionTop] = useState(0);
-  const [sectionHeight, setSectionHeight] = useState(0);
+  const [current, setCurrent] = useState(0)
+  const [direction, setDirection] = useState(1)
+  const [isPaused, setIsPaused] = useState(false)
+  const startX = useRef<number | null>(null)
+  const autoRef = useRef<NodeJS.Timeout | null>(null)
 
-  const { scrollY } = useScroll(); // глобальный скролл — не зависит от overflow родителя
+  const goTo = (index: number, dir?: number) => {
+    const next = (index + steps.length) % steps.length
+    setDirection(dir ?? (next > current ? 1 : -1))
+    setCurrent(next)
+  }
 
+  const next = () => { setIsPaused(true); goTo(current + 1, 1) }
+  const prev = () => { setIsPaused(true); goTo(current - 1, -1) }
+
+  /* ===== AUTOPLAY ===== */
   useEffect(() => {
-    const update = () => {
-      if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
-      setSectionTop(window.scrollY + rect.top);
-      setSectionHeight(ref.current.offsetHeight);
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+    if (isPaused) {
+      const resume = setTimeout(() => setIsPaused(false), 4000)
+      return () => clearTimeout(resume)
+    }
+    autoRef.current = setTimeout(() => {
+      setDirection(1)
+      setCurrent((c) => (c + 1) % steps.length)
+    }, 3000)
+    return () => { if (autoRef.current) clearTimeout(autoRef.current) }
+  }, [current, isPaused])
 
-  useMotionValueEvent(scrollY, "change", (v) => {
-    if (sectionHeight === 0) return;
-    const progress = Math.max(0, Math.min(1,
-      (v - sectionTop) / (sectionHeight - window.innerHeight)
-    ));
-    const index = Math.min(steps.length - 1, Math.floor(progress * steps.length));
-    setStepIndex(index);
-  });
-
-  // scrollYProgress для progress bar — считаем вручную
-  const progressValue = sectionHeight > 0
-    ? Math.max(0, Math.min(1, (0 - sectionTop) / (sectionHeight - window.innerHeight)))
-    : 0;
+  /* ===== SWIPE ===== */
+  const handleMouseDown = (e: React.MouseEvent) => { startX.current = e.clientX }
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (startX.current === null) return
+    const diff = startX.current - e.clientX
+    if (diff > 40) next()
+    else if (diff < -40) prev()
+    startX.current = null
+  }
+  const handleTouchStart = (e: React.TouchEvent) => { startX.current = e.touches[0].clientX }
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (startX.current === null) return
+    const diff = startX.current - e.changedTouches[0].clientX
+    if (diff > 40) next()
+    else if (diff < -40) prev()
+    startX.current = null
+  }
 
   return (
-    <section ref={ref} className="relative" style={{ height: `${steps.length * 100}vh` }}>
-      <div className="sticky top-0 h-screen overflow-hidden bg-white flex items-center">
-        <div className="w-full max-w-6xl mx-auto px-6 md:px-12">
+    <section className="py-28 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-          <div className="text-center mb-10">
-            <p className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-3 font-medium">
-              Как это работает
-            </p>
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900">
-              От фото до интерьера
-              <br className="hidden md:block" />
-              <span className="text-gray-400"> за 30 секунд</span>
-            </h2>
+        {/* HEADER */}
+        <div className="mb-20">
+          <div className="flex items-end flex-wrap overflow-hidden mb-2">
+            {titleChars.map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
+                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+            <motion.span
+              initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.1 }}
+              className="text-5xl md:text-7xl lg:text-[82px] tracking-tight text-[#d66501] leading-[1.02] ml-4"
+              style={{ fontFamily: "symphonyregular, serif" }}
+            >
+              Roomforia
+            </motion.span>
           </div>
 
-          <div className="flex items-center gap-8 md:gap-16 justify-center">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+            className="text-gray-400 text-lg md:text-xl"
+          >
+            7 шагов от фото до готового интерьера
+          </motion.p>
+        </div>
 
-            {/* Steps nav слева */}
-            <div className="hidden md:flex flex-col gap-3 w-48 flex-shrink-0">
-              {steps.map((s, i) => (
+        {/* MAIN LAYOUT */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          className="grid md:grid-cols-2 gap-16 md:gap-24 items-center"
+        >
+
+          {/* LEFT — PHONE с экраном */}
+          <div className="flex justify-center">
+            <div
+              className="relative select-none cursor-grab active:cursor-grabbing"
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              {/* Декоративное свечение */}
+              <div
+                className="absolute inset-0 rounded-[48px] blur-3xl opacity-20 -z-10 transition-all duration-1000"
+                style={{ backgroundColor: current % 2 === 0 ? "#855dda" : "#d66501", transform: "scale(0.85) translateY(20px)" }}
+              />
+
+              {/* Телефон */}
+              <div
+                className="relative rounded-[44px] overflow-hidden"
+                style={{
+                  width: "min(280px, 72vw)",
+                  aspectRatio: "9/19.5",
+                  boxShadow: "0 0 0 7px #111, 0 40px 100px rgba(0,0,0,0.35)",
+                }}
+              >
+                {/* Скрины */}
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.img
+                    key={current}
+                    src={steps[current].image}
+                    alt={steps[current].title}
+                    custom={direction}
+                    initial={{ opacity: 0, x: direction > 0 ? 60 : -60, scale: 1.04 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: direction > 0 ? -60 : 60, scale: 0.97 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    draggable={false}
+                  />
+                </AnimatePresence>
+
+                {/* Dynamic island */}
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 bg-black rounded-full z-20" style={{ width: "38%", height: "20px" }} />
+
+                {/* Home indicator */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white/50 rounded-full z-20" style={{ width: "28%", height: "4px" }} />
+
+                {/* Внутренний блик */}
+                <div className="absolute inset-0 pointer-events-none z-10" style={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.08)" }} />
+              </div>
+
+              {/* Тень под телефоном */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[70%] h-10 bg-black/20 blur-2xl rounded-full -z-10" />
+            </div>
+          </div>
+
+          {/* RIGHT — контент */}
+          <div>
+            {/* Steps list */}
+            <div className="flex flex-col mb-10">
+              {steps.map((step, i) => (
                 <div
                   key={i}
-                  className={`flex items-center gap-3 transition-all duration-300 ${i === stepIndex ? "opacity-100" : "opacity-25"}`}
+                  className="group relative"
+                  onClick={() => { setIsPaused(true); goTo(i, i > current ? 1 : -1) }}
                 >
-                  <span className={`text-xs font-mono transition-all duration-300 ${i === stepIndex ? "text-gray-900 font-bold" : "text-gray-400"}`}>
-                    {s.step}
-                  </span>
-                  <span className={`text-sm transition-all duration-300 ${i === stepIndex ? "text-gray-900 font-medium" : "text-gray-400"}`}>
-                    {s.title}
-                  </span>
+                  {/* Разделитель */}
+                  <div className="relative h-[1px] overflow-hidden">
+                    <div className="absolute inset-0 bg-gray-100" />
+                    <div
+                      className="absolute inset-0 origin-left transition-transform duration-500"
+                      style={{
+                        backgroundColor: current % 2 === 0 ? "#855dda" : "#d66501",
+                        transform: i === current ? "scaleX(1)" : "scaleX(0)",
+                      }}
+                    />
+                  </div>
+
+                  <div className={`flex items-center gap-5 py-5 cursor-pointer transition-all duration-300 ${i === current ? "opacity-100" : "opacity-35 hover:opacity-60"}`}>
+                    {/* Номер */}
+                    <span
+                      className="text-xs font-mono flex-shrink-0 w-6 transition-colors duration-300"
+                      style={{ color: i === current ? (current % 2 === 0 ? "#855dda" : "#d66501") : "#ccc" }}
+                    >
+                      {step.num}
+                    </span>
+
+                    {/* Текст */}
+                    <div className="flex-1">
+                      <p className="text-base md:text-lg font-semibold text-[#1E1E1E] leading-snug">
+                        {step.title}
+                      </p>
+                      {i === current && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          className="text-sm text-gray-400 mt-1 leading-relaxed"
+                        >
+                          {step.desc}
+                        </motion.p>
+                      )}
+                    </div>
+
+                    {/* Точка активного шага */}
+                    <div
+                      className="w-2 h-2 rounded-full flex-shrink-0 transition-all duration-300"
+                      style={{ backgroundColor: i === current ? (current % 2 === 0 ? "#855dda" : "#d66501") : "#e5e5e5" }}
+                    />
+                  </div>
                 </div>
               ))}
+
+              {/* Финальный разделитель */}
+              <div className="h-[1px] bg-gray-100" />
             </div>
 
-            {/* Phone */}
-            <div className="flex-shrink-0">
-              <PhoneMockup stepIndex={stepIndex} totalSteps={steps.length} />
-            </div>
-
-            {/* Description справа */}
-            <div className="hidden md:flex flex-col w-52 flex-shrink-0">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={stepIndex}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                >
-                  <p className="text-xs font-mono text-gray-400 mb-2">
-                    {steps[stepIndex].step} / {steps.length.toString().padStart(2, "0")}
-                  </p>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-snug">
-                    {steps[stepIndex].title}
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
-                    {steps[stepIndex].desc}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-
-              <div className="mt-10 w-full h-[1px] bg-gray-200">
-                <motion.div
-                  className="h-full bg-gray-900 origin-left"
-                  animate={{ scaleX: (stepIndex + 1) / steps.length }}
-                  transition={{ duration: 0.4 }}
-                />
-              </div>
-            </div>
-
-          </div>
-
-          {/* Mobile */}
-          <div className="md:hidden mt-6 text-center px-4">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={stepIndex}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.3 }}
+            {/* Navigation */}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={prev}
+                className="w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-500 hover:border-[#855dda] hover:text-[#855dda] transition-all duration-200"
               >
-                <p className="text-xs text-gray-400 font-mono mb-1">
-                  {steps[stepIndex].step} / {steps.length.toString().padStart(2, "0")}
-                </p>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">{steps[stepIndex].title}</h3>
-                <p className="text-sm text-gray-500">{steps[stepIndex].desc}</p>
-              </motion.div>
-            </AnimatePresence>
-            <div className="flex justify-center gap-1.5 mt-4">
-              {steps.map((_, i) => (
-                <div
-                  key={i}
-                  className={`h-1 rounded-full transition-all duration-300 ${i === stepIndex ? "w-6 bg-gray-900" : "w-1.5 bg-gray-300"}`}
-                />
-              ))}
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M11 4L6 9L11 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              {/* Progress dots */}
+              <div className="flex gap-1.5 flex-1 justify-center">
+                {steps.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setIsPaused(true); goTo(i, i > current ? 1 : -1) }}
+                    className="h-[3px] rounded-full transition-all duration-400"
+                    style={{
+                      width: i === current ? "24px" : "6px",
+                      backgroundColor: i === current ? (current % 2 === 0 ? "#855dda" : "#d66501") : "#e5e5e5",
+                    }}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={next}
+                className="w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-500 hover:border-[#d66501] hover:text-[#d66501] transition-all duration-200"
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M7 4L12 9L7 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            {/* Autoplay indicator */}
+            <div className="flex items-center gap-2 mt-4 justify-center">
+              <div className="relative w-24 h-[2px] bg-gray-100 rounded-full overflow-hidden">
+                {!isPaused && (
+                  <motion.div
+                    key={current}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 3, ease: "linear" }}
+                    className="absolute inset-0 origin-left rounded-full"
+                    style={{ backgroundColor: current % 2 === 0 ? "#855dda" : "#d66501" }}
+                  />
+                )}
+              </div>
+              <span className="text-xs text-gray-300 font-mono">авто</span>
             </div>
           </div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
-  );
+  )
 }
