@@ -222,10 +222,8 @@ export default function CTASection() {
             Уже используют дизайнеры, маркетплейсы и мебельные бренды
           </p>
 
-          <button className="inline-flex items-center gap-3 bg-[#d66501] hover:bg-[#bf5a01] text-white font-semibold text-base px-10 py-4 rounded-full transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.35)] hover:shadow-[0_10px_32px_rgba(214,101,1,0.45)] hover:scale-[1.02]">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <button className="inline-flex items-center bg-[#d66501] hover:bg-[#bf5a01] text-white font-semibold text-base px-10 py-4 rounded-full transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.35)] hover:shadow-[0_10px_32px_rgba(214,101,1,0.45)] hover:scale-[1.02]">
               <path d="M9 2v10M9 12l-3-3M9 12l3-3M3 16h12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
             Скачать
           </button>
         </motion.div>
