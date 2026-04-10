@@ -95,9 +95,11 @@ export default function CTAHow() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.85 }}
               className="flex flex-col items-start md:items-end gap-4 flex-shrink-0"
             >
-              <button className="inline-flex items-center px-10 py-5 rounded-full bg-[#d66501] text-white font-semibold text-lg hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_8px_32px_rgba(214,101,1,0.4)] hover:shadow-[0_12px_40px_rgba(214,101,1,0.5)] hover:scale-[1.02]">
+              <button className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-[#d66501] text-white font-semibold text-lg hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_8px_32px_rgba(214,101,1,0.4)] hover:shadow-[0_12px_40px_rgba(214,101,1,0.5)] hover:scale-[1.02]">
                 Скачать
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                   <path d="M9 2v10M9 12l-3-3M9 12l3-3M3 16h12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </button>
 
               <span className="text-white/25 text-sm">

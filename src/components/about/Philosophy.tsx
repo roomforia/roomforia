@@ -2,35 +2,91 @@
 
 import { motion } from "framer-motion"
 
+const titleChars = "Мы не продаём".split("")
+
 export default function Philosophy() {
   return (
-    <section className="py-24">
+    <section className="py-28 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
 
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <h2 className="text-4xl font-semibold mb-6">
-            Мы не продаём технологии
-          </h2>
+          {/* LEFT */}
+          <div>
+            <div className="flex items-end flex-wrap overflow-hidden mb-1">
+              {titleChars.map((char, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
+                  className="text-4xl md:text-6xl lg:text-[72px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                  style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </div>
 
-          <p className="text-gray-500">
-            Мы увеличиваем продажи. Всё остальное — инструмент.
-          </p>
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.05 }}
+              className="mb-8"
+            >
+              <span
+                className="text-4xl md:text-6xl lg:text-[72px] tracking-tight text-[#d66501] leading-[1.02]"
+              >
+                технологии
+              </span>
+            </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 1.05 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2 }}
-          className="bg-[#C47A2C] text-white p-10 rounded-3xl"
-        >
-          «Результат — это продажи»
-        </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.8 }}
+              className="text-gray-400 text-lg leading-relaxed"
+            >
+              Мы увеличиваем продажи. Всё остальное — инструмент.
+              Технология существует только тогда, когда она решает реальную задачу бизнеса.
+            </motion.p>
+          </div>
 
+          {/* RIGHT — тёмная карточка-цитата */}
+          <motion.div
+            initial={{ opacity: 0, x: 40, scale: 0.97 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            className="relative rounded-3xl bg-[#111] overflow-hidden p-10 md:p-14"
+          >
+            {/* Глоу */}
+            <div
+              className="absolute top-0 left-0 w-[300px] h-[300px] rounded-full blur-[80px] pointer-events-none"
+              style={{ backgroundColor: "#855dda", opacity: 0.12, transform: "translate(-30%, -30%)" }}
+            />
+            <div
+              className="absolute bottom-0 right-0 w-[200px] h-[200px] rounded-full blur-[60px] pointer-events-none"
+              style={{ backgroundColor: "#d66501", opacity: 0.1, transform: "translate(20%, 20%)" }}
+            />
+
+            <div className="relative">
+              <p className="text-white/30 text-xs uppercase tracking-[0.2em] font-medium mb-6">Наш принцип</p>
+              <p className="text-white text-2xl md:text-3xl font-semibold leading-snug mb-8">
+                «Результат — это продажи. Всё остальное — просто инструмент.»
+              </p>
+              <div className="h-[1px] bg-white/10 mb-6" />
+              <p className="text-white/40 text-sm leading-relaxed">
+                Мы измеряем успех только одним критерием — выросли ли продажи у наших партнёров.
+                Это единственная метрика, которая имеет значение.
+              </p>
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   )

@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 
 /* ===== FONTS ===== */
-const jakarta = Plus_Jakarta_Sans({
+// DM Sans — ближайший бесплатный аналог Circular Std (используется на north2.net)
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-jakarta",
+  variable: "--font-dm-sans",
   weight: ["300", "400", "500", "600", "700"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  display: "swap",
 });
 
 /* ===== META ===== */
@@ -30,17 +27,18 @@ export default function RootLayout({
     <html
       lang="ru"
       suppressHydrationWarning
-      className={`${jakarta.variable} ${inter.variable}`}
+      className={dmSans.variable}
       style={{ colorScheme: "light" }}
     >
       <head>
         <meta name="color-scheme" content="light only" />
       </head>
       <body
-        className="bg-white text-[#1E1E1E] antialiased font-[var(--font-jakarta)] overflow-x-hidden"
+        className="bg-white text-[#1E1E1E] antialiased overflow-x-hidden"
         style={{
           color: "#1E1E1E",
           backgroundColor: "#ffffff",
+          fontFamily: "var(--font-dm-sans), sans-serif",
         }}
       >
         {children}

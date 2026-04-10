@@ -1,34 +1,74 @@
 "use client"
 
+import { motion } from "framer-motion"
+
+const industries = [
+  { src: "/images/about/industry-furniture.png", label: "Мебель" },
+  { src: "/images/about/industry-light.png", label: "Свет" },
+  { src: "/images/about/industry-materials.png", label: "Материалы" },
+  { src: "/images/about/industry-dev.png", label: "Девелопмент" },
+]
+
+const titleChars = "Работаем с лидерами".split("")
+
 export default function Industries() {
-  const items = [
-    "/images/about/industry-furniture.png",
-    "/images/about/industry-light.png",
-    "/images/about/industry-materials.png",
-    "/images/about/industry-dev.png",
-  ]
-
   return (
-    <section className="py-24">
+    <section className="py-28 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-      <div className="max-w-6xl mx-auto">
-
-        <h2 className="text-4xl font-semibold mb-10">
-          Работаем с лидерами отрасли
-        </h2>
-
-        <div className="grid md:grid-cols-4 gap-4">
-
-          {items.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              className="rounded-2xl hover:scale-105 transition duration-500"
-            />
-          ))}
-
+        {/* HEADER */}
+        <div className="mb-16">
+          <div className="flex items-end flex-wrap overflow-hidden mb-1">
+            {titleChars.map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
+                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
+          <motion.div
+            initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.05 }}
+          >
+            <span className="text-5xl md:text-7xl lg:text-[82px] tracking-tight text-[#d66501] leading-[1.02]">
+              отрасли
+            </span>
+          </motion.div>
         </div>
 
+        {/* GRID */}
+        <div className="grid md:grid-cols-4 gap-4">
+          {industries.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
+              className="group relative rounded-3xl overflow-hidden"
+              style={{ aspectRatio: "3/4" }}
+            >
+              <img
+                src={item.src}
+                alt={item.label}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute bottom-4 left-4">
+                <span className="text-white text-sm font-medium">{item.label}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

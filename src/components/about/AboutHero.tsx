@@ -1,52 +1,91 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion"
+import Image from "next/image"
+
+const titleChars = "Дизайн, который".split("")
+const titleChars2 = "продаёт".split("")
 
 export default function AboutHero() {
-  const ref = useRef(null)
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  })
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, -60])
-
   return (
-    <section ref={ref} className="py-28 relative overflow-hidden">
+    <section className="pt-20 pb-0 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-      <div className="absolute top-1/2 left-1/2 w-[900px] h-[900px] -translate-x-1/2 -translate-y-1/2 bg-[#C47A2C]/10 blur-3xl rounded-full" />
+        {/* HEADING */}
+        <div className="mb-16 pt-8">
+          <div className="flex items-end flex-wrap overflow-hidden mb-1">
+            {titleChars.map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 60, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 + i * 0.04 }}
+                className="text-5xl md:text-7xl lg:text-[88px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
+          <div className="flex items-end flex-wrap overflow-hidden mb-10">
+            {titleChars2.map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 60, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 + (titleChars.length + i) * 0.04 }}
+                className="text-5xl md:text-7xl lg:text-[88px] font-semibold tracking-tight text-[#d66501] leading-[1.02]"
+                style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <h1 className="text-5xl md:text-6xl font-semibold mb-6 leading-tight">
-            Дизайн
-            <br />
-            который продает
-            <br />
-            эффективно
-          </h1>
+          {/* Подзаголовок + кнопка в одну строку */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 1.2 }}
+              className="text-gray-400 text-lg md:text-xl max-w-xl leading-relaxed"
+            >
+              Через передовую визуализацию мы создаём инструмент для дизайнеров,
+              где эстетика и функциональность напрямую ведут к росту продаж.
+            </motion.p>
 
-          <p className="text-gray-500 text-lg mb-8 max-w-lg">
-          Через передовую визуализацию мы создаем мощный инструмент для дизайнеров, где эстетика и функциональность напрямую ведут к росту продаж.
-          </p>
-
-          <button className="bg-[#C47A2C] text-white px-6 py-3 rounded-xl hover:scale-105 transition">
-            Запросить демо
-          </button>
-        </motion.div>
-
-        <motion.div style={{ y }}>
-          <img src="/images/about/about-hero.png" className="rounded-3xl shadow-2xl" />
-        </motion.div>
-
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 1.4 }}
+              className="flex-shrink-0"
+            >
+              <button className="px-8 py-4 rounded-full bg-[#d66501] text-white font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:scale-[1.02]">
+                Запросить демо
+              </button>
+            </motion.div>
+          </div>
+        </div>
       </div>
+
+      {/* HERO IMAGE — edge to edge */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 1.5 }}
+        className="w-full px-4 md:px-8"
+      >
+        <div className="relative w-full h-[480px] md:h-[600px] rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.12)]">
+          <Image
+            src="/images/about/about-hero.png"
+            alt="Roomforia"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        </div>
+      </motion.div>
     </section>
   )
 }

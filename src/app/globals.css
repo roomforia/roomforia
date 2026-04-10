@@ -17,7 +17,8 @@ html {
 body {
   background: #ffffff;
   color: #1e1e1e;
-  font-family: var(--font-jakarta), var(--font-inter), sans-serif;
+  /* DM Sans — аналог Circular Std с north2.net */
+  font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,23 +27,16 @@ html, body {
   overflow-x: hidden;
 }
 
-/* ===== TYPOGRAPHY ===== */
+/* ===== TYPOGRAPHY — как у North2 ===== */
 h1, h2, h3 {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  font-weight: 600;
 }
 
-h1 { line-height: 1.05; }
-h2 { line-height: 1.1; }
+h1 { line-height: 1.02; }
+h2 { line-height: 1.05; }
+h3 { line-height: 1.1; }
 p  { line-height: 1.6; }
-
-/* ===== FONT: SYMPHONY ===== */
-@font-face {
-  font-family: 'symphonyregular';
-  src: url('/fonts/symphonyregular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* ===== SCROLLBAR HIDE ===== */
 .scrollbar-hide {
@@ -66,7 +60,7 @@ p  { line-height: 1.6; }
   will-change: transform;
 }
 
-/* ===== FADE UP (общая анимация появления) ===== */
+/* ===== FADE UP ===== */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -78,7 +72,7 @@ p  { line-height: 1.6; }
   }
 }
 
-/* ===== SHINE (оставляем на случай если используется) ===== */
+/* ===== SHINE ===== */
 @keyframes shine {
   0%   { transform: translateX(-100%); }
   50%  { transform: translateX(100%); }

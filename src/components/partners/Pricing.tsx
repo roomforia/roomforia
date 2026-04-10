@@ -42,165 +42,200 @@ const plans = [
   },
 ]
 
+const stats = [
+  { num: "+38%", label: "рост конверсии через интерьер" },
+  { num: "×3", label: "дольше взаимодействует с товаром" },
+  { num: "3 дня", label: "до запуска без сложной интеграции" },
+]
+
+const titleChars = "Новый канал продаж".split("")
+
 export default function Pricing() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="py-32 px-4 relative overflow-hidden">
+    <section className="py-28 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-      {/* 🔥 BACKGROUND GLOW */}
-      <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2 bg-[#C47A2C]/10 blur-3xl rounded-full pointer-events-none" />
+        {/* HEADER */}
+        <div className="mb-16">
+          <div className="flex items-end flex-wrap overflow-hidden mb-4">
+            {titleChars.map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
+                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-
-        {/* ================= TITLE ================= */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold mb-4">
-            Новый канал продаж
-          </h2>
-
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Вы не размещаете рекламу — вы попадаете в готовый интерьер,
-            где клиент уже выбирает и покупает
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.8 }}
+            className="text-gray-400 text-lg md:text-xl max-w-2xl"
+          >
+            Вы не размещаете рекламу — вы попадаете в готовый интерьер, где клиент уже выбирает и покупает
+          </motion.p>
         </div>
 
-        {/* 🔥 VALUE STRIP */}
-        <div className="grid md:grid-cols-3 gap-6 mb-20 text-center">
-
-          <div className="p-6 rounded-2xl bg-white/40 backdrop-blur-md">
-            <div className="text-2xl font-semibold text-[#C47A2C] mb-2">
-              +38%
-            </div>
-            <p className="text-gray-500 text-sm">
-              рост конверсии через интерьер
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white/40 backdrop-blur-md">
-            <div className="text-2xl font-semibold text-[#C47A2C] mb-2">
-              ×3 дольше
-            </div>
-            <p className="text-gray-500 text-sm">
-              пользователь взаимодействует с товаром
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white/40 backdrop-blur-md">
-            <div className="text-2xl font-semibold text-[#C47A2C] mb-2">
-              Новый канал
-            </div>
-            <p className="text-gray-500 text-sm">
-              без конкуренции и аукционов
-            </p>
-          </div>
-
+        {/* STATS */}
+        <div className="grid md:grid-cols-3 gap-4 mb-16">
+          {stats.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
+              className="bg-gray-50 rounded-2xl px-6 py-5"
+            >
+              <div className="text-2xl font-semibold text-[#855dda] mb-1">{item.num}</div>
+              <p className="text-gray-500 text-sm">{item.label}</p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* ================= CARDS ================= */}
-        <div className="grid md:grid-cols-2 gap-8">
-
+        {/* CARDS */}
+        <div className="grid md:grid-cols-2 gap-6">
           {plans.map((plan, i) => {
             const isOpen = openIndex === i
-
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 80 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  duration: 1.2,
-                  delay: i * 0.2,
-                  ease: [0.22, 1, 0.36, 1],
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
+                className="relative rounded-3xl overflow-hidden"
+                style={{
+                  backgroundColor: plan.highlight ? "#111" : "#f9f9f9",
+                  border: plan.highlight ? "none" : "1px solid #f0f0f0",
                 }}
-                className={`relative p-10 rounded-3xl border transition-all duration-500
-                  ${
-                    plan.highlight
-                      ? "bg-[#C47A2C] text-white shadow-[0_40px_100px_rgba(196,122,44,0.4)] scale-[1.03]"
-                      : "bg-white border-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:-translate-y-2"
-                  }
-                `}
               >
+                {plan.highlight && (
+                  <>
+                    <div
+                      className="absolute top-0 left-0 w-[300px] h-[300px] rounded-full blur-[80px] pointer-events-none"
+                      style={{ backgroundColor: "#855dda", opacity: 0.12, transform: "translate(-30%, -30%)" }}
+                    />
+                    <div
+                      className="absolute bottom-0 right-0 w-[200px] h-[200px] rounded-full blur-[60px] pointer-events-none"
+                      style={{ backgroundColor: "#d66501", opacity: 0.08, transform: "translate(20%, 20%)" }}
+                    />
+                  </>
+                )}
 
-                {/* BADGE */}
-                <div className="absolute top-6 right-6 text-xs px-3 py-1 rounded-full bg-black/10 backdrop-blur">
-                  {plan.badge}
+                <div className="relative p-8 md:p-10">
+                  <div
+                    className="absolute top-6 right-6 text-xs px-3 py-1 rounded-full font-medium"
+                    style={{
+                      backgroundColor: plan.highlight ? "rgba(133,93,218,0.2)" : "#f0f0f0",
+                      color: plan.highlight ? "#855dda" : "#999",
+                    }}
+                  >
+                    {plan.badge}
+                  </div>
+
+                  <div
+                    className="text-2xl font-semibold mb-2"
+                    style={{ color: plan.highlight ? "white" : "#1E1E1E" }}
+                  >
+                    {plan.name}
+                  </div>
+
+                  <div
+                    className="text-sm mb-8"
+                    style={{ color: plan.highlight ? "rgba(255,255,255,0.5)" : "#9ca3af" }}
+                  >
+                    {plan.desc}
+                  </div>
+
+                  <ul className="space-y-3 mb-6">
+                    {plan.features.map((f, idx) => (
+                      <li key={idx} className="flex items-center gap-3">
+                        <div
+                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: plan.highlight ? "#855dda" : "#d1d5db" }}
+                        />
+                        <span
+                          className="text-sm"
+                          style={{ color: plan.highlight ? "rgba(255,255,255,0.7)" : "#6b7280" }}
+                        >
+                          {f}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    className="text-sm mb-6 transition-opacity hover:opacity-70"
+                    style={{ color: plan.highlight ? "#855dda" : "#9ca3af" }}
+                  >
+                    {isOpen ? "Скрыть детали" : "Все возможности →"}
+                  </button>
+
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="overflow-hidden mb-6"
+                      >
+                        <ul className="space-y-2">
+                          {plan.more.map((f, idx) => (
+                            <li key={idx} className="flex items-center gap-3">
+                              <div
+                                className="w-1 h-1 rounded-full flex-shrink-0"
+                                style={{ backgroundColor: plan.highlight ? "#855dda" : "#e5e7eb" }}
+                              />
+                              <span
+                                className="text-sm"
+                                style={{ color: plan.highlight ? "rgba(255,255,255,0.5)" : "#9ca3af" }}
+                              >
+                                {f}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <button
+                    className="w-full py-3.5 rounded-2xl font-medium text-sm transition-all duration-200 hover:scale-[1.02]"
+                    style={{
+                      backgroundColor: plan.highlight ? "#855dda" : "#1E1E1E",
+                      color: "white",
+                      boxShadow: plan.highlight ? "0 6px 24px rgba(133,93,218,0.4)" : "none",
+                    }}
+                  >
+                    {plan.highlight ? "Обсудить подключение" : "Начать"}
+                  </button>
                 </div>
-
-                {/* NAME */}
-                <div className="text-xl font-semibold mb-2">
-                  {plan.name}
-                </div>
-
-                {/* DESC */}
-                <div className="text-sm mb-8 opacity-80">
-                  {plan.desc}
-                </div>
-
-                {/* FEATURES */}
-                <ul className="space-y-3 mb-6 text-sm">
-                  {plan.features.map((f, idx) => (
-                    <li key={idx}>— {f}</li>
-                  ))}
-                </ul>
-
-                {/* EXPAND */}
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className={`text-sm mb-6 underline underline-offset-4 transition
-                    ${
-                      plan.highlight
-                        ? "text-white/80 hover:text-white"
-                        : "text-gray-500 hover:text-black"
-                    }
-                  `}
-                >
-                  {isOpen ? "Скрыть детали" : "Все возможности"}
-                </button>
-
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.6 }}
-                      className="overflow-hidden mb-6"
-                    >
-                      <ul className="space-y-2 text-sm opacity-80">
-                        {plan.more.map((f, idx) => (
-                          <li key={idx}>• {f}</li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* CTA */}
-                <button
-                  className={`w-full py-3 rounded-xl font-medium transition
-                    ${
-                      plan.highlight
-                        ? "bg-white text-black hover:bg-gray-100"
-                        : "bg-black text-white hover:bg-gray-800"
-                    }
-                  `}
-                >
-                  {plan.highlight
-                    ? "Обсудить подключение"
-                    : "Начать"}
-                </button>
-
               </motion.div>
             )
           })}
         </div>
 
-        {/* 🔥 FOOT NOTE */}
-        <p className="text-center text-sm text-gray-400 mt-12">
-          Подключение занимает от 3 дней • Без сложной интеграции
-        </p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center text-sm text-gray-300 mt-8"
+        >
+          Подключение занимает от 3 дней · Без сложной интеграции
+        </motion.p>
 
       </div>
     </section>
