@@ -9,25 +9,16 @@ const pains = [
   "Дизайнер долго, дорого и не всегда попадает",
 ]
 
-<<<<<<< HEAD
-=======
 // ПУНКТ 13: новый заголовок
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
 const titleChars = "Обычно все выглядит так".split("")
 
 export default function PainSection() {
   return (
-<<<<<<< HEAD
-    <section className="py-0 bg-white overflow-hidden">
-      <div className="relative w-full">
-
-=======
     // ПУНКТ 13: убираем px-4, растягиваем на всю ширину
     <section className="py-0 bg-white overflow-hidden">
       <div className="relative w-full">
 
         {/* GRID: список слева, картинка справа */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
         <div className="grid md:grid-cols-2 gap-0 min-h-[380px] md:min-h-[580px]">
 
           {/* LEFT — список болей */}
@@ -44,26 +35,18 @@ export default function PainSection() {
                 >
                   <div className="relative h-[1px] overflow-hidden">
                     <div className="absolute inset-0 bg-gray-100" />
-<<<<<<< HEAD
-                    <div className="absolute inset-0 bg-[#855dda] origin-left scale-x-0 group-hover:scale-x-100" style={{ transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }} />
-=======
                     <div
                       className="absolute inset-0 bg-[#855dda] origin-left scale-x-0 group-hover:scale-x-100"
                       style={{ transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
                     />
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
                   </div>
                   <div className="flex items-start gap-5 py-7">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(133,93,218,0.12)" }}>
                       <span className="text-sm font-bold text-[#1E1E1E]">{i + 1}</span>
                     </div>
-<<<<<<< HEAD
-                    <p className="text-lg md:text-xl font-medium text-[#1E1E1E] leading-snug flex-1">{text}</p>
-=======
                     <p className="text-lg md:text-xl font-medium text-[#1E1E1E] leading-snug flex-1">
                       {text}
                     </p>
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
                     <motion.div
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
@@ -82,10 +65,6 @@ export default function PainSection() {
 
           {/* RIGHT — картинка */}
           <div className="relative">
-<<<<<<< HEAD
-            <img src="/images/about/team/team-2.png" alt="Проблемы пользователей" className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-black/50" />
-=======
             <img
               src="/images/about/team/team-2.png"
               alt="Проблемы пользователей"
@@ -94,7 +73,6 @@ export default function PainSection() {
             {/* Затемнение */}
             <div className="absolute inset-0 bg-black/50" />
             {/* Заголовок поверх картинки */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
             <div className="absolute inset-0 flex items-center px-10">
               <div className="flex items-end flex-wrap overflow-hidden">
                 {titleChars.map((char, i) => (
