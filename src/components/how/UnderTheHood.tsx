@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 
 const items = [
@@ -35,14 +35,17 @@ const items = [
 
 const titleChars = "Как это работает".split("")
 
-function Phone({ img }: { img: string }) {
+function Phone({ img, small = false }: { img: string; small?: boolean }) {
+  const w = small ? "140px" : "200px"
+  const h = small ? "302px" : "432px"
+  const br = small ? "28px" : "36px"
   return (
     <div
       className="relative overflow-hidden flex-shrink-0"
       style={{
-        width: "200px",
-        height: "432px",
-        borderRadius: "36px",
+        width: w,
+        height: h,
+        borderRadius: br,
         border: "6px solid #111",
         boxShadow: "0 24px 60px rgba(0,0,0,0.35)",
       }}
@@ -71,6 +74,14 @@ function Phone({ img }: { img: string }) {
 
 export default function UnderTheHood() {
   const fanRef = useRef<HTMLDivElement>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [])
 
   const isInView = useInView(fanRef, {
     once: false,
@@ -78,11 +89,11 @@ export default function UnderTheHood() {
   })
 
   return (
-    <section className="py-28 bg-white overflow-hidden">
+    <section className="py-12 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* HEADER */}
-        <div className="mb-20">
+        <div className="mb-8 md:mb-20">
           <div className="flex items-end flex-wrap overflow-hidden mb-2">
             {titleChars.map((char, i) => (
               <motion.span
@@ -91,7 +102,7 @@ export default function UnderTheHood() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                className="text-3xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}
@@ -124,12 +135,17 @@ export default function UnderTheHood() {
             <div
               ref={fanRef}
               className="relative"
-              style={{ width: "200px", height: "432px" }}
+              style={isMobile
+                ? { width: "140px", height: "302px" }
+                : { width: "200px", height: "432px" }
+              }
             >
               {items.map((item, i) => {
+                const fanX = isMobile ? item.x * 0.5 : item.x
+                const fanRotate = isMobile ? item.rotate * 0.6 : item.rotate
                 const fanned = {
-                  rotate: item.rotate,
-                  x: item.x,
+                  rotate: fanRotate,
+                  x: fanX,
                   y: item.y,
                   zIndex: i === 1 ? 10 : 5,
                 }
@@ -167,7 +183,7 @@ export default function UnderTheHood() {
                         filter: "blur(40px)",
                       }}
                     />
-                    <Phone img={item.img} />
+                    <Phone img={item.img} small={isMobile} />
                   </motion.div>
                 )
               })}

@@ -31,7 +31,6 @@ export default function FlowStory() {
   const next = () => { setIsPaused(true); goTo(current + 1, 1) }
   const prev = () => { setIsPaused(true); goTo(current - 1, -1) }
 
-  /* ===== AUTOPLAY ===== */
   useEffect(() => {
     if (isPaused) {
       const resume = setTimeout(() => setIsPaused(false), 4000)
@@ -44,7 +43,6 @@ export default function FlowStory() {
     return () => { if (autoRef.current) clearTimeout(autoRef.current) }
   }, [current, isPaused])
 
-  /* ===== SWIPE ===== */
   const handleMouseDown = (e: React.MouseEvent) => { startX.current = e.clientX }
   const handleMouseUp = (e: React.MouseEvent) => {
     if (startX.current === null) return
@@ -63,11 +61,11 @@ export default function FlowStory() {
   }
 
   return (
-    <section className="py-28 bg-white overflow-hidden">
+    <section className="py-12 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* HEADER */}
-        <div className="mb-20">
+        <div className="mb-8 md:mb-20">
           <div className="flex items-end flex-wrap overflow-hidden mb-2">
             {titleChars.map((char, i) => (
               <motion.span
@@ -76,7 +74,7 @@ export default function FlowStory() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                className="text-3xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}
@@ -87,7 +85,7 @@ export default function FlowStory() {
               whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.1 }}
-              className="text-5xl md:text-7xl lg:text-[82px] tracking-tight text-[#d66501] leading-[1.02] ml-4"
+              className="text-3xl md:text-7xl lg:text-[82px] tracking-tight text-[#d66501] leading-[1.02] ml-3 md:ml-4"
               style={{ fontFamily: "symphonyregular, serif" }}
             >
               Roomforia
@@ -99,7 +97,7 @@ export default function FlowStory() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
-            className="text-gray-400 text-lg md:text-xl"
+            className="text-gray-400 text-base md:text-xl"
           >
             7 шагов от фото до готового интерьера
           </motion.p>
@@ -111,7 +109,7 @@ export default function FlowStory() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="grid md:grid-cols-2 gap-16 md:gap-24 items-center"
+          className="grid md:grid-cols-2 gap-10 md:gap-24 items-center"
         >
 
           {/* LEFT — PHONE с экраном */}
@@ -123,22 +121,21 @@ export default function FlowStory() {
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
-              {/* Декоративное свечение */}
+              {/* Декоративное свечение — на мобиле уменьшено */}
               <div
-                className="absolute inset-0 rounded-[48px] blur-3xl opacity-20 -z-10 transition-all duration-1000"
+                className="absolute inset-0 rounded-[48px] blur-3xl opacity-20 -z-10 transition-all duration-1000 hidden md:block"
                 style={{ backgroundColor: current % 2 === 0 ? "#855dda" : "#d66501", transform: "scale(0.85) translateY(20px)" }}
               />
 
-              {/* Телефон */}
+              {/* Телефон — меньше на мобиле */}
               <div
                 className="relative rounded-[44px] overflow-hidden"
                 style={{
-                  width: "min(280px, 72vw)",
+                  width: "min(220px, 55vw)",
                   aspectRatio: "9/19.5",
                   boxShadow: "0 0 0 7px #111, 0 40px 100px rgba(0,0,0,0.35)",
                 }}
               >
-                {/* Скрины */}
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.img
                     key={current}
@@ -154,32 +151,24 @@ export default function FlowStory() {
                   />
                 </AnimatePresence>
 
-                {/* Dynamic island */}
                 <div className="absolute top-3 left-1/2 -translate-x-1/2 bg-black rounded-full z-20" style={{ width: "38%", height: "20px" }} />
-
-                {/* Home indicator */}
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white/50 rounded-full z-20" style={{ width: "28%", height: "4px" }} />
-
-                {/* Внутренний блик */}
                 <div className="absolute inset-0 pointer-events-none z-10" style={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.08)" }} />
               </div>
 
-              {/* Тень под телефоном */}
               <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[70%] h-10 bg-black/20 blur-2xl rounded-full -z-10" />
             </div>
           </div>
 
           {/* RIGHT — контент */}
           <div>
-            {/* Steps list */}
-            <div className="flex flex-col mb-10">
+            <div className="flex flex-col mb-6 md:mb-10" style={{ minHeight: "350px" }}>
               {steps.map((step, i) => (
                 <div
                   key={i}
                   className="group relative"
                   onClick={() => { setIsPaused(true); goTo(i, i > current ? 1 : -1) }}
                 >
-                  {/* Разделитель */}
                   <div className="relative h-[1px] overflow-hidden">
                     <div className="absolute inset-0 bg-gray-100" />
                     <div
@@ -191,8 +180,7 @@ export default function FlowStory() {
                     />
                   </div>
 
-                  <div className={`flex items-center gap-5 py-5 cursor-pointer transition-all duration-300 ${i === current ? "opacity-100" : "opacity-35 hover:opacity-60"}`}>
-                    {/* Номер */}
+                  <div className={`flex items-center gap-5 py-4 md:py-5 cursor-pointer transition-all duration-300 ${i === current ? "opacity-100" : "opacity-35 hover:opacity-60"}`}>
                     <span
                       className="text-xs font-mono flex-shrink-0 w-6 transition-colors duration-300"
                       style={{ color: i === current ? (current % 2 === 0 ? "#855dda" : "#d66501") : "#ccc" }}
@@ -200,23 +188,21 @@ export default function FlowStory() {
                       {step.num}
                     </span>
 
-                    {/* Текст */}
                     <div className="flex-1">
-                      <p className="text-base md:text-lg font-semibold text-[#1E1E1E] leading-snug">
+                      <p className="text-sm md:text-lg font-semibold text-[#1E1E1E] leading-snug">
                         {step.title}
                       </p>
                       {i === current && (
                         <motion.p
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
-                          className="text-sm text-gray-400 mt-1 leading-relaxed"
+                          className="text-xs md:text-sm text-gray-400 mt-1 leading-relaxed"
                         >
                           {step.desc}
                         </motion.p>
                       )}
                     </div>
 
-                    {/* Точка активного шага */}
                     <div
                       className="w-2 h-2 rounded-full flex-shrink-0 transition-all duration-300"
                       style={{ backgroundColor: i === current ? (current % 2 === 0 ? "#855dda" : "#d66501") : "#e5e5e5" }}
@@ -225,22 +211,19 @@ export default function FlowStory() {
                 </div>
               ))}
 
-              {/* Финальный разделитель */}
               <div className="h-[1px] bg-gray-100" />
             </div>
 
-            {/* Navigation */}
             <div className="flex items-center gap-4">
               <button
                 onClick={prev}
-                className="w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-500 hover:border-[#855dda] hover:text-[#855dda] transition-all duration-200"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-500 hover:border-[#855dda] hover:text-[#855dda] transition-all duration-200"
               >
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                   <path d="M11 4L6 9L11 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
 
-              {/* Progress dots */}
               <div className="flex gap-1.5 flex-1 justify-center">
                 {steps.map((_, i) => (
                   <button
@@ -257,7 +240,7 @@ export default function FlowStory() {
 
               <button
                 onClick={next}
-                className="w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-500 hover:border-[#d66501] hover:text-[#d66501] transition-all duration-200"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-500 hover:border-[#d66501] hover:text-[#d66501] transition-all duration-200"
               >
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                   <path d="M7 4L12 9L7 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -265,7 +248,6 @@ export default function FlowStory() {
               </button>
             </div>
 
-            {/* Autoplay indicator */}
             <div className="flex items-center gap-2 mt-4 justify-center">
               <div className="relative w-24 h-[2px] bg-gray-100 rounded-full overflow-hidden">
                 {!isPaused && (

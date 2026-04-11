@@ -91,12 +91,13 @@ export default function FinalCTA() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.85 }}
               className="flex flex-col items-start md:items-end gap-4 flex-shrink-0"
             >
-              <button className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-[#d66501] text-white font-semibold text-lg hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_8px_32px_rgba(214,101,1,0.4)] hover:scale-[1.02]">
-                Стать партнёром
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
+              <a
+                href="https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
+                target="_blank"
+                className="inline-flex px-10 py-5 rounded-full bg-[#d66501] text-white font-semibold text-lg hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_8px_32px_rgba(214,101,1,0.4)] hover:scale-[1.02]"
+              >
+                Скачать
+              </a>
               <button className="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 underline underline-offset-4">
                 или обсудить подключение
               </button>

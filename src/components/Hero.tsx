@@ -21,6 +21,10 @@ const HOTSPOTS: Hotspot[] = [
   { id: 3, top: "96%", left: "40%", title: "Ковер Soft", brand: "Zara Home", img: "/images/products/carpet.png" },
 ]
 
+<<<<<<< HEAD
+=======
+// ПУНКТ 1: убираем кружок, "AI" фиолетовым, остальное с градиентом оранжевый→фиолетовый
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
 const line1 = "приложение для дизайна и".split("")
 const line2 = "визуализации интерьера".split("")
 
@@ -62,6 +66,7 @@ export default function Hero() {
 
   useEffect(() => { setActive(null) }, [position])
 
+
   const update = (x: number) => {
     if (!ref.current) return
     const rect = ref.current.getBoundingClientRect()
@@ -81,8 +86,15 @@ export default function Hero() {
     <section className="pt-6 pb-0 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-10">
 
+<<<<<<< HEAD
         <div className="text-center mb-6">
 
+=======
+        {/* ===== HEADING ===== */}
+        <div className="text-center mb-6">
+
+          {/* На мобиле — простой текст, на десктопе — побуквенно */}
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
           <div className="mb-4 md:mb-0">
             {/* МОБИЛЬ */}
             <div className="flex flex-col items-center md:hidden">
@@ -95,7 +107,11 @@ export default function Hero() {
               </p>
             </div>
 
+<<<<<<< HEAD
             {/* ДЕСКТОП */}
+=======
+            {/* ДЕСКТОП — побуквенно */}
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
             <div className="hidden md:block">
               <div className="flex items-center justify-center flex-wrap gap-x-0 mb-1 min-h-[110px]">
                 <motion.span
@@ -149,6 +165,10 @@ export default function Hero() {
             </div>
           </div>
 
+<<<<<<< HEAD
+=======
+          {/* ПУНКТ 2: новый подзаголовок */}
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -175,6 +195,10 @@ export default function Hero() {
 
       </div>
 
+<<<<<<< HEAD
+=======
+      {/* ===== DEMO BANNER ===== */}
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
@@ -256,16 +280,28 @@ export default function Hero() {
         </div>
       </motion.div>
 
+<<<<<<< HEAD
+=======
+      {/* ПУНКТЫ 3 и 4: подпись под картинкой + доп. текст + кнопка */}
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.3 + totalLetters * 0.04 + 0.9 }}
         className="w-full px-4 md:px-8 mt-8"
       >
+<<<<<<< HEAD
+=======
+        {/* ПУНКТ 3: подпись по правому краю */}
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
         <p className="text-sm text-gray-400 text-right mb-6">
           Нажмите на любой предмет в интерьере, чтобы открыть карточку товара
         </p>
 
+<<<<<<< HEAD
+=======
+        {/* ПУНКТ 4: доп. текст + кнопка по правому краю */}
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
         <div className="max-w-3xl ml-auto">
           <p className="text-[#1E1E1E] text-sm md:text-base leading-relaxed mb-6 text-right">
             Визуализируйте, планируйте и создавайте то, о чем так давно мечтали. Удобное и интуитивно понятное приложение со встроенным ИИ для дизайна интерьера. Просто загрузите фото, планировку или отсканируйте комнату с помощью камеры смартфона и получите готовую визуализацию с реальными товарами и отделкой в разных стилях.
@@ -282,6 +318,10 @@ export default function Hero() {
         </div>
       </motion.div>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
     </section>
   )
 }

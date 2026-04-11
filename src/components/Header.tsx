@@ -83,9 +83,13 @@ export default function Header() {
               >
                 Стать партнёром
               </Link>
-              <button className="px-5 py-2.5 rounded-full bg-[#d66501] text-white text-sm font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_4px_14px_rgba(214,101,1,0.35)]">
+              <a
+                href="https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
+                target="_blank"
+                className="px-5 py-2.5 rounded-full bg-[#d66501] text-white text-sm font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_4px_14px_rgba(214,101,1,0.35)]"
+              >
                 Скачать
-              </button>
+              </a>
             </div>
 
             {/* BURGER */}
@@ -173,9 +177,13 @@ export default function Header() {
                 >
                   Стать партнёром
                 </Link>
-                <button className="w-full py-3.5 rounded-full bg-[#d66501] text-white text-center font-medium text-sm shadow-[0_4px_14px_rgba(214,101,1,0.35)]">
+                <a
+                  href="https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
+                  target="_blank"
+                  className="w-full py-3.5 rounded-full bg-[#d66501] text-white text-center font-medium text-sm shadow-[0_4px_14px_rgba(214,101,1,0.35)]"
+                >
                   Скачать
-                </button>
+                </a>
               </motion.div>
 
             </motion.div>

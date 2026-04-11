@@ -124,14 +124,14 @@ export default function HeroInteractive() {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="text-center mb-8">
 
-          <div className="flex items-end justify-center flex-wrap mb-1 min-h-[90px] md:min-h-[110px]">
+          <div className="flex items-end justify-center flex-wrap mb-1 min-h-[60px] md:min-h-[110px]">
             {titleChars.map((char, i) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 + i * 0.045 }}
-                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                className="text-3xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}
@@ -139,14 +139,14 @@ export default function HeroInteractive() {
             ))}
           </div>
 
-          <div className="flex items-end justify-center flex-wrap mb-8 min-h-[90px] md:min-h-[110px]">
+          <div className="flex items-end justify-center flex-wrap mb-6 md:mb-8 min-h-[60px] md:min-h-[110px]">
             {accentChars.map((char, i) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 + (titleChars.length + i) * 0.045 }}
-                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#d66501] leading-[1.02]"
+                className="text-3xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#d66501] leading-[1.02]"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}
@@ -173,10 +173,7 @@ export default function HeroInteractive() {
               target="_blank"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#d66501] text-white font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:scale-[1.02]"
             >
-              Попробовать демо
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              Скачать
             </a>
           </motion.div>
         </div>
@@ -185,7 +182,7 @@ export default function HeroInteractive() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.6, duration: 0.6 }}
-          className="text-center text-sm text-gray-400 mb-5 tracking-wide"
+          className="text-sm text-gray-400 mb-5 tracking-wide md:text-right md:pr-4"
         >
           Наведи на комнату — увидишь интерьер с мебелью
         </motion.p>

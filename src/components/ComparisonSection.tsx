@@ -13,6 +13,10 @@ export default function ComparisonSection() {
   return (
     <section className="py-12 md:py-28 bg-white">
 
+<<<<<<< HEAD
+=======
+      {/* Оранжевая плашка — внутри max-w */}
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
       <div className="max-w-7xl mx-auto px-6 md:px-10 mb-0">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.98 }}
@@ -31,7 +35,15 @@ export default function ComparisonSection() {
         </motion.div>
       </div>
 
+<<<<<<< HEAD
       <div className="mt-4 md:mt-8 px-4 md:px-10 py-8 md:py-12" style={{ backgroundColor: "#f9f6f2" }}>
+=======
+      {/* Бежевый блок — на всю ширину */}
+      <div
+        className="mt-4 md:mt-8 px-4 md:px-10 py-8 md:py-12"
+        style={{ backgroundColor: "#f9f6f2" }}
+      >
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col mb-10">
             {advantages.map((text, i) => (
@@ -45,13 +57,28 @@ export default function ComparisonSection() {
               >
                 <div className="relative h-[1px] overflow-hidden">
                   <div className="absolute inset-0 bg-gray-200" />
+<<<<<<< HEAD
                   <div className="absolute inset-0 bg-[#855dda] origin-left scale-x-0 group-hover:scale-x-100" style={{ transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }} />
                 </div>
+=======
+                  <div
+                    className="absolute inset-0 bg-[#855dda] origin-left scale-x-0 group-hover:scale-x-100"
+                    style={{ transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
+                  />
+                </div>
+
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
                 <div className="flex items-start gap-5 py-7">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(133,93,218,0.12)" }}>
                     <span className="text-sm font-bold text-[#1E1E1E]">{i + 1}</span>
                   </div>
+<<<<<<< HEAD
                   <p className="text-lg md:text-xl font-medium text-[#1E1E1E] leading-snug flex-1">{text}</p>
+=======
+                  <p className="text-lg md:text-xl font-medium text-[#1E1E1E] leading-snug flex-1">
+                    {text}
+                  </p>
+>>>>>>> 71b6a2d (fix: исправил главную и как это работет)
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
