@@ -2,7 +2,9 @@
 
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import PartnerModal from "./PartnerModal"
+import Link from "next/link"
+
+const DEMO_URL = "https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
 
 type Hotspot = {
   id: number
@@ -19,12 +21,13 @@ const HOTSPOTS: Hotspot[] = [
   { id: 3, top: "96%", left: "40%", title: "Ковер Soft", brand: "Zara Home", img: "/images/products/carpet.png" },
 ]
 
-// Разбиваем на две строки — каждая строка это массив букв
-const line1 = "Приложение для дизайна".split("")
-const line2 = "интерьера".split("")
+const line1 = "приложение для дизайна и".split("")
+const line2 = "визуализации интерьера".split("")
+
+const totalLetters = line1.length + line2.length
 
 export default function Hero() {
-  const [open, setOpen] = useState(false)
+
   const [position, setPosition] = useState(50)
   const [drag, setDrag] = useState(false)
   const [active, setActive] = useState<number | null>(null)
@@ -74,133 +77,108 @@ export default function Hero() {
 
   const showHotspots = position > 20
 
-  // Общее количество букв в первой строке — для сквозного индекса
-  const totalLetters = line1.length + line2.length
-
   return (
-    <section className="pt-20 pb-0 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+    <section className="pt-6 pb-0 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-10">
 
-        {/* ===== HEADING ===== */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
 
-          {/* СТРОКА 1: AI кружок + буквы */}
-          <div className="flex items-center justify-center flex-wrap gap-x-0 mb-1 min-h-[90px] md:min-h-[110px]">
+          <div className="mb-4 md:mb-0">
+            {/* МОБИЛЬ */}
+            <div className="flex flex-col items-center md:hidden">
+              <p className="text-[36px] font-semibold tracking-tight leading-[1.15] text-center">
+                <span style={{ color: "#855dda" }}>AI -</span>{" "}
+                <span style={{ color: "#d66501" }}>приложение для дизайна и</span>
+              </p>
+              <p className="text-[36px] font-semibold tracking-tight leading-[1.15] text-center" style={{ color: "#855dda" }}>
+                визуализации интерьера
+              </p>
+            </div>
 
-            {/* AI BADGE */}
-            <motion.span
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-              className="inline-flex items-center justify-center bg-[#855dda] text-white rounded-full font-semibold mr-4 flex-shrink-0"
-              style={{
-                width: "clamp(60px, 7vw, 90px)",
-                height: "clamp(60px, 7vw, 90px)",
-                fontSize: "clamp(20px, 2.8vw, 34px)",
-              }}
-            >
-              AI
-            </motion.span>
-
-            {/* БУКВЫ строки 1 */}
-            <span className="flex flex-wrap items-center justify-center">
-              {line1.map((char, i) => (
+            {/* ДЕСКТОП */}
+            <div className="hidden md:block">
+              <div className="flex items-center justify-center flex-wrap gap-x-0 mb-1 min-h-[110px]">
                 <motion.span
-                  key={`l1-${i}`}
                   initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
                   animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                  transition={{
-                    duration: 0.6,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: 0.55 + i * 0.045,
-                  }}
-                  className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.05]"
-                  style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                  className="text-7xl lg:text-[82px] font-semibold tracking-tight leading-[1.05] mr-4"
+                  style={{ color: "#855dda" }}
                 >
-                  {char === " " ? "\u00A0" : char}
+                  AI -
                 </motion.span>
-              ))}
-            </span>
+                {line1.map((char, i) => {
+                  const pct = i / (line1.length + line2.length - 1)
+                  const r = Math.round(214 + (133 - 214) * pct)
+                  const g = Math.round(101 + (93 - 101) * pct)
+                  const b = Math.round(1 + (218 - 1) * pct)
+                  return (
+                    <motion.span
+                      key={`l1-${i}`}
+                      initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
+                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 + i * 0.04 }}
+                      className="text-7xl lg:text-[82px] font-semibold tracking-tight leading-[1.05]"
+                      style={{ color: `rgb(${r},${g},${b})`, display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </motion.span>
+                  )
+                })}
+              </div>
+              <div className="flex items-center justify-center flex-wrap gap-x-0 mb-8 min-h-[110px]">
+                {line2.map((char, i) => {
+                  const pct = (line1.length + i) / (line1.length + line2.length - 1)
+                  const r = Math.round(214 + (133 - 214) * pct)
+                  const g = Math.round(101 + (93 - 101) * pct)
+                  const b = Math.round(1 + (218 - 1) * pct)
+                  return (
+                    <motion.span
+                      key={`l2-${i}`}
+                      initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
+                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.3 + (line1.length + i) * 0.04 }}
+                      className="text-7xl lg:text-[82px] font-semibold tracking-tight leading-[1.05]"
+                      style={{ color: `rgb(${r},${g},${b})`, display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </motion.span>
+                  )
+                })}
+              </div>
+            </div>
           </div>
 
-          {/* СТРОКА 2: "интерьера" побуквенно */}
-          <div className="flex items-center justify-center mb-8 min-h-[90px] md:min-h-[110px]">
-            {line2.map((char, i) => (
-              <motion.span
-                key={`l2-${i}`}
-                initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
-                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                transition={{
-                  duration: 0.65,
-                  ease: [0.22, 1, 0.36, 1],
-                  delay: 0.55 + (line1.length + i) * 0.045,
-                }}
-                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.05]"
-              >
-                {char}
-              </motion.span>
-            ))}
-          </div>
-
-          {/* ПОДЗАГОЛОВОК */}
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              ease: [0.22, 1, 0.36, 1],
-              // появляется после последней буквы
-              delay: 0.55 + totalLetters * 0.045 + 0.2,
-            }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 + totalLetters * 0.04 + 0.2 }}
             className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8"
           >
-            Создавай дизайн с реальными товарами.
-            Пользователь видит интерьер — кликает — покупает у бренда.
+            Создайте дом своей мечты вместе с Румфорией за 10 минут
           </motion.p>
 
-          {/* КНОПКА */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.7,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.55 + totalLetters * 0.045 + 0.45,
-            }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.3 + totalLetters * 0.04 + 0.45 }}
           >
-            <button
-              onClick={() => setOpen(true)}
+            <a
+              href={DEMO_URL}
+              target="_blank"
               className="px-10 py-4 rounded-full bg-[#d66501] text-white text-base font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:shadow-[0_8px_32px_rgba(214,101,1,0.5)] hover:scale-[1.02]"
             >
               Скачать
-            </button>
+            </a>
           </motion.div>
         </div>
 
-        {/* HINT */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            delay: 0.55 + totalLetters * 0.045 + 0.7,
-            duration: 0.6,
-          }}
-          className="text-center text-sm text-gray-400 mb-5 tracking-wide"
-        >
-          Исследуй интерьер — нажми на элементы
-        </motion.p>
-
       </div>
 
-      {/* ===== DEMO ===== */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 1,
-          ease: [0.22, 1, 0.36, 1],
-          delay: 0.55 + totalLetters * 0.045 + 0.6,
-        }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 + totalLetters * 0.04 + 0.6 }}
         className="w-full px-4 md:px-8"
       >
         <div
@@ -278,7 +256,32 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <PartnerModal open={open} onClose={() => setOpen(false)} />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.3 + totalLetters * 0.04 + 0.9 }}
+        className="w-full px-4 md:px-8 mt-8"
+      >
+        <p className="text-sm text-gray-400 text-right mb-6">
+          Нажмите на любой предмет в интерьере, чтобы открыть карточку товара
+        </p>
+
+        <div className="max-w-3xl ml-auto">
+          <p className="text-[#1E1E1E] text-sm md:text-base leading-relaxed mb-6 text-right">
+            Визуализируйте, планируйте и создавайте то, о чем так давно мечтали. Удобное и интуитивно понятное приложение со встроенным ИИ для дизайна интерьера. Просто загрузите фото, планировку или отсканируйте комнату с помощью камеры смартфона и получите готовую визуализацию с реальными товарами и отделкой в разных стилях.
+          </p>
+          <div className="flex justify-end">
+            <a
+              href={DEMO_URL}
+              target="_blank"
+              className="px-10 py-4 rounded-full bg-[#d66501] text-white text-base font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:scale-[1.02]"
+            >
+              Скачать
+            </a>
+          </div>
+        </div>
+      </motion.div>
+
     </section>
   )
 }
