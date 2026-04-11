@@ -13,10 +13,6 @@ export default function BrandsSection() {
   return (
     <section className="pb-0 pt-12 md:pt-28 bg-white">
       <div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -25,44 +21,28 @@ export default function BrandsSection() {
           className="bg-[#d66501] overflow-hidden"
         >
           <div className="px-10 md:px-16 pt-14 pb-10">
-<<<<<<< HEAD
-            <div className="flex flex-col mb-14">
-=======
 
             <div className="flex flex-col mb-14">
               {/* ПУНКТЫ 20, 21: удалён правый текст, заголовок на всю ширину */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
               <h2 className="text-3xl md:text-5xl lg:text-[56px] font-semibold text-white leading-tight tracking-tight">
                 Именно так это и будет выглядеть
               </h2>
             </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
             <p className="text-black/60 text-base md:text-lg max-w-2xl leading-relaxed mb-14">
               Roomforia работает с реальными брендами и поставщиками. В вашей
               визуализации вы увидите вещи, которые существуют, продаются и могут
               оказаться у вас дома.
             </p>
           </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
           <div className="h-[1px] bg-white/10 mx-10 md:mx-16" />
           <div className="py-10 overflow-hidden">
             <div className="flex animate-marquee whitespace-nowrap select-none">
               {marqueeItems.map((brand, i) => (
                 <div key={i} className="flex items-center gap-10 mx-10">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/40 flex-shrink-0" />
-<<<<<<< HEAD
-                  <span className="text-2xl md:text-3xl font-semibold text-white/80 hover:text-white transition-colors duration-300">{brand}</span>
-=======
                   <span className="text-2xl md:text-3xl font-semibold text-white/80 hover:text-white transition-colors duration-300">
                     {brand}
                   </span>
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
                 </div>
               ))}
             </div>

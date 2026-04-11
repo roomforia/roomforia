@@ -11,19 +11,13 @@ const furnitureSpots = [
 
 const steps = [
   { id: 1, tag: "Шаг 1", title: "Отсканируй комнату или загрузи план квартиры", image: "/images/flow/step-1.png" },
-<<<<<<< HEAD
-=======
   // ПУНКТ 11: шаг 2 и 3, новый текст
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
   { id: 2, tag: "Шаг 2 и 3", title: "Выбери стиль, цвета, материалы и предпочтения", image: "/images/flow/step-2.png" },
   { id: 3, tag: "Шаг 3", title: "AI создаёт дизайн интерьера прямо сейчас", image: "/images/flow/step-3.png" },
   { id: 4, tag: "Шаг 4", title: "Кликай на мебель, переходи по ссылкам и заказывай", image: "/images/flow/step-4.png", interactive: true },
 ]
 
-<<<<<<< HEAD
-=======
 // ПУНКТ 6: "Как работает" чёрным, "Roomforia" — bold italic фиолетовым
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
 const titleChars = "Как работает".split("")
 
 export default function FlowSection() {
@@ -61,13 +55,6 @@ export default function FlowSection() {
   }
 
   return (
-<<<<<<< HEAD
-    <section className="py-12 md:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-
-        <div className="text-left mb-14">
-
-=======
     // ПУНКТ 9: секция на всю ширину — убираем px-4
     <section className="py-12 md:py-28 bg-white">
       {/* ПУНКТЫ 8: всё выровнено по левому краю — убираем text-center */}
@@ -77,7 +64,6 @@ export default function FlowSection() {
         <div className="text-left mb-14">
 
           {/* ПУНКТ 6: "Как работает" + "Roomforia" bold italic фиолетовый */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
           <div className="flex items-end flex-wrap gap-x-0 overflow-hidden mb-0">
             {titleChars.map((char, i) => (
               <motion.span
@@ -93,34 +79,24 @@ export default function FlowSection() {
               </motion.span>
             ))}
 
-<<<<<<< HEAD
-=======
             {/* ПУНКТ 6: "Roomforia" — bold italic фиолетовым */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
             <motion.span
               initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.1 }}
               className="text-4xl md:text-6xl tracking-tight leading-tight ml-4"
-<<<<<<< HEAD
-              style={{ color: "#855dda", fontWeight: 700, fontStyle: "italic" }}
-=======
               style={{
                 color: "#855dda",
                 fontWeight: 700,
                 fontStyle: "italic",
               }}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
             >
               Roomforia
             </motion.span>
           </div>
 
-<<<<<<< HEAD
-=======
           {/* ПУНКТ 5: доп. текст под заголовком */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -131,10 +107,7 @@ export default function FlowSection() {
             От абстракций в голове до готового решения — 5 простых шагов
           </motion.p>
 
-<<<<<<< HEAD
-=======
           {/* ПУНКТ 7: новый подзаголовок */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -148,10 +121,7 @@ export default function FlowSection() {
 
       </div>
 
-<<<<<<< HEAD
-=======
       {/* ПУНКТ 9: слайдер — на всю ширину без отступов */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -223,10 +193,7 @@ export default function FlowSection() {
             </div>
           )}
 
-<<<<<<< HEAD
-=======
           {/* ПУНКТ 10: текст на баннере — добавляем letter-spacing */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 pointer-events-none">
             <AnimatePresence mode="wait">
               <motion.div
@@ -236,14 +203,10 @@ export default function FlowSection() {
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
-<<<<<<< HEAD
-                <h3 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight max-w-xl" style={{ letterSpacing: "0.02em" }}>
-=======
                 <h3
                   className="text-2xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight max-w-xl"
                   style={{ letterSpacing: "0.02em" }}
                 >
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
                   {steps[active].title}
                 </h3>
               </motion.div>
@@ -267,13 +230,6 @@ export default function FlowSection() {
             </div>
           </div>
 
-<<<<<<< HEAD
-          <button onClick={() => goTo((active - 1 + steps.length) % steps.length)} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </button>
-          <button onClick={() => goTo((active + 1) % steps.length)} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-=======
           <button
             onClick={() => goTo((active - 1 + steps.length) % steps.length)}
             className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200"
@@ -289,15 +245,11 @@ export default function FlowSection() {
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
           </button>
         </div>
       </motion.div>
 
-<<<<<<< HEAD
-=======
       {/* ПУНКТ 11: карточки шагов — на всю ширину */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="hidden md:grid grid-cols-4 gap-4 mt-6">
           {steps.map((step, i) => (
@@ -318,10 +270,7 @@ export default function FlowSection() {
           ))}
         </div>
 
-<<<<<<< HEAD
-=======
         {/* ПУНКТ 12: кнопка Скачать под карточками, левый край */}
->>>>>>> 71b6a2d (fix: исправил главную и как это работет)
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
