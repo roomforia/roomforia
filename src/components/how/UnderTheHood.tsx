@@ -53,22 +53,30 @@ export default function UnderTheHood() {
     return () => window.removeEventListener("resize", check)
   }, [])
 
+  // БАГ 1: once:true — заголовок появляется один раз и не пропадает
   const isInView = useInView(fanRef, { once: false, margin: "-20% 0px -20% 0px" })
 
   return (
     <section className="py-10 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        {/* HEADER */}
+        {/* HEADER — animate вместо whileInView чтобы не пропадал */}
         <div className="mb-8 md:mb-20">
-          <div className="flex items-end flex-wrap overflow-hidden mb-2">
+          {/* Мобиль — простой текст, не исчезает */}
+          <div className="md:hidden mb-2">
+            <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.15]">
+              Как это работает
+            </p>
+          </div>
+          {/* Десктоп — побуквенно, once:true */}
+          <div className="hidden md:flex items-end flex-wrap overflow-hidden mb-2">
             {titleChars.map((char, i) => (
               <motion.span key={i}
                 initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                className="text-[28px] md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.15] md:leading-[1.02]"
+                className="text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
               >{char === " " ? "\u00A0" : char}</motion.span>
             ))}

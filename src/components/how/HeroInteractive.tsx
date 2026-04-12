@@ -227,7 +227,7 @@ export default function HeroInteractive() {
         */}
         <div
           ref={containerRef}
-          className="relative w-full h-[500px] md:h-[620px] lg:h-[680px] select-none"
+          className="relative w-full h-[340px] md:h-[620px] lg:h-[680px] select-none"
           style={{
             cursor: isInside ? "none" : "crosshair",
             borderRadius: "24px",
@@ -261,8 +261,8 @@ export default function HeroInteractive() {
             ref={phoneRef}
             className="absolute z-20 pointer-events-none"
             style={{
-              width: "190px",
-              height: "410px",
+              width: "clamp(100px, 25vw, 190px)",
+              height: "clamp(216px, 54vw, 410px)",
               transform: "translate(-50%, -50%)",
               willChange: "left, top",
               filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.4))",

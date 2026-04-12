@@ -66,36 +66,44 @@ export default function CTASection() {
 
           {/* LEFT */}
           <div>
-            <div className="flex flex-wrap items-end overflow-hidden mb-1">
-              {line1.map((char, i) => (
-                <motion.span
-                  key={`l1-${i}`}
-                  initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
-                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 + i * 0.04 }}
-                  className="text-[22px] md:text-5xl lg:text-[56px] font-bold tracking-tight text-[#d66501] leading-[1.05]"
-                  style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
-              ))}
+            {/* БАГ 2: добавляем мобильный заголовок простым текстом */}
+            <div className="md:hidden mb-4">
+              <p className="text-[26px] font-bold tracking-tight text-[#d66501] leading-[1.1]">Визуализация и ИИ</p>
+              <p className="text-[26px] font-bold tracking-tight text-[#1E1E1E] leading-[1.1]">в реальности</p>
             </div>
 
-            <div className="flex flex-wrap items-end overflow-hidden mb-6">
-              {line2.map((char, i) => (
-                <motion.span
-                  key={`l2-${i}`}
-                  initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
-                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 + (line1.length + i) * 0.04 }}
-                  className="text-[22px] md:text-5xl lg:text-[56px] font-bold tracking-tight text-[#1E1E1E] leading-[1.05]"
-                  style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
-              ))}
+            {/* Десктоп заголовок */}
+            <div className="hidden md:block">
+              <div className="flex flex-wrap items-end overflow-hidden mb-1">
+                {line1.map((char, i) => (
+                  <motion.span
+                    key={`l1-${i}`}
+                    initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 + i * 0.04 }}
+                    className="text-5xl lg:text-[56px] font-bold tracking-tight text-[#d66501] leading-[1.05]"
+                    style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </div>
+              <div className="flex flex-wrap items-end overflow-hidden mb-6">
+                {line2.map((char, i) => (
+                  <motion.span
+                    key={`l2-${i}`}
+                    initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 + (line1.length + i) * 0.04 }}
+                    className="text-5xl lg:text-[56px] font-bold tracking-tight text-[#1E1E1E] leading-[1.05]"
+                    style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </div>
             </div>
 
             <motion.p
@@ -103,7 +111,7 @@ export default function CTASection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
-              className="text-gray-400 text-sm md:text-lg max-w-lg mb-8"
+              className="text-gray-400 text-sm md:text-lg max-w-lg mb-6 md:mb-8"
             >
               Мы объединили виртуальный и реальный мир, на практике актуальные тренды, качественные текстуры и высокую цветопередачу
             </motion.p>
@@ -133,13 +141,14 @@ export default function CTASection() {
             </div>
           </div>
 
-          {/* RIGHT — видео (на мобиле идёт ПЕРВЫМ через order) */}
+          {/* RIGHT — видео */}
+          {/* БАГ 4: убираем order-first на мобиле — видео идёт ПОСЛЕ текста */}
           <motion.div
             initial={{ opacity: 0, x: 40, scale: 0.97 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="order-first md:order-last sticky top-24 flex flex-col gap-3"
+            className="md:sticky md:top-24 flex flex-col gap-3 mt-6 md:mt-0"
           >
             <div className="relative rounded-3xl overflow-hidden bg-gray-50" style={{ aspectRatio: "4/3" }}>
               <AnimatePresence mode="wait">

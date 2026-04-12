@@ -73,8 +73,8 @@ export default function PainSection() {
             {/* Затемнение */}
             <div className="absolute inset-0 bg-black/50" />
             {/* Заголовок поверх картинки */}
-            <div className="absolute inset-0 flex items-center px-10">
-              <div className="flex items-end flex-wrap overflow-hidden">
+            <div className="absolute inset-0 flex items-end px-5 md:px-10 pb-6 md:pb-10">
+              <div className="flex flex-wrap">
                 {titleChars.map((char, i) => (
                   <motion.span
                     key={i}
@@ -82,7 +82,7 @@ export default function PainSection() {
                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                    className="text-2xl md:text-3xl lg:text-[40px] font-semibold tracking-tight text-white leading-[1.02]"
+                    className="text-[18px] md:text-3xl lg:text-[40px] font-semibold tracking-tight text-white leading-[1.2]"
                     style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
                   >
                     {char === " " ? "\u00A0" : char}

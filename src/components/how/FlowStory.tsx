@@ -131,7 +131,7 @@ export default function FlowStory() {
               <div
                 className="relative rounded-[44px] overflow-hidden"
                 style={{
-                  width: "min(220px, 55vw)",
+                  width: "min(180px, 46vw)",
                   aspectRatio: "9/19.5",
                   boxShadow: "0 0 0 7px #111, 0 40px 100px rgba(0,0,0,0.35)",
                 }}
@@ -162,7 +162,7 @@ export default function FlowStory() {
 
           {/* RIGHT — контент */}
           <div>
-            <div className="flex flex-col mb-6 md:mb-10" style={{ minHeight: "350px" }}>
+            <div className="flex flex-col mb-6 md:mb-10" style={{ minHeight: "auto" }}>
               {steps.map((step, i) => (
                 <div
                   key={i}

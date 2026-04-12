@@ -56,11 +56,11 @@ export default function ComparisonSection() {
                   />
                 </div>
 
-                <div className="flex items-start gap-5 py-7">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(133,93,218,0.12)" }}>
-                    <span className="text-sm font-bold text-[#1E1E1E]">{i + 1}</span>
+                <div className="flex items-start gap-5 py-5 md:py-7">
+                  <div className="flex-shrink-0 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(133,93,218,0.12)" }}>
+                    <span className="text-xs md:text-sm font-bold text-[#1E1E1E]">{i + 1}</span>
                   </div>
-                  <p className="text-lg md:text-xl font-medium text-[#1E1E1E] leading-snug flex-1">
+                  <p className="text-sm md:text-xl font-medium text-[#1E1E1E] leading-snug flex-1">
                     {text}
                   </p>
                   <motion.div
