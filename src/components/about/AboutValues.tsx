@@ -43,41 +43,29 @@ export default function AboutValues() {
         </motion.div>
 
         {/* Список */}
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           {items.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
-              className="group relative"
+              className="relative rounded-3xl bg-[#f9f9f9] overflow-hidden"
             >
-              {/* Разделитель с hover */}
-              <div className="relative h-[1px] overflow-hidden">
-                <div className="absolute inset-0 bg-gray-100" />
-                <div
-                  className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100"
-                  style={{ backgroundColor: item.accent, transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
-                />
-              </div>
-
-              <div className="flex items-start gap-8 py-8">
-                <span className="text-xs font-mono text-gray-300 flex-shrink-0 w-8 mt-1 group-hover:text-[#855dda] transition-colors duration-500">
-                  {item.num}
-                </span>
-                <div className="flex-1">
-                  <h3 className="text-xl md:text-2xl font-semibold text-[#1E1E1E] mb-2">{item.title}</h3>
-                  <p className="text-gray-400 leading-relaxed">{item.desc}</p>
-                </div>
-                <div
-                  className="w-2 h-2 rounded-full flex-shrink-0 mt-2 opacity-0 group-hover:opacity-100 transition-all duration-500"
-                  style={{ backgroundColor: item.accent }}
-                />
+              {/* Большая цифра фоном */}
+              <span
+                className="absolute -left-2 top-1/2 -translate-y-1/2 font-bold leading-none select-none pointer-events-none"
+                style={{ fontSize: "120px", color: `${item.accent}18` }}
+              >
+                {i + 1}
+              </span>
+              <div className="relative px-8 md:px-12 py-8 md:py-10">
+                <h3 className="text-xl md:text-2xl font-semibold text-[#1E1E1E] mb-2">{item.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{item.desc}</p>
               </div>
             </motion.div>
           ))}
-          <div className="h-[1px] bg-gray-100" />
         </div>
       </div>
     </section>
