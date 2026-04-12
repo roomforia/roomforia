@@ -59,11 +59,11 @@ export default function PartnerSegments() {
   const current = segments[active]
 
   return (
-    <section className="py-28 bg-white overflow-hidden">
+    <section className="py-10 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* HEADER */}
-        <div className="mb-10 md:mb-16">
+        <div className="mb-8 md:mb-16">
           {/* Мобиль */}
           <div className="md:hidden mb-3">
             <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.15]">Вы зарабатываете</p>
@@ -115,13 +115,13 @@ export default function PartnerSegments() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-          className="flex gap-3 flex-wrap mb-14"
+          className="flex gap-2 md:gap-3 flex-wrap mb-6 md:mb-14"
         >
           {segments.map((item, i) => (
             <button
               key={item.id}
               onClick={() => setActive(i)}
-              className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300"
+              className="px-4 md:px-6 py-2 md:py-2.5 rounded-full text-sm font-medium transition-all duration-300"
               style={{
                 backgroundColor: i === active ? item.accent : "transparent",
                 color: i === active ? "white" : "#9ca3af",
@@ -134,7 +134,7 @@ export default function PartnerSegments() {
         </motion.div>
 
         {/* CONTENT */}
-        <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-24 items-center">
 
           {/* TEXT */}
           <AnimatePresence mode="wait">
@@ -145,10 +145,10 @@ export default function PartnerSegments() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h3 className="text-3xl md:text-4xl font-semibold mb-5 leading-tight text-[#1E1E1E]">
+              <h3 className="text-xl md:text-4xl font-semibold mb-3 md:mb-5 leading-tight text-[#1E1E1E]">
                 {current.title}
               </h3>
-              <p className="text-gray-400 mb-8 text-lg leading-relaxed">
+              <p className="text-gray-400 mb-5 md:mb-8 text-sm md:text-lg leading-relaxed">
                 {current.desc}
               </p>
               <div
@@ -179,8 +179,6 @@ export default function PartnerSegments() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent pointer-events-none" />
-
-                {/* Прогресс-бар */}
                 {mounted && (
                   <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/20">
                     <motion.div

@@ -6,10 +6,10 @@ const titleChars = "Как производитель мебели".split("")
 
 export default function CaseStudy() {
   return (
-    <section className="py-28 bg-white overflow-hidden">
+    <section className="py-10 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <div className="mb-10 md:mb-16">
+        <div className="mb-8 md:mb-16">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export default function CaseStudy() {
         </div>
 
         {/* CONTENT */}
-        <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-24 items-center">
 
           {/* LEFT */}
           <motion.div
@@ -66,11 +66,10 @@ export default function CaseStudy() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-gray-400 text-lg leading-relaxed mb-12">
+            <p className="text-gray-400 text-sm md:text-lg leading-relaxed mb-6 md:mb-12">
               После интеграции товаров в Roomforia клиенты начали видеть мебель в реальных интерьерах, а не в каталоге. Это снизило сомнения и ускорило принятие решения.
             </p>
 
-            {/* Метрики */}
             <div className="flex flex-col">
               {[
                 { num: "+45%", label: "заявок", accent: "#855dda" },
@@ -92,14 +91,14 @@ export default function CaseStudy() {
                       style={{ backgroundColor: item.accent, transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
                     />
                   </div>
-                  <div className="flex items-center gap-6 py-6">
+                  <div className="flex items-center gap-4 md:gap-6 py-4 md:py-6">
                     <span
-                      className="text-3xl md:text-4xl font-semibold flex-shrink-0 w-32"
+                      className="text-2xl md:text-4xl font-semibold flex-shrink-0 w-24 md:w-32"
                       style={{ color: item.accent }}
                     >
                       {item.num}
                     </span>
-                    <span className="text-lg text-gray-500">{item.label}</span>
+                    <span className="text-sm md:text-lg text-gray-500">{item.label}</span>
                   </div>
                 </motion.div>
               ))}

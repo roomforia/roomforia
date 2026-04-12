@@ -46,16 +46,12 @@ export default function UnifiedDemo() {
   const current = steps[active]
 
   return (
-    <section className="py-28 px-4 bg-white">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+    <section className="py-10 md:py-28 px-4 bg-white">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 md:gap-20 items-center">
 
         {/* LEFT — таймлайн */}
         <div className="relative pl-8">
-
-          {/* Base line */}
           <div className="absolute left-2 top-0 bottom-0 w-[2px] bg-gray-100" />
-
-          {/* Active line */}
           <motion.div
             className="absolute left-2 top-0 w-[2px]"
             animate={{ height: `${(active / (steps.length - 1)) * 100}%` }}
@@ -63,23 +59,22 @@ export default function UnifiedDemo() {
             style={{ backgroundColor: "#855dda", boxShadow: "0 0 12px rgba(133,93,218,0.5)" }}
           />
 
-          <h2 className="text-[26px] md:text-5xl lg:text-[56px] font-semibold mb-3 md:mb-4 leading-tight tracking-tight text-[#1E1E1E]">
+          <h2 className="text-[26px] md:text-5xl lg:text-[56px] font-semibold mb-2 md:mb-4 leading-tight tracking-tight text-[#1E1E1E]">
             Как клиент покупает ваш товар
           </h2>
-          <p className="text-gray-400 mb-12 text-lg">
+          <p className="text-gray-400 mb-6 md:mb-12 text-sm md:text-lg">
             От интерьера до покупки — один сценарий
           </p>
 
-          <div className="space-y-8">
+          <div className="space-y-5 md:space-y-8">
             {steps.map((step, i) => {
               const isActive = i <= active
               return (
                 <div
                   key={i}
                   onClick={() => setActive(i)}
-                  className="flex items-start gap-6 cursor-pointer group"
+                  className="flex items-start gap-4 md:gap-6 cursor-pointer group"
                 >
-                  {/* Dot */}
                   <div className="relative z-10 flex-shrink-0 mt-1">
                     {isActive && (
                       <div
@@ -96,9 +91,7 @@ export default function UnifiedDemo() {
                       }}
                     />
                   </div>
-
-                  {/* Text */}
-                  <p className={`text-lg font-medium transition-all duration-300 ${
+                  <p className={`text-sm md:text-lg font-medium transition-all duration-300 ${
                     isActive ? "text-[#1E1E1E]" : "text-gray-300 group-hover:text-gray-500"
                   }`}>
                     {step.title}
@@ -112,23 +105,19 @@ export default function UnifiedDemo() {
         {/* RIGHT — телефон */}
         <div className="flex justify-center">
           <div className="relative">
-            {/* Свечение */}
             <div
               className="absolute inset-0 rounded-[48px] blur-3xl -z-10"
               style={{ backgroundColor: "#855dda", opacity: 0.12, transform: "scale(0.85) translateY(20px)" }}
             />
-
-            {/* Телефон */}
             <div
               className="relative overflow-hidden"
               style={{
-                width: "280px",
-                height: "600px",
+                width: "min(280px, 72vw)",
+                height: "min(600px, 154vw)",
                 borderRadius: "44px",
                 boxShadow: "0 0 0 6px #111, 0 40px 80px rgba(0,0,0,0.35)",
               }}
             >
-              {/* Экран */}
               <AnimatePresence mode="wait">
                 <motion.img
                   key={current.image}
@@ -141,20 +130,14 @@ export default function UnifiedDemo() {
                   draggable={false}
                 />
               </AnimatePresence>
-
-              {/* Dynamic island */}
               <div
                 className="absolute left-1/2 -translate-x-1/2 bg-black rounded-full z-20"
                 style={{ top: "10px", width: "72px", height: "22px" }}
               />
-
-              {/* Home indicator */}
               <div
                 className="absolute left-1/2 -translate-x-1/2 rounded-full z-20"
                 style={{ bottom: "8px", width: "54px", height: "4px", backgroundColor: "rgba(255,255,255,0.4)" }}
               />
-
-              {/* Hotspot */}
               <div
                 onClick={next}
                 className="absolute cursor-pointer z-20"
@@ -162,13 +145,9 @@ export default function UnifiedDemo() {
               >
                 <div className="relative flex items-center justify-center">
                   <span className="absolute w-12 h-12 rounded-full bg-white/25 animate-ping" />
-                  <span
-                    className="w-3 h-3 rounded-full border-2 border-[#d66501] bg-white shadow-lg"
-                  />
+                  <span className="w-3 h-3 rounded-full border-2 border-[#d66501] bg-white shadow-lg" />
                 </div>
               </div>
-
-              {/* Swipe drag */}
               <motion.div
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
@@ -180,8 +159,6 @@ export default function UnifiedDemo() {
                 className="absolute inset-0 z-10"
               />
             </div>
-
-            {/* Тень под телефоном */}
             <div
               className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[60%] h-8 blur-2xl rounded-full -z-10"
               style={{ backgroundColor: "rgba(0,0,0,0.2)" }}

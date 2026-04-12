@@ -54,11 +54,11 @@ export default function Pricing() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="py-28 bg-white overflow-hidden">
+    <section className="py-10 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* HEADER */}
-        <div className="mb-10 md:mb-16">
+        <div className="mb-6 md:mb-16">
           {/* Мобиль */}
           <div className="md:hidden mb-3">
             <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.15]">Новый канал продаж</p>
@@ -85,14 +85,14 @@ export default function Pricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.8 }}
-            className="text-gray-400 text-lg md:text-xl max-w-2xl"
+            className="text-sm md:text-xl text-gray-400 max-w-2xl"
           >
             Вы не размещаете рекламу — вы попадаете в готовый интерьер, где клиент уже выбирает и покупает
           </motion.p>
         </div>
 
         {/* STATS */}
-        <div className="grid md:grid-cols-3 gap-4 mb-16">
+        <div className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-4 mb-6 md:mb-16">
           {stats.map((item, i) => (
             <motion.div
               key={i}
@@ -100,16 +100,16 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
-              className="bg-gray-50 rounded-2xl px-6 py-5"
+              className="bg-gray-50 rounded-2xl px-3 md:px-6 py-4 md:py-5"
             >
-              <div className="text-2xl font-semibold text-[#855dda] mb-1">{item.num}</div>
-              <p className="text-gray-500 text-sm">{item.label}</p>
+              <div className="text-lg md:text-2xl font-semibold text-[#855dda] mb-1">{item.num}</div>
+              <p className="text-gray-500 text-xs md:text-sm">{item.label}</p>
             </motion.div>
           ))}
         </div>
 
         {/* CARDS */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
           {plans.map((plan, i) => {
             const isOpen = openIndex === i
             return (
@@ -127,20 +127,16 @@ export default function Pricing() {
               >
                 {plan.highlight && (
                   <>
-                    <div
-                      className="absolute top-0 left-0 w-[300px] h-[300px] rounded-full blur-[80px] pointer-events-none"
-                      style={{ backgroundColor: "#855dda", opacity: 0.12, transform: "translate(-30%, -30%)" }}
-                    />
-                    <div
-                      className="absolute bottom-0 right-0 w-[200px] h-[200px] rounded-full blur-[60px] pointer-events-none"
-                      style={{ backgroundColor: "#d66501", opacity: 0.08, transform: "translate(20%, 20%)" }}
-                    />
+                    <div className="absolute top-0 left-0 w-[300px] h-[300px] rounded-full blur-[80px] pointer-events-none"
+                      style={{ backgroundColor: "#855dda", opacity: 0.12, transform: "translate(-30%, -30%)" }} />
+                    <div className="absolute bottom-0 right-0 w-[200px] h-[200px] rounded-full blur-[60px] pointer-events-none"
+                      style={{ backgroundColor: "#d66501", opacity: 0.08, transform: "translate(20%, 20%)" }} />
                   </>
                 )}
 
-                <div className="relative p-8 md:p-10">
+                <div className="relative p-6 md:p-10">
                   <div
-                    className="absolute top-6 right-6 text-xs px-3 py-1 rounded-full font-medium"
+                    className="absolute top-5 right-5 text-xs px-3 py-1 rounded-full font-medium"
                     style={{
                       backgroundColor: plan.highlight ? "rgba(133,93,218,0.2)" : "#f0f0f0",
                       color: plan.highlight ? "#855dda" : "#999",
@@ -149,31 +145,23 @@ export default function Pricing() {
                     {plan.badge}
                   </div>
 
-                  <div
-                    className="text-2xl font-semibold mb-2"
-                    style={{ color: plan.highlight ? "white" : "#1E1E1E" }}
-                  >
+                  <div className="text-xl md:text-2xl font-semibold mb-1 md:mb-2"
+                    style={{ color: plan.highlight ? "white" : "#1E1E1E" }}>
                     {plan.name}
                   </div>
 
-                  <div
-                    className="text-sm mb-8"
-                    style={{ color: plan.highlight ? "rgba(255,255,255,0.5)" : "#9ca3af" }}
-                  >
+                  <div className="text-sm mb-5 md:mb-8"
+                    style={{ color: plan.highlight ? "rgba(255,255,255,0.5)" : "#9ca3af" }}>
                     {plan.desc}
                   </div>
 
-                  <ul className="space-y-3 mb-6">
+                  <ul className="space-y-2 md:space-y-3 mb-4 md:mb-6">
                     {plan.features.map((f, idx) => (
                       <li key={idx} className="flex items-center gap-3">
-                        <div
-                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                          style={{ backgroundColor: plan.highlight ? "#855dda" : "#d1d5db" }}
-                        />
-                        <span
-                          className="text-sm"
-                          style={{ color: plan.highlight ? "rgba(255,255,255,0.7)" : "#6b7280" }}
-                        >
+                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: plan.highlight ? "#855dda" : "#d1d5db" }} />
+                        <span className="text-sm"
+                          style={{ color: plan.highlight ? "rgba(255,255,255,0.7)" : "#6b7280" }}>
                           {f}
                         </span>
                       </li>
@@ -182,7 +170,7 @@ export default function Pricing() {
 
                   <button
                     onClick={() => setOpenIndex(isOpen ? null : i)}
-                    className="text-sm mb-6 transition-opacity hover:opacity-70"
+                    className="text-sm mb-4 md:mb-6 transition-opacity hover:opacity-70"
                     style={{ color: plan.highlight ? "#855dda" : "#9ca3af" }}
                   >
                     {isOpen ? "Скрыть детали" : "Все возможности →"}
@@ -195,19 +183,15 @@ export default function Pricing() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.4 }}
-                        className="overflow-hidden mb-6"
+                        className="overflow-hidden mb-4 md:mb-6"
                       >
                         <ul className="space-y-2">
                           {plan.more.map((f, idx) => (
                             <li key={idx} className="flex items-center gap-3">
-                              <div
-                                className="w-1 h-1 rounded-full flex-shrink-0"
-                                style={{ backgroundColor: plan.highlight ? "#855dda" : "#e5e7eb" }}
-                              />
-                              <span
-                                className="text-sm"
-                                style={{ color: plan.highlight ? "rgba(255,255,255,0.5)" : "#9ca3af" }}
-                              >
+                              <div className="w-1 h-1 rounded-full flex-shrink-0"
+                                style={{ backgroundColor: plan.highlight ? "#855dda" : "#e5e7eb" }} />
+                              <span className="text-sm"
+                                style={{ color: plan.highlight ? "rgba(255,255,255,0.5)" : "#9ca3af" }}>
                                 {f}
                               </span>
                             </li>
@@ -218,7 +202,7 @@ export default function Pricing() {
                   </AnimatePresence>
 
                   <button
-                    className="w-full py-3.5 rounded-2xl font-medium text-sm transition-all duration-200 hover:scale-[1.02]"
+                    className="w-full py-3 md:py-3.5 rounded-2xl font-medium text-sm transition-all duration-200 hover:scale-[1.02]"
                     style={{
                       backgroundColor: plan.highlight ? "#855dda" : "#1E1E1E",
                       color: "white",
@@ -237,7 +221,7 @@ export default function Pricing() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center text-sm text-gray-300 mt-8"
+          className="text-center text-sm text-gray-300 mt-6 md:mt-8"
         >
           Подключение занимает от 3 дней · Без сложной интеграции
         </motion.p>
