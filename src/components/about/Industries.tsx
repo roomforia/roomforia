@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 const industries = [
   { src: "/images/about/industry-furniture.png", label: "Поставщики мебели" },
-  { src: "/images/about/industry-light.png", label: "Поставщики свет и электрики" },
+  { src: "/images/about/industry-light.png", label: "Поставщики света и электрики" },
   { src: "/images/about/industry-materials.png", label: "Поставщики отделочных материалов" },
   { src: "/images/about/industry-dev.png", label: "Девелопмент" },
 ]
