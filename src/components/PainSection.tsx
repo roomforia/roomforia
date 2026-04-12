@@ -64,9 +64,9 @@ export default function PainSection() {
           </div>
 
           {/* RIGHT — картинка */}
-          <div className="relative">
+          <div className="relative overflow-hidden rounded-3xl my-6 md:my-10 mr-6 md:mr-10">
             <img
-              src="/images/about/team/team-2.png"
+              src="/images/pain/pain-hero.png"
               alt="Проблемы пользователей"
               className="absolute inset-0 w-full h-full object-cover"
             />
