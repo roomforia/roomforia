@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import Link from "next/link"
 
 const DEMO_URL = "https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
 
@@ -23,41 +22,58 @@ const HOTSPOTS: Hotspot[] = [
 
 const line1 = "приложение для дизайна и".split("")
 const line2 = "визуализации интерьера".split("")
-
 const totalLetters = line1.length + line2.length
 
 export default function Hero() {
-
   const [position, setPosition] = useState(50)
   const [drag, setDrag] = useState(false)
   const [active, setActive] = useState<number | null>(null)
   const ref = useRef<HTMLDivElement>(null)
+  const animatingRef = useRef(false)
 
   useEffect(() => {
+    if (animatingRef.current) return
+    animatingRef.current = true
+
     let start = 50
     const steps = [
       { to: 78, duration: 900 },
       { to: 22, duration: 1000 },
       { to: 50, duration: 800 },
     ]
-    let i = 0
+    let stepIndex = 0
+    let rafId: number
+    let timerId: ReturnType<typeof setTimeout>
+
     const run = () => {
-      if (i >= steps.length) return
-      const { to, duration } = steps[i]
+      if (stepIndex >= steps.length) return
+      const { to, duration } = steps[stepIndex]
       const diff = to - start
       let progress = 0
+
       const frame = () => {
         progress += 16
         const t = Math.min(progress / duration, 1)
         const eased = 1 - Math.pow(1 - t, 3)
         setPosition(start + diff * eased)
-        if (t < 1) requestAnimationFrame(frame)
-        else { start = to; i++; setTimeout(run, 300) }
+        if (t < 1) {
+          rafId = requestAnimationFrame(frame)
+        } else {
+          start = to
+          stepIndex++
+          timerId = setTimeout(run, 300)
+        }
       }
-      frame()
+      rafId = requestAnimationFrame(frame)
     }
-    const timer = setTimeout(run, 2200)
-    return () => clearTimeout(timer)
+
+    const initTimer = setTimeout(run, 2200)
+
+    return () => {
+      clearTimeout(initTimer)
+      clearTimeout(timerId)
+      cancelAnimationFrame(rafId)
+    }
   }, [])
 
   useEffect(() => { setActive(null) }, [position])
@@ -81,17 +97,16 @@ export default function Hero() {
     <section className="pt-6 pb-0 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-10">
 
-        {/* ===== HEADING ===== */}
         <div className="text-center mb-6">
 
           <div className="mb-4 md:mb-0">
             {/* МОБИЛЬ */}
             <div className="flex flex-col items-center md:hidden">
-              <p className="text-[36px] font-semibold tracking-tight leading-[1.15] text-center">
+              <p className="text-[36px] font-bold tracking-tight leading-[1.15] text-center">
                 <span style={{ color: "#855dda" }}>AI -</span>{" "}
                 <span style={{ color: "#d66501" }}>приложение для дизайна и</span>
               </p>
-              <p className="text-[36px] font-semibold tracking-tight leading-[1.15] text-center" style={{ color: "#855dda" }}>
+              <p className="text-[36px] font-bold tracking-tight leading-[1.15] text-center" style={{ color: "#855dda" }}>
                 визуализации интерьера
               </p>
             </div>
@@ -103,7 +118,7 @@ export default function Hero() {
                   initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
                   animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                  className="text-7xl lg:text-[82px] font-semibold tracking-tight leading-[1.05] mr-4"
+                  className="text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05] mr-4"
                   style={{ color: "#855dda" }}
                 >
                   AI -
@@ -119,7 +134,7 @@ export default function Hero() {
                       initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
                       animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 + i * 0.04 }}
-                      className="text-7xl lg:text-[82px] font-semibold tracking-tight leading-[1.05]"
+                      className="text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05]"
                       style={{ color: `rgb(${r},${g},${b})`, display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
                     >
                       {char === " " ? "\u00A0" : char}
@@ -139,7 +154,7 @@ export default function Hero() {
                       initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
                       animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                       transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.3 + (line1.length + i) * 0.04 }}
-                      className="text-7xl lg:text-[82px] font-semibold tracking-tight leading-[1.05]"
+                      className="text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05]"
                       style={{ color: `rgb(${r},${g},${b})`, display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
                     >
                       {char === " " ? "\u00A0" : char}
@@ -176,7 +191,7 @@ export default function Hero() {
 
       </div>
 
-      {/* ===== DEMO BANNER ===== */}
+      {/* DEMO BANNER */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
@@ -267,7 +282,6 @@ export default function Hero() {
         <p className="text-sm text-gray-400 text-right mb-6">
           Нажмите на любой предмет в интерьере, чтобы открыть карточку товара
         </p>
-
         <div className="max-w-3xl ml-auto">
           <p className="text-[#1E1E1E] text-sm md:text-base leading-relaxed mb-6 text-right">
             Визуализируйте, планируйте и создавайте то, о чем так давно мечтали. Удобное и интуитивно понятное приложение со встроенным ИИ для дизайна интерьера. Просто загрузите фото, планировку или отсканируйте комнату с помощью камеры смартфона и получите готовую визуализацию с реальными товарами и отделкой в разных стилях.

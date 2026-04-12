@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion"
 
-// ПУНКТ 22: новые бренды
 const brands = [
   "SKDESIGN", "Coswick", "ТОКмебель", "Мир света", "Divan.ru",
 ]
@@ -21,14 +20,12 @@ export default function BrandsSection() {
           className="bg-[#d66501] overflow-hidden"
         >
           <div className="px-10 md:px-16 pt-14 pb-10">
-
             <div className="flex flex-col mb-14">
-              {/* ПУНКТЫ 20, 21: удалён правый текст, заголовок на всю ширину */}
               <h2 className="text-3xl md:text-5xl lg:text-[56px] font-semibold text-white leading-tight tracking-tight">
                 Именно так это и будет выглядеть
               </h2>
             </div>
-            <p className="text-black/60 text-base md:text-lg max-w-2xl leading-relaxed mb-14">
+            <p className="text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-14">
               Roomforia работает с реальными брендами и поставщиками. В вашей
               визуализации вы увидите вещи, которые существуют, продаются и могут
               оказаться у вас дома.

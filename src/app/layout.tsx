@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 
 /* ===== FONTS ===== */
-// DM Sans — ближайший бесплатный аналог Circular Std (используется на north2.net)
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["300", "400", "500", "600", "700"],
+const manrope = Manrope({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-manrope",
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -27,7 +26,7 @@ export default function RootLayout({
     <html
       lang="ru"
       suppressHydrationWarning
-      className={dmSans.variable}
+      className={manrope.variable}
       style={{ colorScheme: "light" }}
     >
       <head>
@@ -38,7 +37,7 @@ export default function RootLayout({
         style={{
           color: "#1E1E1E",
           backgroundColor: "#ffffff",
-          fontFamily: "var(--font-dm-sans), sans-serif",
+          fontFamily: "var(--font-manrope), sans-serif",
         }}
       >
         {children}
