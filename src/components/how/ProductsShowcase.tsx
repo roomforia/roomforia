@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const products = [
   { name: "Диван", brand: "Divan.ru", price: 49990, img: "/images/products/sofa.png" },
@@ -80,13 +81,12 @@ export default function ProductsShowcase() {
             className="relative rounded-3xl overflow-hidden"
             style={{ aspectRatio: "4/3" }}
           >
-            <motion.img
+            <Image
               src="/images/after.png"
               alt="Интерьер"
-              className="absolute inset-0 w-full h-full object-cover"
-              animate={{ scale: active !== null ? 1.04 : 1 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              draggable={false}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
             <div className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-sm rounded-2xl px-4 py-2">
@@ -123,9 +123,9 @@ export default function ProductsShowcase() {
                     <motion.div
                       animate={{ scale: active === i ? 1.08 : 1 }}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                      className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden bg-gray-50"
+                      className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden bg-gray-50 relative"
                     >
-                      <img src={p.img} alt={p.name} className="w-full h-full object-cover" />
+                      <Image src={p.img} alt={p.name} fill className="object-cover" sizes="56px" />
                     </motion.div>
                     <div className="flex-1 min-w-0">
                       <p className="text-base md:text-lg font-semibold text-[#1E1E1E] leading-snug">{p.name}</p>

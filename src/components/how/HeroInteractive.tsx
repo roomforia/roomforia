@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const DEMO_URL = "https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
 
@@ -236,12 +237,14 @@ export default function HeroInteractive() {
           }}
         >
           {/* BEFORE — фон */}
-          <img
+          <Image
             src="/images/how/hero/before.png"
             alt="До"
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
             style={{ borderRadius: "24px" }}
-            draggable={false}
           />
 
           {/* Тень от баннера */}

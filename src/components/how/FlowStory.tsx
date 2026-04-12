@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 
 const steps = [
   { num: "01", title: "Загрузи фото комнаты", desc: "AI мгновенно распознаёт пространство, геометрию и свет", image: "/images/how/flow/step1.png" },
@@ -137,18 +138,23 @@ export default function FlowStory() {
                 }}
               >
                 <AnimatePresence mode="wait" custom={direction}>
-                  <motion.img
+                  <motion.div
                     key={current}
-                    src={steps[current].image}
-                    alt={steps[current].title}
                     custom={direction}
                     initial={{ opacity: 0, x: direction > 0 ? 60 : -60, scale: 1.04 }}
                     animate={{ opacity: 1, x: 0, scale: 1 }}
                     exit={{ opacity: 0, x: direction > 0 ? -60 : 60, scale: 0.97 }}
                     transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    draggable={false}
-                  />
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={steps[current].image}
+                      alt={steps[current].title}
+                      fill
+                      className="object-cover"
+                      sizes="46vw"
+                    />
+                  </motion.div>
                 </AnimatePresence>
 
                 <div className="absolute top-3 left-1/2 -translate-x-1/2 bg-black rounded-full z-20" style={{ width: "38%", height: "20px" }} />

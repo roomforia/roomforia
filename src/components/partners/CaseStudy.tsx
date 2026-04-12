@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const titleChars = "Как производитель мебели".split("")
 
@@ -115,12 +116,12 @@ export default function CaseStudy() {
             className="relative group rounded-3xl overflow-hidden"
             style={{ aspectRatio: "4/3" }}
           >
-            <motion.img
+            <Image
               src="/images/cases/case-1.png"
               alt="Кейс"
-              className="w-full h-full object-cover"
-              whileHover={{ scale: 1.04 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
           </motion.div>

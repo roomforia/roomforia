@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { AnimatePresence, motion } from "framer-motion"
+import Image from "next/image"
 
 const furnitureSpots = [
   { id: 1, x: 70, y: 28, brand: "morestyle.by", name: "Картина Abstract", price: "8 900 ₽" },
@@ -136,9 +137,8 @@ export default function FlowSection() {
           onTouchEnd={(e) => handleEnd(e.changedTouches[0].clientX)}
         >
           <AnimatePresence mode="sync" custom={direction}>
-            <motion.img
+            <motion.div
               key={active}
-              src={steps[active].image}
               custom={direction}
               variants={{
                 enter: (d: number) => ({ x: d > 0 ? "100%" : "-100%", scale: 1.04 }),
@@ -149,9 +149,17 @@ export default function FlowSection() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.65, ease: [0.32, 0.72, 0, 1] }}
-              className="absolute inset-0 w-full h-full object-cover"
-              draggable={false}
-            />
+              className="absolute inset-0"
+            >
+              <Image
+                src={steps[active].image}
+                alt={steps[active].title}
+                fill
+                className="object-cover"
+                priority
+                sizes="100vw"
+              />
+            </motion.div>
           </AnimatePresence>
 
           <div className="absolute inset-0 bg-black/40 pointer-events-none" />

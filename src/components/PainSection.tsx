@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const pains = [
   "Смотришь Pinterest, но в реальности всё выглядит иначе",
@@ -65,10 +66,12 @@ export default function PainSection() {
 
           {/* RIGHT — картинка */}
           <div className="relative overflow-hidden rounded-3xl my-6 md:my-10 mr-6 md:mr-10">
-            <img
+            <Image
               src="/images/pain/pain-hero.png"
               alt="Проблемы пользователей"
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
             {/* Затемнение */}
             <div className="absolute inset-0 bg-black/50" />

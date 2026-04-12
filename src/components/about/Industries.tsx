@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const industries = [
   { src: "/images/about/industry-furniture.png", label: "Поставщики мебели" },
@@ -57,7 +58,7 @@ export default function Industries() {
               className="group relative rounded-2xl md:rounded-3xl overflow-hidden"
               style={{ aspectRatio: "3/4" }}
             >
-              <img src={item.src} alt={item.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <Image src={item.src} alt={item.label} fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               <div className="absolute bottom-3 left-3">
                 <span className="text-white text-xs md:text-sm font-medium">{item.label}</span>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import React from "react"
+import Image from "next/image"
 
 const steps: { title: string; image: string; hotspot: React.CSSProperties }[] = [
   {
@@ -119,16 +120,22 @@ export default function UnifiedDemo() {
               }}
             >
               <AnimatePresence mode="wait">
-                <motion.img
+                <motion.div
                   key={current.image}
-                  src={current.image}
                   initial={{ opacity: 0, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.97 }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  draggable={false}
-                />
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={current.image}
+                    alt={current.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 72vw, 40vw"
+                  />
+                </motion.div>
               </AnimatePresence>
               <div
                 className="absolute left-1/2 -translate-x-1/2 bg-black rounded-full z-20"

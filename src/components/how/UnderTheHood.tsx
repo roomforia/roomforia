@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
+import Image from "next/image"
 
 const items = [
   {
@@ -34,7 +35,7 @@ function Phone({ img, small = false }: { img: string; small?: boolean }) {
     <div className="relative overflow-hidden flex-shrink-0"
       style={{ width: w, height: h, borderRadius: br, border: "6px solid #111", boxShadow: "0 24px 60px rgba(0,0,0,0.35)" }}
     >
-      <img src={img} alt="" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+      <Image src={img} alt="" fill className="object-cover" sizes="200px" />
       <div className="absolute left-1/2 -translate-x-1/2 bg-black rounded-full z-20" style={{ top: "10px", width: "68px", height: "20px" }} />
       <div className="absolute left-1/2 -translate-x-1/2 rounded-full z-20" style={{ bottom: "7px", width: "50px", height: "4px", backgroundColor: "rgba(255,255,255,0.35)" }} />
       <div className="absolute inset-0 pointer-events-none z-10" style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%)" }} />

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 
 const segments = [
   {
@@ -173,10 +174,12 @@ export default function PartnerSegments() {
                 className="relative rounded-3xl overflow-hidden"
                 style={{ aspectRatio: "4/3" }}
               >
-                <img
+                <Image
                   src={current.image}
                   alt={current.label}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent pointer-events-none" />
                 {mounted && (
