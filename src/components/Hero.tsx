@@ -21,7 +21,6 @@ const HOTSPOTS: Hotspot[] = [
   { id: 3, top: "96%", left: "40%", title: "Ковер Soft", brand: "Zara Home", img: "/images/products/carpet.png" },
 ]
 
-// ПУНКТ 1: убираем кружок, "AI" фиолетовым, остальное с градиентом оранжевый→фиолетовый
 const line1 = "приложение для дизайна и".split("")
 const line2 = "визуализации интерьера".split("")
 
@@ -63,7 +62,6 @@ export default function Hero() {
 
   useEffect(() => { setActive(null) }, [position])
 
-
   const update = (x: number) => {
     if (!ref.current) return
     const rect = ref.current.getBoundingClientRect()
@@ -86,7 +84,6 @@ export default function Hero() {
         {/* ===== HEADING ===== */}
         <div className="text-center mb-6">
 
-          {/* На мобиле — простой текст, на десктопе — побуквенно */}
           <div className="mb-4 md:mb-0">
             {/* МОБИЛЬ */}
             <div className="flex flex-col items-center md:hidden">
@@ -153,7 +150,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ПУНКТ 2: новый подзаголовок */}
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -262,19 +258,16 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ПУНКТЫ 3 и 4: подпись под картинкой + доп. текст + кнопка */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.3 + totalLetters * 0.04 + 0.9 }}
         className="w-full px-4 md:px-8 mt-8"
       >
-        {/* ПУНКТ 3: подпись по правому краю */}
         <p className="text-sm text-gray-400 text-right mb-6">
           Нажмите на любой предмет в интерьере, чтобы открыть карточку товара
         </p>
 
-        {/* ПУНКТ 4: доп. текст + кнопка по правому краю */}
         <div className="max-w-3xl ml-auto">
           <p className="text-[#1E1E1E] text-sm md:text-base leading-relaxed mb-6 text-right">
             Визуализируйте, планируйте и создавайте то, о чем так давно мечтали. Удобное и интуитивно понятное приложение со встроенным ИИ для дизайна интерьера. Просто загрузите фото, планировку или отсканируйте комнату с помощью камеры смартфона и получите готовую визуализацию с реальными товарами и отделкой в разных стилях.
