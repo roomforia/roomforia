@@ -102,7 +102,7 @@ export default function UnderTheHood() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                className="text-3xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                className="text-[28px] md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.15] md:leading-[1.02]"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}

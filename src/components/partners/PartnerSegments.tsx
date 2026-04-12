@@ -63,43 +63,47 @@ export default function PartnerSegments() {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* HEADER */}
-        <div className="mb-16">
-          <div className="flex items-end flex-wrap overflow-hidden mb-1">
-            {titleChars.map((char, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
-                style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
+        <div className="mb-10 md:mb-16">
+          {/* Мобиль */}
+          <div className="md:hidden mb-3">
+            <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.15]">Вы зарабатываете</p>
+            <p className="text-[28px] tracking-tight text-[#d66501] leading-[1.15]" style={{ fontFamily: "symphonyregular, serif" }}>вместе с Roomforia</p>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.05 }}
-          >
-            <span
-              className="text-5xl md:text-7xl lg:text-[82px] tracking-tight text-[#d66501] leading-[1.02]"
-              style={{ fontFamily: "symphonyregular, serif" }}
+          {/* Десктоп */}
+          <div className="hidden md:block">
+            <div className="flex items-end flex-wrap overflow-hidden mb-1">
+              {titleChars.map((char, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
+                  className="text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                  style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </div>
+            <motion.div
+              initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.05 }}
             >
-              вместе с Roomforia
-            </span>
-          </motion.div>
+              <span className="text-7xl lg:text-[82px] tracking-tight text-[#d66501] leading-[1.02]" style={{ fontFamily: "symphonyregular, serif" }}>
+                вместе с Roomforia
+              </span>
+            </motion.div>
+          </div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.8 }}
-            className="text-gray-400 text-lg md:text-xl mt-4"
+            className="text-sm md:text-base text-gray-400 mt-3 md:mt-4"
           >
             Подходит для брендов, производителей и всех, кто хочет продавать через интерьер
           </motion.p>

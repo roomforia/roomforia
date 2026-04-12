@@ -58,8 +58,13 @@ export default function Pricing() {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* HEADER */}
-        <div className="mb-16">
-          <div className="flex items-end flex-wrap overflow-hidden mb-4">
+        <div className="mb-10 md:mb-16">
+          {/* Мобиль */}
+          <div className="md:hidden mb-3">
+            <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.15]">Новый канал продаж</p>
+          </div>
+          {/* Десктоп */}
+          <div className="hidden md:flex items-end flex-wrap overflow-hidden mb-4">
             {titleChars.map((char, i) => (
               <motion.span
                 key={i}
@@ -67,7 +72,7 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                className="text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}

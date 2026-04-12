@@ -40,38 +40,45 @@ export default function CTAHow() {
             </span>
           </motion.div>
 
-          {/* Заголовок побуквенно */}
+          {/* Заголовок */}
           <div className="mb-4">
-            <div className="flex flex-wrap items-end overflow-hidden mb-1">
-              {titleChars.map((char, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 60, filter: "blur(8px)" }}
-                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                  className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-white leading-[1.02]"
-                  style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
-              ))}
+            {/* Мобиль */}
+            <div className="md:hidden mb-1">
+              <p className="text-[28px] font-semibold tracking-tight text-white leading-[1.15]">Создай интерьер</p>
+              <p className="text-[28px] font-semibold tracking-tight text-[#d66501] leading-[1.15]">за 30 секунд</p>
             </div>
-
-            <div className="flex flex-wrap items-end overflow-hidden">
-              {titleChars2.map((char, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 60, filter: "blur(8px)" }}
-                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: (titleChars.length + i) * 0.04 }}
-                  className="text-5xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#d66501] leading-[1.02]"
-                  style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
-              ))}
+            {/* Десктоп */}
+            <div className="hidden md:block">
+              <div className="flex flex-wrap items-end overflow-hidden mb-1">
+                {titleChars.map((char, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 60, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
+                    className="text-7xl lg:text-[82px] font-semibold tracking-tight text-white leading-[1.02]"
+                    style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </div>
+              <div className="flex flex-wrap items-end overflow-hidden">
+                {titleChars2.map((char, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 60, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: (titleChars.length + i) * 0.04 }}
+                    className="text-7xl lg:text-[82px] font-semibold tracking-tight text-[#d66501] leading-[1.02]"
+                    style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </div>
             </div>
           </div>
 

@@ -63,7 +63,7 @@ export default function UnifiedDemo() {
             style={{ backgroundColor: "#855dda", boxShadow: "0 0 12px rgba(133,93,218,0.5)" }}
           />
 
-          <h2 className="text-4xl md:text-5xl lg:text-[56px] font-semibold mb-4 leading-tight tracking-tight text-[#1E1E1E]">
+          <h2 className="text-[26px] md:text-5xl lg:text-[56px] font-semibold mb-3 md:mb-4 leading-tight tracking-tight text-[#1E1E1E]">
             Как клиент покупает ваш товар
           </h2>
           <p className="text-gray-400 mb-12 text-lg">

@@ -9,47 +9,51 @@ export default function CaseStudy() {
     <section className="py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        {/* HEADER */}
-        <div className="mb-16">
+        <div className="mb-10 md:mb-16">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-xs uppercase tracking-[0.2em] text-gray-400 font-medium mb-6"
+            className="text-xs uppercase tracking-[0.2em] text-gray-400 font-medium mb-4 md:mb-6"
           >
             Реальный кейс
           </motion.p>
 
-          <div className="flex items-end flex-wrap overflow-hidden mb-1">
-            {titleChars.map((char, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.035 }}
-                className="text-4xl md:text-6xl lg:text-[72px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
-                style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
+          {/* Мобиль */}
+          <div className="md:hidden mb-3">
+            <p className="text-[26px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.15]">Как производитель мебели</p>
+            <p className="text-[26px] tracking-tight text-[#d66501] leading-[1.15]" style={{ fontFamily: "symphonyregular, serif" }}>увеличил заявки на 45%</p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.035 + 0.05 }}
-          >
-            <span
-              className="text-4xl md:text-6xl lg:text-[72px] tracking-tight text-[#d66501] leading-[1.02]"
-              style={{ fontFamily: "symphonyregular, serif" }}
+          {/* Десктоп */}
+          <div className="hidden md:block">
+            <div className="flex items-end flex-wrap overflow-hidden mb-1">
+              {titleChars.map((char, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.035 }}
+                  className="text-6xl lg:text-[72px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                  style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </div>
+            <motion.div
+              initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.035 + 0.05 }}
             >
-              увеличил заявки на 45%
-            </span>
-          </motion.div>
+              <span className="text-6xl lg:text-[72px] tracking-tight text-[#d66501] leading-[1.02]" style={{ fontFamily: "symphonyregular, serif" }}>
+                увеличил заявки на 45%
+              </span>
+            </motion.div>
+          </div>
         </div>
 
         {/* CONTENT */}
