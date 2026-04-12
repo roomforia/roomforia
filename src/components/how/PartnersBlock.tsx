@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import PartnerModal from "@/components/PartnerModal"
 
 const benefits = [
   {
@@ -28,9 +29,12 @@ const titleChars = "Мы приводим клиентов".split("")
 
 export default function PartnersBlock() {
   const [hovered, setHovered] = useState<number | null>(null)
+  const [modalOpen, setModalOpen] = useState(false)
 
   return (
-    <section className="py-12 md:py-28 bg-white overflow-hidden">
+    <>
+      <PartnerModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      <section className="py-12 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* HEADER */}
@@ -143,18 +147,19 @@ export default function PartnersBlock() {
             <p className="text-lg md:text-2xl font-semibold text-[#1E1E1E] mb-2">Хотите разместить свои товары?</p>
             <p className="text-gray-400 text-sm md:text-base">Подключите каталог — ваши товары начнут продаваться через интерьеры</p>
           </div>
-          <a
-            href="/partners"
+          <button
+            onClick={() => setModalOpen(true)}
             className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 rounded-full border-2 border-[#855dda] text-[#855dda] font-medium hover:bg-[#855dda] hover:text-white transition-all duration-200 flex-shrink-0 text-sm md:text-base"
           >
             Стать партнёром
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </a>
+          </button>
         </motion.div>
 
       </div>
     </section>
+    </>
   )
 }
