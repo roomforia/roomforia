@@ -133,21 +133,21 @@ export default function Header() {
 
             {/* Панель — снизу вверх, не на весь экран */}
             <motion.div
-              initial={{ y: "100%" }}
+              initial={{ y: "-100%" }}
               animate={{ y: 0 }}
-              exit={{ y: "100%" }}
+              exit={{ y: "-100%" }}
               transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
-              className="fixed bottom-0 left-0 right-0 z-50 rounded-t-[28px] overflow-hidden"
+              className="fixed top-0 left-0 right-0 z-50 rounded-b-[28px] overflow-hidden"
               style={{
                 background: "rgba(255,255,255,0.96)",
                 backdropFilter: "blur(24px)",
                 WebkitBackdropFilter: "blur(24px)",
-                boxShadow: "0 -20px 60px rgba(0,0,0,0.12), 0 -1px 0 rgba(0,0,0,0.06)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.12), 0 1px 0 rgba(0,0,0,0.06)",
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Ручка */}
-              <div className="flex justify-center pt-3 pb-1">
+              {/* Ручка снизу для шторки сверху */}
+              <div className="flex justify-center pb-3 pt-1">
                 <div className="w-8 h-[3px] rounded-full bg-gray-200" />
               </div>
 
