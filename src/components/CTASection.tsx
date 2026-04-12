@@ -74,7 +74,7 @@ export default function CTASection() {
                   whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 + i * 0.04 }}
-                  className="text-3xl md:text-5xl lg:text-[56px] font-semibold tracking-tight text-[#d66501] leading-[1.05]"
+                  className="text-[22px] md:text-5xl lg:text-[56px] font-bold tracking-tight text-[#d66501] leading-[1.05]"
                   style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
                 >
                   {char === " " ? "\u00A0" : char}
@@ -90,7 +90,7 @@ export default function CTASection() {
                   whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 + (line1.length + i) * 0.04 }}
-                  className="text-3xl md:text-5xl lg:text-[56px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.05]"
+                  className="text-[22px] md:text-5xl lg:text-[56px] font-bold tracking-tight text-[#1E1E1E] leading-[1.05]"
                   style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
                 >
                   {char === " " ? "\u00A0" : char}

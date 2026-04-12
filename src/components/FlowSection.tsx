@@ -68,11 +68,11 @@ export default function FlowSection() {
             {titleChars.map((char, i) => (
               <motion.span
                 key={i}
-                initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
+                whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                className="text-4xl md:text-6xl font-semibold tracking-tight text-[#1E1E1E] leading-tight"
+                className="text-[28px] md:text-6xl font-bold tracking-tight text-[#1E1E1E] leading-tight"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.3em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}
@@ -85,7 +85,7 @@ export default function FlowSection() {
               whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.1 }}
-              className="text-4xl md:text-6xl tracking-tight leading-tight ml-4"
+              className="text-[28px] md:text-6xl tracking-tight leading-tight ml-3 md:ml-4"
               style={{
                 color: "#855dda",
                 fontWeight: 700,
@@ -102,7 +102,7 @@ export default function FlowSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.25 }}
-            className="text-[#1E1E1E] text-base md:text-lg font-medium mt-3"
+            className="text-[#1E1E1E] text-sm md:text-lg font-medium mt-3"
           >
             От абстракций в голове до готового решения — 5 простых шагов
           </motion.p>
@@ -113,7 +113,7 @@ export default function FlowSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.4 }}
-            className="text-gray-500 text-base md:text-lg mt-2"
+            className="text-gray-500 text-sm md:text-lg mt-2"
           >
             Без ожидания дизайнера, без бесконечного поиска по сайтам производителей и без догадок, как всё будет сочетаться
           </motion.p>

@@ -12,21 +12,23 @@ const team = [
   { img: "/images/about/team/team-6.png", role: "AI", desc: "ML и генеративные модели", accent: "#d66501" },
 ]
 
+const titleChars = "Команда, говорящая".split("")
+
 export default function Team() {
   return (
     <section className="py-12 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <div className="mb-10 md:mb-16">
+        <div className="mb-8 md:mb-16">
           {/* Мобиль */}
-          <div className="md:hidden mb-2">
-            <p className="text-[32px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Команда, говорящая</p>
-            <p className="text-[32px] font-semibold tracking-tight text-[#d66501] leading-[1.1]">с бизнесом</p>
+          <div className="md:hidden mb-3">
+            <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Команда, говорящая</p>
+            <p className="text-[28px] font-semibold tracking-tight text-[#d66501] leading-[1.1]">с бизнесом</p>
           </div>
           {/* Десктоп */}
           <div className="hidden md:block">
             <div className="flex items-end flex-wrap overflow-hidden mb-1">
-              {"Команда, говорящая".split("").map((char, i) => (
+              {titleChars.map((char, i) => (
                 <motion.span key={i}
                   initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
                   whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -48,7 +50,7 @@ export default function Team() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
           {team.map((m, i) => (
             <motion.div key={i}
               initial={{ opacity: 0, y: 40 }}
@@ -57,18 +59,18 @@ export default function Team() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
               className="group"
             >
-              <div className="relative overflow-hidden rounded-2xl md:rounded-3xl mb-3 md:mb-5" style={{ aspectRatio: "3/4" }}>
+              <div className="relative overflow-hidden rounded-2xl md:rounded-3xl mb-2 md:mb-5" style={{ aspectRatio: "3/4" }}>
                 <Image src={m.img} alt={m.role} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-                  <span className="text-xs font-mono uppercase tracking-widest px-3 py-1.5 rounded-full text-white" style={{ backgroundColor: m.accent }}>{m.role}</span>
+                <div className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <span className="text-xs font-mono uppercase tracking-widest px-2 py-1 rounded-full text-white" style={{ backgroundColor: m.accent }}>{m.role}</span>
                 </div>
               </div>
-              <div className="flex items-start gap-2 md:gap-3">
-                <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-2" style={{ backgroundColor: m.accent }} />
+              <div className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5" style={{ backgroundColor: m.accent }} />
                 <div>
-                  <div className="font-semibold text-[#1E1E1E] text-sm md:text-lg mb-0.5">{m.role}</div>
-                  <div className="text-xs md:text-sm text-gray-400">{m.desc}</div>
+                  <div className="font-semibold text-[#1E1E1E] text-xs md:text-base mb-0.5">{m.role}</div>
+                  <div className="text-xs text-gray-400">{m.desc}</div>
                 </div>
               </div>
             </motion.div>

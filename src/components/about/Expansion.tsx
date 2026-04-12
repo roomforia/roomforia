@@ -9,6 +9,8 @@ const regions = [
   { name: "СНГ", status: "Масштабирование рынка", accent: "#855dda" },
 ]
 
+const titleChars = "Масштабируемся".split("")
+
 export default function Expansion() {
   return (
     <section className="py-12 md:py-28 bg-white overflow-hidden">
@@ -16,14 +18,14 @@ export default function Expansion() {
         <div className="grid md:grid-cols-2 gap-10 md:gap-24 items-center">
 
           <div>
-            <div className="mb-8 md:mb-12">
+            <div className="mb-6 md:mb-12">
               {/* Мобиль */}
               <div className="md:hidden">
-                <p className="text-[32px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Масштабируемся</p>
+                <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Масштабируемся</p>
               </div>
               {/* Десктоп */}
               <div className="hidden md:flex items-end flex-wrap overflow-hidden">
-                {"Масштабируемся".split("").map((char, i) => (
+                {titleChars.map((char, i) => (
                   <motion.span key={i}
                     initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -49,10 +51,10 @@ export default function Expansion() {
                     <div className="absolute inset-0 bg-gray-100" />
                     <div className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100" style={{ backgroundColor: r.accent, transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }} />
                   </div>
-                  <div className="flex items-center justify-between py-5 md:py-6">
+                  <div className="flex items-center justify-between py-4 md:py-6">
                     <div>
-                      <div className="text-lg md:text-xl font-semibold text-[#1E1E1E] mb-1">{r.name}</div>
-                      <div className="text-sm text-gray-400">{r.status}</div>
+                      <div className="text-base md:text-xl font-semibold text-[#1E1E1E] mb-0.5">{r.name}</div>
+                      <div className="text-xs md:text-sm text-gray-400">{r.status}</div>
                     </div>
                     <div className="w-2 h-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500" style={{ backgroundColor: r.accent }} />
                   </div>

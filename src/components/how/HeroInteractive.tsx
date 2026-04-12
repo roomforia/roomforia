@@ -3,8 +3,19 @@
 import { useRef, useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
-const titleChars = "Интерьер за".split("")
-const accentChars = "30 секунд".split("")
+const DEMO_URL = "https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
+
+function gradientColor(i: number, total: number) {
+  const pct = i / (total - 1)
+  const r = Math.round(214 + (133 - 214) * pct)
+  const g = Math.round(101 + (93 - 101) * pct)
+  const b = Math.round(1 + (218 - 1) * pct)
+  return `rgb(${r},${g},${b})`
+}
+
+const line1 = "Интерьер за".split("")
+const line2 = "30 секунд".split("")
+const totalChars = line1.length + line2.length
 
 export default function HeroInteractive() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -124,36 +135,44 @@ export default function HeroInteractive() {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="text-center mb-8">
 
-          {/* Мобиль */}
+          {/* МОБИЛЬ */}
           <div className="md:hidden mb-6">
-            <p className="text-[32px] font-bold tracking-tight leading-[1.1] text-[#1E1E1E] mb-1">Интерьер за</p>
-            <p className="text-[32px] font-bold tracking-tight leading-[1.1] text-[#d66501]">30 секунд</p>
+            <p className="text-[32px] font-bold tracking-tight leading-[1.1] mb-1"
+              style={{ background: "linear-gradient(90deg, #d66501, #c05010)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+            >
+              Интерьер за
+            </p>
+            <p className="text-[32px] font-bold tracking-tight leading-[1.1]"
+              style={{ background: "linear-gradient(90deg, #a0508a, #855dda)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+            >
+              30 секунд
+            </p>
           </div>
 
+          {/* ДЕСКТОП — побуквенно с градиентом */}
           <div className="hidden md:flex items-end justify-center flex-wrap mb-1 min-h-[110px]">
-            {titleChars.map((char, i) => (
+            {line1.map((char, i) => (
               <motion.span
                 key={i}
-                initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
+                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 + i * 0.045 }}
-                className="text-3xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]"
-                style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                className="text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05]"
+                style={{ color: gradientColor(i, totalChars), display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}
               </motion.span>
             ))}
           </div>
-
-          <div className="hidden md:flex items-end justify-center flex-wrap mb-6 md:mb-8 min-h-[110px]">
-            {accentChars.map((char, i) => (
+          <div className="hidden md:flex items-end justify-center flex-wrap mb-8 min-h-[110px]">
+            {line2.map((char, i) => (
               <motion.span
                 key={i}
-                initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 + (titleChars.length + i) * 0.045 }}
-                className="text-3xl md:text-7xl lg:text-[82px] font-semibold tracking-tight text-[#d66501] leading-[1.02]"
-                style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
+                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.1 + (line1.length + i) * 0.045 }}
+                className="text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05]"
+                style={{ color: gradientColor(line1.length + i, totalChars), display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}
               </motion.span>
@@ -175,7 +194,7 @@ export default function HeroInteractive() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 1.4 }}
           >
             <a
-              href="https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
+              href={DEMO_URL}
               target="_blank"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#d66501] text-white font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:scale-[1.02]"
             >

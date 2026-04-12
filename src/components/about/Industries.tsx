@@ -9,21 +9,23 @@ const industries = [
   { src: "/images/about/industry-dev.png", label: "Девелопмент" },
 ]
 
+const titleChars = "Работаем с лидерами".split("")
+
 export default function Industries() {
   return (
     <section className="py-12 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <div className="mb-10 md:mb-16">
+        <div className="mb-8 md:mb-16">
           {/* Мобиль */}
-          <div className="md:hidden mb-2">
-            <p className="text-[32px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Работаем с лидерами</p>
-            <p className="text-[32px] font-semibold tracking-tight text-[#d66501] leading-[1.1]">отрасли</p>
+          <div className="md:hidden mb-3">
+            <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Работаем с лидерами</p>
+            <p className="text-[28px] font-semibold tracking-tight text-[#d66501] leading-[1.1]">отрасли</p>
           </div>
           {/* Десктоп */}
           <div className="hidden md:block">
             <div className="flex items-end flex-wrap overflow-hidden mb-1">
-              {"Работаем с лидерами".split("").map((char, i) => (
+              {titleChars.map((char, i) => (
                 <motion.span key={i}
                   initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
                   whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
