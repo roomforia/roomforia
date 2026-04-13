@@ -14,13 +14,38 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Roomforia",
   description: "AI интерьер за секунды",
+  metadataBase: new URL("https://roomforia.com"),
+  openGraph: {
+    title: "Roomforia — AI-дизайн интерьера за секунды",
+    description: "Загрузи фото комнаты — получи готовый дизайн и список мебели с реальными товарами",
+    url: "https://roomforia.com",
+    siteName: "Roomforia",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Roomforia — AI-дизайн интерьера",
+      },
+    ],
+    locale: "ru_RU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Roomforia — AI-дизайн интерьера за секунды",
+    description: "Загрузи фото комнаты — получи готовый дизайн и список мебели с реальными товарами",
+    images: ["/og-image.png"],
+  },
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon.ico" },
     ],
-    apple: { url: "/apple-touch-icon.png" },
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
     other: [
       { rel: "manifest", url: "/site.webmanifest" },
     ],
@@ -42,11 +67,7 @@ export default function RootLayout({
     >
       <head>
         <meta name="color-scheme" content="light only" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#111111" />
       </head>
       <body
         className="bg-white text-[#1E1E1E] antialiased overflow-x-hidden"
