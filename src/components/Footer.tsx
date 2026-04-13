@@ -68,10 +68,10 @@ export default function Footer() {
                 </p>
                 
                 <a
-                  href="mailto:roomforia.spb@gmail.com"
+                  href="mailto:info@roomforia.ru"
                   className="text-sm text-white/60 hover:text-white transition-colors duration-200"
                 >
-                  roomforia.spb@gmail.com
+                  info@roomforia.ru
                 </a>
               </div>
             </motion.div>
