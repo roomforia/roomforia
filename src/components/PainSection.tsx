@@ -9,17 +9,14 @@ const pains = [
   "Боишься потратить деньги и получить не тот результат",
   "Дизайнер долго, дорого и не всегда попадает",
 ]
-// fix
-// ПУНКТ 13: новый заголовок
+
 const titleChars = "Обычно все выглядит так".split("")
 
 export default function PainSection() {
   return (
-    // ПУНКТ 13: убираем px-4, растягиваем на всю ширину
     <section className="py-0 bg-white overflow-hidden">
       <div className="relative w-full">
 
-        {/* GRID: список слева, картинка справа */}
         <div className="grid md:grid-cols-2 gap-0 min-h-[380px] md:min-h-[580px]">
 
           {/* LEFT — список болей */}
@@ -65,32 +62,35 @@ export default function PainSection() {
           </div>
 
           {/* RIGHT — картинка */}
-          <div className="relative overflow-hidden rounded-3xl my-6 md:my-10 mr-6 md:mr-10">
-            <Image
-              src="/images/pain/pain-hero.png"
-              alt="Проблемы пользователей"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-            {/* Затемнение */}
-            <div className="absolute inset-0 bg-black/50" />
-            {/* Заголовок поверх картинки */}
-            <div className="absolute inset-0 flex items-end px-5 md:px-10 pb-6 md:pb-10">
-              <div className="flex flex-wrap">
-                {titleChars.map((char, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                    className="text-[18px] md:text-3xl lg:text-[40px] font-semibold tracking-tight text-white leading-[1.2]"
-                    style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </motion.span>
-                ))}
+          {/* На мобиле — явная высота через aspect-ratio обёртку */}
+          <div className="mx-6 mb-6 md:my-10 md:mx-0 md:mr-10">
+            <div className="relative rounded-3xl overflow-hidden h-[280px] md:h-full md:min-h-[400px]">
+              <Image
+                src="/images/pain/pain-hero.png"
+                alt="Проблемы пользователей"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              {/* Затемнение */}
+              <div className="absolute inset-0 bg-black/50" />
+              {/* Заголовок поверх картинки */}
+              <div className="absolute inset-0 flex items-end px-5 md:px-10 pb-6 md:pb-10">
+                <div className="flex flex-wrap">
+                  {titleChars.map((char, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
+                      className="text-[18px] md:text-3xl lg:text-[40px] font-semibold tracking-tight text-white leading-[1.2]"
+                      style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </motion.span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
