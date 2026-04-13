@@ -19,8 +19,41 @@ export default function PainSection() {
 
         <div className="grid md:grid-cols-2 gap-0 min-h-[380px] md:min-h-[580px]">
 
-          {/* LEFT — список болей */}
-          <div className="flex flex-col justify-center px-6 md:px-10 py-8 md:py-16">
+          {/* RIGHT — картинка (на мобиле идёт ПЕРВОЙ через order-first) */}
+          <div className="order-first md:order-last mx-6 mt-6 mb-0 md:my-10 md:mx-0 md:mr-10">
+            <div className="relative rounded-3xl overflow-hidden h-[260px] md:h-full md:min-h-[460px]">
+              <Image
+                src="/images/pain/pain-hero.png"
+                alt="Проблемы пользователей"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              {/* Затемнение */}
+              <div className="absolute inset-0 bg-black/50" />
+              {/* Заголовок поверх картинки */}
+              <div className="absolute inset-0 flex items-end px-5 md:px-8 pb-5 md:pb-10">
+                <div className="flex flex-wrap">
+                  {titleChars.map((char, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.03 }}
+                      className="text-[18px] md:text-3xl lg:text-[40px] font-semibold tracking-tight text-white leading-[1.2]"
+                      style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* LEFT — список болей (на мобиле идёт ВТОРЫМ) */}
+          <div className="order-last md:order-first flex flex-col justify-center px-6 md:px-10 py-6 md:py-16">
             <div className="max-w-xl">
               {pains.map((text, i) => (
                 <motion.div
@@ -38,7 +71,7 @@ export default function PainSection() {
                       style={{ transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
                     />
                   </div>
-                  <div className="flex items-start gap-5 py-7">
+                  <div className="flex items-start gap-5 py-5 md:py-7">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(133,93,218,0.12)" }}>
                       <span className="text-sm font-bold text-[#1E1E1E]">{i + 1}</span>
                     </div>
@@ -61,42 +94,7 @@ export default function PainSection() {
             </div>
           </div>
 
-          {/* RIGHT — картинка */}
-          {/* На мобиле — явная высота через aspect-ratio обёртку */}
-          <div className="mx-6 mb-6 md:my-10 md:mx-0 md:mr-10">
-            <div className="relative rounded-3xl overflow-hidden h-[280px] md:h-full md:min-h-[400px]">
-              <Image
-                src="/images/pain/pain-hero.png"
-                alt="Проблемы пользователей"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              {/* Затемнение */}
-              <div className="absolute inset-0 bg-black/50" />
-              {/* Заголовок поверх картинки */}
-              <div className="absolute inset-0 flex items-end px-5 md:px-10 pb-6 md:pb-10">
-                <div className="flex flex-wrap">
-                  {titleChars.map((char, i) => (
-                    <motion.span
-                      key={i}
-                      initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
-                      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                      className="text-[18px] md:text-3xl lg:text-[40px] font-semibold tracking-tight text-white leading-[1.2]"
-                      style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
-                    >
-                      {char === " " ? "\u00A0" : char}
-                    </motion.span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
-
       </div>
     </section>
   )
