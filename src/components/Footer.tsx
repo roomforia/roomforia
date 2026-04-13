@@ -90,12 +90,12 @@ export default function Footer() {
           <span>© 2025 Roomforia</span>
 
           <div className="flex gap-6">
-            <span className="hover:text-white/50 cursor-pointer transition-colors duration-200">
+            <Link href="/privacy" className="hover:text-white/50 transition-colors duration-200">
               Политика конфиденциальности
-            </span>
-            <span className="hover:text-white/50 cursor-pointer transition-colors duration-200">
+            </Link>
+            <Link href="/terms" className="hover:text-white/50 transition-colors duration-200">
               Пользовательское соглашение
-            </span>
+            </Link>
           </div>
         </motion.div>
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
 
 export default function PartnerModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [loading, setLoading] = useState(false)
@@ -148,7 +149,7 @@ export default function PartnerModal({ open, onClose }: { open: boolean; onClose
                               {agreed && <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                             </div>
                             <span className="text-xs text-gray-400 leading-relaxed">
-                              Я соглашаюсь с <span className="underline cursor-pointer">Политикой конфиденциальности</span> и даю согласие на обработку персональных данных
+                              Я соглашаюсь с <Link href="/privacy" target="_blank" className="underline hover:text-gray-600 transition-colors">Политикой конфиденциальности</Link> и даю согласие на обработку персональных данных
                             </span>
                           </label>
                         </div>
