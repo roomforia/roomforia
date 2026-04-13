@@ -68,28 +68,11 @@ export default function Footer() {
                 </p>
                 
                 <a
-                  href="mailto:hello@roomforia.com"
+                  href="mailto:roomforia.spb@gmail.com"
                   className="text-sm text-white/60 hover:text-white transition-colors duration-200"
                 >
-                  hello@roomforia.com
+                  roomforia.spb@gmail.com
                 </a>
-
-                {/* Подписка */}
-                <p className="text-xs uppercase tracking-[0.15em] text-white/30 mb-3 font-medium mt-8">
-                  Подписка
-                </p>
-                <div className="flex gap-2">
-                  <input
-                    placeholder="Email"
-                    className="flex-1 px-4 py-2.5 rounded-full bg-white/8 border border-white/10 text-sm outline-none text-white placeholder:text-white/30 focus:border-white/30 transition-colors duration-200 min-w-0 w-40"
-                  />
-                  <button className="px-5 py-2.5 rounded-full bg-[#d66501] text-white text-sm font-medium hover:bg-[#bf5a01] transition-colors duration-200">
-                    OK
-                  </button>
-                </div>
-                <p className="text-xs text-white/25 mt-2">
-                  Без спама. Только важное.
-                </p>
               </div>
             </motion.div>
 
