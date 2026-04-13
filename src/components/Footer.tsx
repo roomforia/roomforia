@@ -79,6 +79,21 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* ===== LEGAL ===== */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="py-8 border-t border-white/5 text-[11px] text-white/20 leading-relaxed space-y-1"
+        >
+          <p>Общество с ограниченной ответственностью «РУМФОРИА»</p>
+          <p>191015, Российская Федерация, г. Санкт-Петербург, пр. Суворовский 38, лит Б, кв. 24</p>
+          <p>ИНН: 7842234228 &nbsp;·&nbsp; ОГРН: 1267800019618 &nbsp;·&nbsp; КПП: 784201001</p>
+          <p>р/с 40702810432060019369 &nbsp;·&nbsp; Банк: ФИЛИАЛ «САНКТ-ПЕТЕРБУРГСКИЙ» АО «АЛЬФА-БАНК» &nbsp;·&nbsp; ИНН банка: 7728168971 &nbsp;·&nbsp; БИК: 044030786 &nbsp;·&nbsp; к/с 30101810600000000786</p>
+          <p>Генеральный директор — Кузьминых Евгения Олеговна. На основании Устава.</p>
+        </motion.div>
+
         {/* ===== BOTTOM ===== */}
         <motion.div
           initial={{ opacity: 0 }}
