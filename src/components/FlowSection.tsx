@@ -12,125 +12,97 @@ const furnitureSpots = [
 
 const steps = [
   { id: 1, tag: "Шаг 1", title: "Отсканируй комнату или загрузи план квартиры", image: "/images/flow/step-1.png" },
-  // ПУНКТ 11: шаг 2 и 3, новый текст
   { id: 2, tag: "Шаг 2 и 3", title: "Выбери стиль, цвета, материалы и предпочтения", image: "/images/flow/step-2.png" },
   { id: 3, tag: "Шаг 3", title: "AI создаёт дизайн интерьера прямо сейчас", image: "/images/flow/step-3.png" },
   { id: 4, tag: "Шаг 4", title: "Кликай на мебель, переходи по ссылкам и заказывай", image: "/images/flow/step-4.png", interactive: true },
 ]
 
-// ПУНКТ 6: "Как работает" чёрным, "Roomforia" — bold italic фиолетовым
 const titleChars = "Как работает".split("")
 
 export default function FlowSection() {
   const [active, setActive] = useState(0)
-  const [paused, setPaused] = useState(false)
   const [direction, setDirection] = useState(1)
   const [activeSpot, setActiveSpot] = useState<number | null>(null)
+  const pausedRef = useRef(false)
+  const activeRef = useRef(0)
   const startX = useRef<number | null>(null)
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
+  // Интервал через ref — не вызывает ре-рендер сам по себе
   useEffect(() => {
-    if (paused) return
     const interval = setInterval(() => {
+      if (pausedRef.current) return
+      const next = (activeRef.current + 1) % steps.length
+      activeRef.current = next
       setDirection(1)
-      setActive((c) => (c + 1) % steps.length)
-      setActiveSpot(null)
+      setActive(next)
     }, 4500)
     return () => clearInterval(interval)
-  }, [paused])
+  }, [])
 
   const goTo = (index: number) => {
-    if (index === active) return
-    setDirection(index > active ? 1 : -1)
+    if (index === activeRef.current) return
+    setDirection(index > activeRef.current ? 1 : -1)
+    activeRef.current = index
     setActive(index)
-    setPaused(true)
     setActiveSpot(null)
+    // Пауза на 6 секунд
+    pausedRef.current = true
+    if (resumeTimer.current) clearTimeout(resumeTimer.current)
+    resumeTimer.current = setTimeout(() => { pausedRef.current = false }, 6000)
   }
 
-  const handleStart = (x: number) => { startX.current = x; setPaused(true) }
+  const handleStart = (x: number) => {
+    startX.current = x
+    pausedRef.current = true
+  }
   const handleEnd = (x: number) => {
     if (startX.current === null) return
     const diff = x - startX.current
-    if (diff > 60) goTo((active - 1 + steps.length) % steps.length)
-    else if (diff < -60) goTo((active + 1) % steps.length)
+    if (diff > 60) goTo((activeRef.current - 1 + steps.length) % steps.length)
+    else if (diff < -60) goTo((activeRef.current + 1) % steps.length)
+    else {
+      // Не было свайпа — возобновляем
+      if (resumeTimer.current) clearTimeout(resumeTimer.current)
+      resumeTimer.current = setTimeout(() => { pausedRef.current = false }, 6000)
+    }
     startX.current = null
   }
 
   return (
-    // ПУНКТ 9: секция на всю ширину — убираем px-4
     <section className="py-12 md:py-28 bg-white">
-      {/* ПУНКТЫ 8: всё выровнено по левому краю — убираем text-center */}
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-
-        {/* ===== HEADER ===== */}
         <div className="text-left mb-14">
-
-          {/* ПУНКТ 6: "Как работает" + "Roomforia" bold italic фиолетовый */}
           <div className="flex items-end flex-wrap gap-x-0 overflow-hidden mb-0">
             {titleChars.map((char, i) => (
-              <motion.span
+              <span
                 key={i}
-                initial={{ opacity: 0, x: -16, filter: "blur(12px)" }}
-                whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
                 className="text-[28px] md:text-6xl font-bold tracking-tight text-[#1E1E1E] leading-tight"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.3em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}
-              </motion.span>
+              </span>
             ))}
-
-            {/* ПУНКТ 6: "Roomforia" — bold italic фиолетовым */}
-            <motion.span
-              initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.1 }}
+            <span
               className="text-[28px] md:text-6xl tracking-tight leading-tight ml-3 md:ml-4"
-              style={{
-                color: "#855dda",
-                fontWeight: 700,
-                fontStyle: "italic",
-              }}
+              style={{ color: "#855dda", fontWeight: 700, fontStyle: "italic" }}
             >
               Roomforia
-            </motion.span>
+            </span>
           </div>
-
-          {/* ПУНКТ 5: доп. текст под заголовком */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.25 }}
-            className="text-[#1E1E1E] text-sm md:text-lg font-medium mt-3"
-          >
+          <p className="text-[#1E1E1E] text-sm md:text-lg font-medium mt-3">
             От абстракций в голове до готового решения — 5 простых шагов
-          </motion.p>
-
-          {/* ПУНКТ 7: новый подзаголовок */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: titleChars.length * 0.04 + 0.4 }}
-            className="text-gray-500 text-sm md:text-lg mt-2"
-          >
+          </p>
+          <p className="text-gray-500 text-sm md:text-lg mt-2">
             Без ожидания дизайнера, без бесконечного поиска по сайтам производителей и без догадок, как всё будет сочетаться
-          </motion.p>
+          </p>
         </div>
-
       </div>
 
-      {/* ПУНКТ 9: слайдер — на всю ширину без отступов */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-      >
+      {/* Слайдер — фиксированная высота вместо aspect-ratio */}
+      <div>
         <div
-          className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden cursor-grab active:cursor-grabbing select-none"
+          className="relative w-full h-[56vw] md:h-[42vw] max-h-[720px] min-h-[200px] overflow-hidden cursor-grab active:cursor-grabbing select-none"
           onMouseDown={(e) => handleStart(e.clientX)}
           onMouseUp={(e) => handleEnd(e.clientX)}
           onTouchStart={(e) => handleStart(e.touches[0].clientX)}
@@ -201,7 +173,6 @@ export default function FlowSection() {
             </div>
           )}
 
-          {/* ПУНКТ 10: текст на баннере — добавляем letter-spacing */}
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 pointer-events-none">
             <AnimatePresence mode="wait">
               <motion.div
@@ -239,7 +210,7 @@ export default function FlowSection() {
           </div>
 
           <button
-            onClick={() => goTo((active - 1 + steps.length) % steps.length)}
+            onClick={() => goTo((activeRef.current - 1 + steps.length) % steps.length)}
             className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -247,7 +218,7 @@ export default function FlowSection() {
             </svg>
           </button>
           <button
-            onClick={() => goTo((active + 1) % steps.length)}
+            onClick={() => goTo((activeRef.current + 1) % steps.length)}
             className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -255,37 +226,25 @@ export default function FlowSection() {
             </svg>
           </button>
         </div>
-      </motion.div>
+      </div>
 
-      {/* ПУНКТ 11: карточки шагов — на всю ширину */}
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="hidden md:grid grid-cols-4 gap-4 mt-6">
           {steps.map((step, i) => (
-            <motion.button
+            <button
               key={i}
               onClick={() => goTo(i)}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
               className={`text-left p-4 rounded-2xl border-2 transition-all duration-300 bg-white ${
                 i === active ? "border-[#855dda] shadow-[0_4px_20px_rgba(133,93,218,0.15)]" : "border-gray-100 hover:border-[#855dda]/40"
               }`}
             >
               <span className={`text-xs font-mono block mb-2 ${i === active ? "text-[#855dda]" : "text-gray-300"}`}>{step.tag}</span>
               <span className="text-sm font-semibold text-gray-900 leading-snug block">{step.title}</span>
-            </motion.button>
+            </button>
           ))}
         </div>
 
-        {/* ПУНКТ 12: кнопка Скачать под карточками, левый край */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-          className="mt-8"
-        >
+        <div className="mt-8">
           <a
             href="https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
             target="_blank"
@@ -293,9 +252,8 @@ export default function FlowSection() {
           >
             Скачать
           </a>
-        </motion.div>
+        </div>
       </div>
-
     </section>
   )
 }

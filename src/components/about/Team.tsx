@@ -7,9 +7,6 @@ const team = [
   { img: "/images/about/team/team-1.png", role: "Product", desc: "Опыт в мебельной индустрии и SAP", accent: "#855dda" },
   { img: "/images/about/team/team-2.png", role: "Engineering", desc: "Высоконагруженные сервисы", accent: "#d66501" },
   { img: "/images/about/team/team-3.png", role: "UX/UI", desc: "Продукты с миллионами пользователей", accent: "#855dda" },
-  { img: "/images/about/team/team-4.png", role: "3D", desc: "Работа с мебельными брендами", accent: "#d66501" },
-  { img: "/images/about/team/team-5.png", role: "B2B", desc: "SaaS и рынок строительства", accent: "#855dda" },
-  { img: "/images/about/team/team-6.png", role: "AI", desc: "ML и генеративные модели", accent: "#d66501" },
 ]
 
 const titleChars = "Команда, говорящая".split("")
