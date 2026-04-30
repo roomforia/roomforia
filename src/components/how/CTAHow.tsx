@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 const DEMO_URL = "https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
 
-const titleChars = "Создай интерьер".split("")
+const titleChars = "Создайте интерьер".split("")
 const titleChars2 = "за 30 секунд".split("")
 
 export default function CTAHow() {
@@ -38,7 +38,7 @@ export default function CTAHow() {
           <div className="mb-3 md:mb-4">
             {/* Мобиль */}
             <div className="md:hidden mb-1">
-              <p className="text-[28px] font-semibold tracking-tight text-white leading-[1.15]">Создай интерьер</p>
+              <p className="text-[28px] font-semibold tracking-tight text-white leading-[1.15]">Создайте интерьер</p>
               <p className="text-[28px] font-semibold tracking-tight text-[#d66501] leading-[1.15]">за 30 секунд</p>
             </div>
             {/* Десктоп */}
@@ -78,7 +78,7 @@ export default function CTAHow() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.7 }}
               className="text-white/50 text-sm md:text-xl max-w-lg leading-relaxed"
             >
-              Без дизайнера. Без опыта. Просто загрузи фото и получи готовый результат с реальной мебелью.
+              Без дизайнера. Без опыта. Просто загрузите фото и получите готовый результат с реальной мебелью.
             </motion.p>
 
             <motion.div

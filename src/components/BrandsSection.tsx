@@ -20,15 +20,24 @@ export default function BrandsSection() {
           className="bg-[#d66501] overflow-hidden"
         >
           <div className="px-10 md:px-16 pt-14 pb-10">
-            <div className="flex flex-col mb-14">
+            <p className="text-white/50 text-sm md:text-base font-medium uppercase tracking-widest mb-5">
+              Раньше вы беспокоились: «Наверное, примерно так это будет выглядеть в жизни»
+            </p>
+            <div className="flex flex-col mb-8">
               <h2 className="text-3xl md:text-5xl lg:text-[56px] font-semibold text-white leading-tight tracking-tight">
-                Именно так это и будет выглядеть
+                С Румфорией — будет выглядеть именно так, как задумано
               </h2>
             </div>
-            <p className="text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-14">
-              Roomforia работает с реальными брендами и поставщиками. В вашей
-              визуализации вы увидите вещи, которые существуют, продаются и могут
-              оказаться у вас дома.
+            <p className="text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-6">
+              Мы работаем с реальными брендами и поставщиками. В вашей визуализации
+              вы увидите вещи, которые существуют, продаются и могут оказаться у вас дома.
+            </p>
+            <p className="text-white/50 text-sm md:text-base max-w-2xl leading-relaxed mb-4">
+              Партнёры предоставляют актуальные каталоги, 3D-модели и характеристики товаров,
+              а мы помогаем увидеть эти позиции в вашем интерьере и сразу перейти к покупке.
+            </p>
+            <p className="text-white/40 text-xs md:text-sm mb-8">
+              Мебель · Напольные покрытия · Освещение · Отделочные материалы · Сантехника · Декор и текстиль
             </p>
           </div>
           <div className="h-[1px] bg-white/10 mx-10 md:mx-16" />

@@ -5,13 +5,13 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 
 const steps = [
-  { num: "01", title: "Загрузи фото комнаты", desc: "AI мгновенно распознаёт пространство, геометрию и свет", image: "/images/how/flow/step1.png" },
-  { num: "02", title: "Выбери стиль", desc: "Сканди, лофт, модерн — переключай в один клик", image: "/images/how/flow/step2.png" },
+  { num: "01", title: "Загрузите фото комнаты", desc: "AI мгновенно распознаёт пространство, геометрию и свет", image: "/images/how/flow/step1.png" },
+  { num: "02", title: "Выберите стиль", desc: "Сканди, лофт, модерн — переключайте в один клик", image: "/images/how/flow/step2.png" },
   { num: "03", title: "AI анализирует", desc: "Нейросеть считывает пропорции как профессиональный дизайнер", image: "/images/how/flow/step3.png" },
   { num: "04", title: "Генерация дизайна", desc: "Интерьер собирается из реальных товаров партнёров", image: "/images/how/flow/step4.png" },
-  { num: "05", title: "Выбери мебель", desc: "Кликай на элементы — смотри бренд, цену и ссылку", image: "/images/how/flow/step5.png" },
-  { num: "06", title: "Сравни варианты", desc: "Меняй и сравнивай без ограничений", image: "/images/how/flow/step6.png" },
-  { num: "07", title: "Готово к покупке", desc: "Весь список мебели с ценами и ссылками у тебя", image: "/images/how/flow/step7.png" },
+  { num: "05", title: "Выберите мебель", desc: "Кликайте на элементы — смотрите бренд, цену и ссылку", image: "/images/how/flow/step5.png" },
+  { num: "06", title: "Сравните варианты", desc: "Меняйте и сравнивайте без ограничений", image: "/images/how/flow/step6.png" },
+  { num: "07", title: "Готово к покупке", desc: "Весь список мебели с ценами и ссылками — у вас", image: "/images/how/flow/step7.png" },
 ]
 
 const titleChars = "Как работает".split("")

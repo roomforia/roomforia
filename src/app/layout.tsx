@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Geologica } from "next/font/google";
 import "./globals.css";
 
 /* ===== FONTS ===== */
-const manrope = Manrope({
+const geologica = Geologica({
   subsets: ["latin", "cyrillic"],
-  variable: "--font-manrope",
+  variable: "--font-geologica",
   weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://roomforia.com"),
   openGraph: {
     title: "Roomforia — AI-дизайн интерьера за секунды",
-    description: "Загрузи фото комнаты — получи готовый дизайн и список мебели с реальными товарами",
+    description: "Загрузите фото комнаты — получите готовый дизайн и список мебели с реальными товарами",
     url: "https://roomforia.com",
     siteName: "Roomforia",
     images: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Roomforia — AI-дизайн интерьера за секунды",
-    description: "Загрузи фото комнаты — получи готовый дизайн и список мебели с реальными товарами",
+    description: "Загрузите фото комнаты — получите готовый дизайн и список мебели с реальными товарами",
     images: ["/og-image.png"],
   },
   icons: {
@@ -62,7 +62,7 @@ export default function RootLayout({
     <html
       lang="ru"
       suppressHydrationWarning
-      className={manrope.variable}
+      className={geologica.variable}
       style={{ colorScheme: "light" }}
     >
       <head>
@@ -74,7 +74,7 @@ export default function RootLayout({
         style={{
           color: "#1E1E1E",
           backgroundColor: "#ffffff",
-          fontFamily: "var(--font-manrope), sans-serif",
+          fontFamily: "var(--font-geologica), sans-serif",
         }}
       >
         {children}

@@ -11,10 +11,10 @@ const furnitureSpots = [
 ]
 
 const steps = [
-  { id: 1, tag: "Шаг 1", title: "Отсканируй комнату или загрузи план квартиры", image: "/images/flow/step-1.png" },
-  { id: 2, tag: "Шаг 2 и 3", title: "Выбери стиль, цвета, материалы и предпочтения", image: "/images/flow/step-2.png" },
-  { id: 3, tag: "Шаг 3", title: "AI создаёт дизайн интерьера прямо сейчас", image: "/images/flow/step-3.png" },
-  { id: 4, tag: "Шаг 4", title: "Кликай на мебель, переходи по ссылкам и заказывай", image: "/images/flow/step-4.png", interactive: true },
+  { id: 1, tag: "Шаг 1", title: "Загрузите фото, планировку или отсканируйте комнату камерой", subtitle: "Просто начните с того, что у вас уже есть", image: "/images/flow/step-1.png" },
+  { id: 2, tag: "Шаг 2", title: "Выберите стили, цвета, материалы и предпочтения", subtitle: "Сравните несколько направлений и выберите, что вам ближе", image: "/images/flow/step-2.png" },
+  { id: 3, tag: "Шаг 3", title: "AI-приложение создаёт готовый дизайн интерьера", subtitle: "Меняйте отдельные элементы, товары и даже целые стили простым движением пальца", image: "/images/flow/step-3.png" },
+  { id: 4, tag: "Шаг 4", title: "Кликайте на мебель и другие товары, переходите по ссылкам и заказывайте", subtitle: "Ваша идея ещё никогда не была так близка к реализации", image: "/images/flow/step-4.png", interactive: true },
 ]
 
 const titleChars = "Как работает".split("")
@@ -91,10 +91,10 @@ export default function FlowSection() {
             </span>
           </div>
           <p className="text-[#1E1E1E] text-sm md:text-lg font-medium mt-3">
-            От абстракций в голове до готового решения — 5 простых шагов
+            От абстракций в голове до готового решения — за 5 простых шагов
           </p>
           <p className="text-gray-500 text-sm md:text-lg mt-2">
-            Без ожидания дизайнера, без бесконечного поиска по сайтам производителей и без догадок, как всё будет сочетаться
+            Без ожидания дизайнера, без дорогостоящих проектов, без бесконечного поиска по сайтам производителей и без догадок, как всё будет сочетаться
           </p>
         </div>
       </div>
@@ -240,6 +240,9 @@ export default function FlowSection() {
             >
               <span className={`text-xs font-mono block mb-2 ${i === active ? "text-[#855dda]" : "text-gray-300"}`}>{step.tag}</span>
               <span className="text-sm font-semibold text-gray-900 leading-snug block">{step.title}</span>
+              {i === active && step.subtitle && (
+                <span className="text-xs text-gray-400 mt-1 leading-relaxed block">{step.subtitle}</span>
+              )}
             </button>
           ))}
         </div>
@@ -250,7 +253,7 @@ export default function FlowSection() {
             target="_blank"
             className="px-10 py-4 rounded-full bg-[#d66501] text-white text-base font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:scale-[1.02]"
           >
-            Скачать
+            Скачать приложение
           </a>
         </div>
       </div>

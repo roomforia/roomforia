@@ -32,8 +32,8 @@ const items = [
   },
 ]
 
-const line1 = "Визуализация и ИИ".split("")
-const line2 = "в реальности".split("")
+const line1 = "AI и дизайн,".split("")
+const line2 = "встретившиеся в реальности".split("")
 
 export default function CTASection() {
   const [active, setActive] = useState(0)
@@ -66,10 +66,9 @@ export default function CTASection() {
 
           {/* LEFT */}
           <div>
-            {/* БАГ 2: добавляем мобильный заголовок простым текстом */}
             <div className="md:hidden mb-4">
-              <p className="text-[26px] font-bold tracking-tight text-[#d66501] leading-[1.1]">Визуализация и ИИ</p>
-              <p className="text-[26px] font-bold tracking-tight text-[#1E1E1E] leading-[1.1]">в реальности</p>
+              <p className="text-[26px] font-bold tracking-tight text-[#d66501] leading-[1.1]">AI и дизайн,</p>
+              <p className="text-[26px] font-bold tracking-tight text-[#1E1E1E] leading-[1.1]">встретившиеся в реальности</p>
             </div>
 
             {/* Десктоп заголовок */}
@@ -113,7 +112,7 @@ export default function CTASection() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
               className="text-gray-400 text-sm md:text-lg max-w-lg mb-6 md:mb-8"
             >
-              Мы объединили виртуальный и реальный мир, на практике актуальные тренды, качественные текстуры и высокую цветопередачу
+              Мы объединили виртуальный и реальный мир на практике: актуальные тренды, качественные текстуры и высокая цветопередача
             </motion.p>
 
             <div className="flex flex-col gap-3 md:gap-4">
@@ -139,6 +138,17 @@ export default function CTASection() {
                 </motion.div>
               ))}
             </div>
+
+            <p className="text-gray-400 text-sm md:text-base mt-6">
+              От идеи до конкретного решения — быстрее и проще
+            </p>
+            <a
+              href="https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
+              target="_blank"
+              className="mt-4 inline-flex px-10 py-4 rounded-full bg-[#d66501] text-white text-base font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:scale-[1.02]"
+            >
+              Скачать
+            </a>
           </div>
 
           {/* RIGHT — видео */}

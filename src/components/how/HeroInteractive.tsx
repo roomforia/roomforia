@@ -186,7 +186,7 @@ export default function HeroInteractive() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 1.2 }}
             className="text-gray-500 text-lg md:text-xl max-w-xl mx-auto leading-relaxed mb-8"
           >
-            Загрузи фото — получи готовый дизайн и список мебели
+            Загрузите фото — получите готовый дизайн и список мебели
           </motion.p>
 
           <motion.div
@@ -210,7 +210,7 @@ export default function HeroInteractive() {
           transition={{ delay: 1.6, duration: 0.6 }}
           className="text-sm text-gray-400 mb-5 tracking-wide md:text-right md:pr-4"
         >
-          Наведи на комнату — увидишь интерьер с мебелью
+          Наведите на комнату — увидите интерьер с мебелью
         </motion.p>
       </div>
 
@@ -323,7 +323,7 @@ export default function HeroInteractive() {
             До — пустая комната
           </div>
           <div className="absolute top-5 right-5 text-xs font-medium bg-black/50 text-white px-3 py-1.5 rounded-full z-30">
-            Наведи мышь → увидишь После
+            Наведите мышь → увидите После
           </div>
         </div>
       </motion.div>
