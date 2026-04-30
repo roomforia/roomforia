@@ -207,17 +207,15 @@ export default function Hero() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.3 + totalLetters * 0.04 + 0.9 }}
         className="w-full px-4 md:px-8 mt-8">
-        <p className="text-sm text-gray-400 text-right mb-6">Нажмите на любой предмет в интерьере, чтобы открыть карточку товара</p>
-        <div className="max-w-3xl ml-auto">
-          <p className="text-[#1E1E1E] text-sm md:text-base leading-relaxed mb-6 text-right">
+        <p className="text-sm text-gray-400 text-left mb-6">Нажмите на любой предмет в интерьере, чтобы открыть карточку товара</p>
+        <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-10">
+          <p className="text-[#1E1E1E] text-sm md:text-base leading-relaxed text-left flex-1">
             Визуализируйте, планируйте и создавайте то, о чем так давно мечтали. Удобное и интуитивно понятное приложение со встроенным ИИ для дизайна интерьера. Просто загрузите фото, планировку или отсканируйте комнату с помощью камеры смартфона и получите готовую визуализацию с реальными товарами и отделкой в разных стилях.
           </p>
-          <div className="flex justify-end">
-            <a href={DEMO_URL} target="_blank"
-              className="px-10 py-4 rounded-full bg-[#d66501] text-white text-base font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:scale-[1.02]">
-              Скачать
-            </a>
-          </div>
+          <a href={DEMO_URL} target="_blank"
+            className="flex-shrink-0 px-10 py-4 rounded-full bg-[#d66501] text-white text-base font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:scale-[1.02] self-start">
+            Скачать
+          </a>
         </div>
       </motion.div>
     </section>
