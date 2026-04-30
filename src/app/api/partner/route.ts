@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   try {
     await resend.emails.send({
       from: "Roomforia <onboarding@resend.dev>",
-      to: "roomforia.spb@gmail.com",
+      to: "info@roomforia.ru",
       subject: "Новая заявка партнёра",
       html: `
         <h2>Новая заявка</h2>

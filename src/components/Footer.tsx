@@ -102,7 +102,7 @@ export default function Footer() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           className="py-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-white/25"
         >
-          <span>© 2025 Roomforia</span>
+          <span>© {new Date().getFullYear()} Roomforia</span>
 
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-white/50 transition-colors duration-200">
