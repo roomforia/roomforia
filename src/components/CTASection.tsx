@@ -125,12 +125,6 @@ export default function CTASection() {
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.7 + i * 0.08 }}
                   className="relative bg-white border border-gray-100 hover:border-[#855dda]/30 rounded-2xl px-5 py-4 overflow-hidden transition-all duration-300 hover:shadow-[0_4px_20px_rgba(133,93,218,0.08)]"
                 >
-                  <span
-                    className="absolute -left-2 top-1/2 -translate-y-1/2 font-bold leading-none select-none pointer-events-none"
-                    style={{ fontSize: "100px", color: "rgba(133,93,218,0.08)" }}
-                  >
-                    {item.id}
-                  </span>
                   <p className="relative text-[#1E1E1E] text-sm leading-relaxed">
                     <span className="font-semibold">{item.bold}</span>
                     <span className="text-gray-500">{item.rest}</span>

@@ -25,7 +25,7 @@ export default function ComparisonSection() {
           className="w-full rounded-3xl overflow-hidden"
           style={{ backgroundColor: "#d66501" }}
         >
-          <div className="px-6 md:px-16 py-8 md:py-16">
+          <div className="px-6 md:px-10 py-8 md:py-12">
             <p className="text-white/60 text-sm md:text-base font-medium uppercase tracking-widest mb-4">Румфория — это когда:</p>
             <h2 className="text-[28px] md:text-5xl lg:text-[56px] font-semibold text-white leading-tight tracking-tight">
               Быстро и понятно на каждом этапе.{" "}
