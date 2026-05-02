@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 
+const DEMO_URL = "https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
+
 const advantages = [
   "Экономите время: результат уже сейчас, а не через недели и месяцы ожидания",
   "Экономите деньги: меньше случайных и ошибочных покупок",
@@ -14,34 +16,22 @@ const advantages = [
 export default function ComparisonSection() {
   return (
     <section className="py-10 md:py-16 bg-white">
-
-      {/* Оранжевая плашка — внутри max-w */}
-      <div className="max-w-7xl mx-auto px-6 md:px-10 mb-0">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full rounded-3xl overflow-hidden"
-          style={{ backgroundColor: "#d66501" }}
+          className="w-full rounded-3xl px-6 md:px-10 py-8 md:py-12"
+          style={{ backgroundColor: "#f9f6f2" }}
         >
-          <div className="px-6 md:px-10 py-8 md:py-12">
-            <p className="text-white/60 text-sm md:text-base font-medium uppercase tracking-widest mb-4">Румфория — это когда:</p>
-            <h2 className="text-[28px] md:text-5xl lg:text-[56px] font-semibold text-white leading-tight tracking-tight">
-              Быстро и понятно на каждом этапе.{" "}
-              <span className="text-white/80">Профессиональный результат за минуты</span>
-            </h2>
-          </div>
-        </motion.div>
-      </div>
+          <p className="text-gray-400 text-sm md:text-base font-medium uppercase tracking-widest mb-4">Румфория — это когда:</p>
+          <h2 className="text-[28px] md:text-5xl lg:text-[56px] font-semibold text-[#1E1E1E] leading-tight tracking-tight mb-8 md:mb-12">
+            Быстро и понятно на каждом этапе.{" "}
+            <span style={{ color: "#855dda" }}>Профессиональный результат за минуты</span>
+          </h2>
 
-      {/* Бежевый блок — на всю ширину */}
-      <div
-        className="mt-4 md:mt-8 px-4 md:px-10 py-8 md:py-12"
-        style={{ backgroundColor: "#f9f6f2" }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col mb-10">
+          <div className="flex flex-col mb-8 md:mb-10">
             {advantages.map((text, i) => (
               <motion.div
                 key={i}
@@ -59,10 +49,7 @@ export default function ComparisonSection() {
                   />
                 </div>
 
-                <div className="flex items-start gap-5 py-5 md:py-7">
-                  <div className="flex-shrink-0 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(133,93,218,0.12)" }}>
-                    <span className="text-xs md:text-sm font-bold text-[#1E1E1E]">{i + 1}</span>
-                  </div>
+                <div className="flex items-start gap-5 py-5 md:py-6">
                   <p className="text-sm md:text-xl font-medium text-[#1E1E1E] leading-snug flex-1">
                     {text}
                   </p>
@@ -86,16 +73,15 @@ export default function ComparisonSection() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
           >
             <a
-              href="https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
+              href={DEMO_URL}
               target="_blank"
               className="bg-[#d66501] hover:bg-[#bf5a01] text-white font-semibold text-base px-10 py-4 rounded-full transition-all duration-200 shadow-[0_4px_16px_rgba(214,101,1,0.3)] hover:scale-[1.02]"
             >
               Скачать
             </a>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
-
     </section>
   )
 }
