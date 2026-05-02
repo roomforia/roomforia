@@ -95,25 +95,6 @@ export default function CTAHow() {
             </motion.div>
           </div>
 
-          <div className="mt-8 md:mt-16 h-[1px] bg-white/10" />
-
-          <div className="mt-5 md:mt-8 grid grid-cols-3 gap-4 md:gap-8">
-            {[
-              { num: "×10", label: "быстрее дизайнера" },
-              { num: "−90%", label: "экономия бюджета" },
-              { num: "30с", label: "до готового дизайна" },
-            ].map((stat, i) => (
-              <motion.div key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.9 + i * 0.08 }}
-              >
-                <p className="text-xl md:text-3xl font-semibold text-white mb-1">{stat.num}</p>
-                <p className="text-white/40 text-xs md:text-sm">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
 
         </div>
       </motion.div>

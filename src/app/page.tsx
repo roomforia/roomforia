@@ -7,6 +7,7 @@ import ComparisonSection from "@/components/ComparisonSection";
 import CTASection from "@/components/CTASection";
 import BrandsSection from "@/components/BrandsSection";
 import FAQSection from "@/components/FAQSection";
+import PartnersTeaser from "@/components/PartnersTeaser";
 import FinalCTA from "@/components/FinalCTA";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -25,6 +26,7 @@ export default function Home() {
         <CTASection />
         <BrandsSection />
         <FAQSection />
+        <PartnersTeaser />
         <FinalCTA />
       </main>
         <Footer />

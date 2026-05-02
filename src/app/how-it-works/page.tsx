@@ -4,12 +4,9 @@ import HeroInteractive from "@/components/how/HeroInteractive";
 import FlowStory from "@/components/how/FlowStory";
 import UnderTheHood from "@/components/how/UnderTheHood";
 import ProductsShowcase from "@/components/how/ProductsShowcase";
-import PartnersBlock from "@/components/how/PartnersBlock";
 import CTAHow from "@/components/how/CTAHow";
 
 import Footer from "@/components/Footer";
-import { footer } from "framer-motion/client";
-
 export default function Page() {
   return (
 
@@ -26,9 +23,7 @@ export default function Page() {
 
       <ProductsShowcase />
 
-      <PartnersBlock />
-
-      <CTAHow />
+<CTAHow />
 
 
 
