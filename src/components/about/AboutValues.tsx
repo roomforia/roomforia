@@ -10,7 +10,7 @@ const items = [
 
 export default function AboutValues() {
   return (
-    <section className="py-12 md:py-28 bg-white">
+    <section className="py-10 md:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <motion.div

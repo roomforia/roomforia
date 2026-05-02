@@ -6,15 +6,15 @@ const titleChars = "Мы не продаём".split("")
 
 export default function Philosophy() {
   return (
-    <section className="py-12 md:py-28 bg-white overflow-hidden">
+    <section className="py-10 md:py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="grid md:grid-cols-2 gap-10 md:gap-24 items-center">
 
           <div>
             {/* Мобиль */}
             <div className="md:hidden mb-5">
-              <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Мы не продаём</p>
-              <p className="text-[28px] font-semibold tracking-tight text-[#d66501] leading-[1.1]">технологии</p>
+              <p className="text-[28px] md:text-5xl lg:text-[56px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Мы не продаём</p>
+              <p className="text-[28px] md:text-5xl lg:text-[56px] font-semibold tracking-tight text-[#d66501] leading-[1.1]">технологии</p>
             </div>
             {/* Десктоп */}
             <div className="hidden md:block">
@@ -25,7 +25,7 @@ export default function Philosophy() {
                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
-                    className="text-6xl lg:text-[72px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
+                    className="text-5xl lg:text-[56px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.02]"
                     style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
                   >{char === " " ? "\u00A0" : char}</motion.span>
                 ))}
@@ -37,7 +37,7 @@ export default function Philosophy() {
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
                 className="mb-8"
               >
-                <span className="text-6xl lg:text-[72px] font-semibold tracking-tight text-[#d66501] leading-[1.02]">технологии</span>
+                <span className="text-5xl lg:text-[56px] font-semibold tracking-tight text-[#d66501] leading-[1.02]">технологии</span>
               </motion.div>
             </div>
 

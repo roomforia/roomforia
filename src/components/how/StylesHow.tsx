@@ -4,10 +4,10 @@ export default function StylesHow() {
   const styles = ["scandi","loft","modern","classic","warm"];
 
   return (
-    <section className="py-24">
+    <section className="py-10 md:py-16">
       <div className="max-w-6xl mx-auto px-4">
 
-        <h2 className="text-3xl md:text-5xl font-semibold mb-10 text-center">
+        <h2 className="text-[28px] md:text-5xl lg:text-[56px] font-semibold mb-10 text-center">
           Выбери стиль
         </h2>
 

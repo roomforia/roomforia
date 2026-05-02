@@ -13,7 +13,7 @@ const titleChars = "Масштабируемся".split("")
 
 export default function Expansion() {
   return (
-    <section className="py-12 md:py-28 bg-white overflow-hidden">
+    <section className="py-10 md:py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="grid md:grid-cols-2 gap-10 md:gap-24 items-center">
 
@@ -21,7 +21,7 @@ export default function Expansion() {
             <div className="mb-6 md:mb-12">
               {/* Мобиль */}
               <div className="md:hidden">
-                <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Масштабируемся</p>
+                <p className="text-[28px] md:text-5xl lg:text-[56px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Масштабируемся</p>
               </div>
               {/* Десктоп */}
               <div className="hidden md:flex items-end flex-wrap overflow-hidden">

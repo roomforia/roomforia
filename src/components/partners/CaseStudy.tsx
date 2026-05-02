@@ -7,7 +7,7 @@ const titleChars = "Как производитель мебели".split("")
 
 export default function CaseStudy() {
   return (
-    <section className="py-10 md:py-28 bg-white overflow-hidden">
+    <section className="py-10 md:py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <div className="mb-8 md:mb-16">

@@ -13,13 +13,13 @@ const titleChars = "Единая экосистема".split("")
 
 export default function Ecosystem() {
   return (
-    <section className="py-12 md:py-28 bg-white overflow-hidden">
+    <section className="py-10 md:py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <div className="mb-8 md:mb-16">
           {/* Мобиль */}
           <div className="md:hidden mb-2">
-            <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Единая экосистема</p>
+            <p className="text-[28px] md:text-5xl lg:text-[56px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1]">Единая экосистема</p>
           </div>
           {/* Десктоп */}
           <div className="hidden md:flex flex-wrap items-end overflow-hidden mb-3">

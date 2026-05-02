@@ -35,7 +35,7 @@ export default function Benefits() {
             <p className="text-xs uppercase tracking-[0.2em] text-white/30 font-medium mb-3 md:mb-4">
               Почему это работает
             </p>
-            <h2 className="text-[26px] md:text-5xl lg:text-[56px] font-semibold text-white leading-tight tracking-tight">
+            <h2 className="text-[28px] md:text-5xl lg:text-[56px] font-semibold text-white leading-tight tracking-tight">
               Цифры говорят
               <br />
               <span className="text-[#d66501]">сами за себя</span>

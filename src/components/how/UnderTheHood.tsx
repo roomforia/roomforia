@@ -58,14 +58,14 @@ export default function UnderTheHood() {
   const isInView = useInView(fanRef, { once: false, margin: "-20% 0px -20% 0px" })
 
   return (
-    <section className="py-10 md:py-28 bg-white overflow-hidden">
+    <section className="py-10 md:py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* HEADER — animate вместо whileInView чтобы не пропадал */}
         <div className="mb-8 md:mb-20">
           {/* Мобиль — простой текст, не исчезает */}
           <div className="md:hidden mb-2">
-            <p className="text-[28px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.15]">
+            <p className="text-[28px] md:text-5xl lg:text-[56px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.15]">
               Как это работает
             </p>
           </div>

@@ -47,7 +47,7 @@ export default function UnifiedDemo() {
   const current = steps[active]
 
   return (
-    <section className="py-10 md:py-28 px-4 bg-white">
+    <section className="py-10 md:py-16 px-4 bg-white">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 md:gap-20 items-center">
 
         {/* LEFT — таймлайн */}
@@ -60,7 +60,7 @@ export default function UnifiedDemo() {
             style={{ backgroundColor: "#855dda", boxShadow: "0 0 12px rgba(133,93,218,0.5)" }}
           />
 
-          <h2 className="text-[26px] md:text-5xl lg:text-[56px] font-semibold mb-2 md:mb-4 leading-tight tracking-tight text-[#1E1E1E]">
+          <h2 className="text-[28px] md:text-5xl lg:text-[56px] font-semibold mb-2 md:mb-4 leading-tight tracking-tight text-[#1E1E1E]">
             Как клиент покупает ваш товар
           </h2>
           <p className="text-gray-400 mb-6 md:mb-12 text-sm md:text-lg">

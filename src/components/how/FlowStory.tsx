@@ -62,7 +62,7 @@ export default function FlowStory() {
   }
 
   return (
-    <section className="py-12 md:py-28 bg-white overflow-hidden">
+    <section className="py-10 md:py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* HEADER */}
