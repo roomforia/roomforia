@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import Image from "next/image"
 
 const steps = [
@@ -105,13 +105,7 @@ export default function FlowStory() {
         </div>
 
         {/* MAIN LAYOUT */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="grid md:grid-cols-2 gap-10 md:gap-24 items-center"
-        >
+        <div className="grid md:grid-cols-2 gap-10 md:gap-24 items-center">
 
           {/* LEFT — PHONE с экраном */}
           <div className="flex justify-center">
@@ -137,25 +131,21 @@ export default function FlowStory() {
                   boxShadow: "0 0 0 7px #111, 0 40px 100px rgba(0,0,0,0.35)",
                 }}
               >
-                <AnimatePresence mode="wait" custom={direction}>
-                  <motion.div
-                    key={current}
-                    custom={direction}
-                    initial={{ opacity: 0, x: direction > 0 ? 60 : -60, scale: 1.04 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: direction > 0 ? -60 : 60, scale: 0.97 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0"
+                {steps.map((step, i) => (
+                  <div
+                    key={step.num}
+                    className="absolute inset-0 transition-opacity duration-500"
+                    style={{ opacity: i === current ? 1 : 0 }}
                   >
                     <Image
-                      src={steps[current].image}
-                      alt={steps[current].title}
+                      src={step.image}
+                      alt={step.title}
                       fill
                       className="object-cover"
                       sizes="46vw"
                     />
-                  </motion.div>
-                </AnimatePresence>
+                  </div>
+                ))}
 
                 <div className="absolute top-3 left-1/2 -translate-x-1/2 bg-black rounded-full z-20" style={{ width: "38%", height: "20px" }} />
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white/50 rounded-full z-20" style={{ width: "28%", height: "4px" }} />
@@ -186,9 +176,9 @@ export default function FlowStory() {
                     />
                   </div>
 
-                  <div className={`flex items-center gap-5 py-4 md:py-5 cursor-pointer transition-all duration-300 ${i === current ? "opacity-100" : "opacity-35 hover:opacity-60"}`}>
+                  <div className={`flex items-start gap-5 py-4 md:py-5 cursor-pointer transition-all duration-300 ${i === current ? "opacity-100" : "opacity-35 hover:opacity-60"}`}>
                     <span
-                      className="text-xs font-mono flex-shrink-0 w-6 transition-colors duration-300"
+                      className="text-xs font-mono flex-shrink-0 w-6 transition-colors duration-300 mt-1"
                       style={{ color: i === current ? (current % 2 === 0 ? "#855dda" : "#d66501") : "#ccc" }}
                     >
                       {step.num}
@@ -198,19 +188,13 @@ export default function FlowStory() {
                       <p className="text-sm md:text-lg font-semibold text-[#1E1E1E] leading-snug">
                         {step.title}
                       </p>
-                      {i === current && (
-                        <motion.p
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          className="text-xs md:text-sm text-gray-400 mt-1 leading-relaxed"
-                        >
-                          {step.desc}
-                        </motion.p>
-                      )}
+                      <p className={`text-xs md:text-sm text-gray-400 mt-1 leading-relaxed transition-opacity duration-300 ${i === current ? "opacity-100" : "opacity-0"}`}>
+                        {step.desc}
+                      </p>
                     </div>
 
                     <div
-                      className="w-2 h-2 rounded-full flex-shrink-0 transition-all duration-300"
+                      className="w-2 h-2 rounded-full flex-shrink-0 transition-all duration-300 mt-2"
                       style={{ backgroundColor: i === current ? (current % 2 === 0 ? "#855dda" : "#d66501") : "#e5e5e5" }}
                     />
                   </div>
@@ -271,7 +255,7 @@ export default function FlowStory() {
             </div>
           </div>
 
-        </motion.div>
+        </div>
       </div>
     </section>
   )
