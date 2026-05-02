@@ -208,7 +208,7 @@ export default function HeroInteractive() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.6, duration: 0.6 }}
-          className="text-sm text-gray-400 mb-5 tracking-wide md:text-right md:pr-4"
+          className="hidden md:block text-sm text-gray-400 mb-5 tracking-wide md:text-right md:pr-4"
         >
           Наведите на комнату — увидите интерьер с мебелью
         </motion.p>
@@ -322,7 +322,7 @@ export default function HeroInteractive() {
           <div className="absolute top-5 left-5 text-xs font-medium bg-white/90 text-[#1E1E1E] px-3 py-1.5 rounded-full shadow-sm z-30">
             До — пустая комната
           </div>
-          <div className="absolute top-5 right-5 text-xs font-medium bg-black/50 text-white px-3 py-1.5 rounded-full z-30">
+          <div className="hidden md:block absolute top-5 right-5 text-xs font-medium bg-black/50 text-white px-3 py-1.5 rounded-full z-30">
             Наведите мышь → увидите После
           </div>
         </div>

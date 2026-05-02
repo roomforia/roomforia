@@ -217,9 +217,6 @@ export default function CTASection() {
               ))}
             </div>
 
-            <p className="text-xs text-gray-400 text-center">
-              Нажмите на вариант чтобы посмотреть · Смена каждые 10 сек
-            </p>
           </motion.div>
 
         </div>
