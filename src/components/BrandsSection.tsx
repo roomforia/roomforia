@@ -10,7 +10,7 @@ const marqueeItems = [...brands, ...brands, ...brands]
 
 export default function BrandsSection() {
   return (
-    <section className="pb-0 pt-12 md:pt-28 bg-white">
+    <section className="pb-0 pt-10 md:pt-16 bg-white">
       <div>
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.98 }}
@@ -24,7 +24,7 @@ export default function BrandsSection() {
               Раньше вы беспокоились: «Наверное, примерно так это будет выглядеть в жизни»
             </p>
             <div className="flex flex-col mb-8">
-              <h2 className="text-3xl md:text-5xl lg:text-[56px] font-semibold text-white leading-tight tracking-tight">
+              <h2 className="text-[28px] md:text-5xl lg:text-[56px] font-semibold text-white leading-tight tracking-tight">
                 С Румфорией — будет выглядеть именно так, как задумано
               </h2>
             </div>

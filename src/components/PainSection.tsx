@@ -16,7 +16,7 @@ const titleChars = "Обычно всё выглядит примерно так
 
 export default function PainSection() {
   return (
-    <section className="py-0 bg-white overflow-hidden">
+    <section className="py-10 md:py-16 bg-white overflow-hidden">
       <div className="relative w-full">
 
         <div className="grid md:grid-cols-2 gap-0 min-h-[380px] md:min-h-[580px]">
@@ -43,7 +43,7 @@ export default function PainSection() {
                       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.03 }}
-                      className="text-[18px] md:text-3xl lg:text-[40px] font-semibold tracking-tight text-white leading-[1.2]"
+                      className="text-[22px] md:text-4xl lg:text-[48px] font-semibold tracking-tight text-white leading-[1.2]"
                       style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
                     >
                       {char === " " ? "\u00A0" : char}

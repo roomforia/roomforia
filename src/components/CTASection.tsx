@@ -60,15 +60,15 @@ export default function CTASection() {
   }, [active])
 
   return (
-    <section className="py-12 md:py-28 bg-white">
+    <section className="py-10 md:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="grid md:grid-cols-2 gap-10 md:gap-24 items-start">
 
           {/* LEFT */}
           <div>
             <div className="md:hidden mb-4">
-              <p className="text-[26px] font-bold tracking-tight text-[#d66501] leading-[1.1]">AI и дизайн,</p>
-              <p className="text-[26px] font-bold tracking-tight text-[#1E1E1E] leading-[1.1]">встретившиеся в реальности</p>
+              <p className="text-[28px] font-bold tracking-tight text-[#d66501] leading-[1.1]">AI и дизайн,</p>
+              <p className="text-[28px] font-bold tracking-tight text-[#1E1E1E] leading-[1.1]">встретившиеся в реальности</p>
             </div>
 
             {/* Десктоп заголовок */}

@@ -70,21 +70,21 @@ export default function FlowSection() {
   }
 
   return (
-    <section className="py-12 md:py-28 bg-white">
+    <section className="py-10 md:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="text-left mb-14">
           <div className="flex items-end flex-wrap gap-x-0 overflow-hidden mb-0">
             {titleChars.map((char, i) => (
               <span
                 key={i}
-                className="text-[28px] md:text-6xl font-bold tracking-tight text-[#1E1E1E] leading-tight"
+                className="text-[28px] md:text-5xl lg:text-[56px] font-bold tracking-tight text-[#1E1E1E] leading-tight"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.3em" : "auto" }}
               >
                 {char === " " ? "\u00A0" : char}
               </span>
             ))}
             <span
-              className="text-[28px] md:text-6xl tracking-tight leading-tight ml-3 md:ml-4"
+              className="text-[28px] md:text-5xl lg:text-[56px] tracking-tight leading-tight ml-3 md:ml-4"
               style={{ color: "#855dda", fontWeight: 700, fontStyle: "italic" }}
             >
               Roomforia
