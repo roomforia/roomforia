@@ -70,8 +70,14 @@ p  { line-height: 1.6; }
 }
 
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 15s linear infinite;
   will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .animate-marquee {
+    animation-duration: 30s;
+  }
 }
 
 /* ===== FADE UP ===== */
