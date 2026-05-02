@@ -213,7 +213,7 @@ export default function Header() {
                   <a
                     href={DEMO_URL}
                     target="_blank"
-                    className="w-full py-3.5 rounded-2xl bg-[#d66501] text-white text-center font-semibold text-[15px] shadow-[0_6px_20px_rgba(214,101,1,0.35)]"
+                    className="w-full py-3.5 rounded-2xl bg-[#d66501] text-white text-center font-semibold text-[15px] shadow-[0_4px_16px_rgba(214,101,1,0.3)]"
                   >
                     Скачать приложение
                   </a>

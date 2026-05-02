@@ -70,7 +70,7 @@ export default function Hero() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 1.6 }}
               className="flex gap-3 md:gap-4 flex-wrap justify-center">
               <button onClick={() => setModalOpen(true)}
-                className="px-6 md:px-8 py-3 md:py-4 rounded-full bg-[#d66501] text-white text-sm md:text-base font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:scale-[1.02]">
+                className="px-6 md:px-8 py-3 md:py-4 rounded-full bg-[#d66501] text-white text-sm md:text-base font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_4px_16px_rgba(214,101,1,0.3)] hover:scale-[1.02]">
                 Подключить каталог
               </button>
               <Link href="/how-it-works"

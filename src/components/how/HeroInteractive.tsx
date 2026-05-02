@@ -197,7 +197,7 @@ export default function HeroInteractive() {
             <a
               href={DEMO_URL}
               target="_blank"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#d66501] text-white font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_6px_24px_rgba(214,101,1,0.4)] hover:scale-[1.02]"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#d66501] text-white font-medium hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_4px_16px_rgba(214,101,1,0.3)] hover:scale-[1.02]"
             >
               Скачать
             </a>

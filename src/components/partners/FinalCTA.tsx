@@ -67,7 +67,7 @@ export default function FinalCTA() {
                 className="flex flex-col items-start md:items-end gap-3 md:gap-4 flex-shrink-0"
               >
                 <button onClick={() => setModalOpen(true)}
-                  className="px-8 md:px-10 py-4 md:py-5 rounded-full bg-[#d66501] text-white font-semibold text-base md:text-lg hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_8px_32px_rgba(214,101,1,0.4)] hover:scale-[1.02]"
+                  className="px-8 md:px-10 py-4 md:py-5 rounded-full bg-[#d66501] text-white font-semibold text-base md:text-lg hover:bg-[#bf5a01] transition-all duration-200 shadow-[0_4px_16px_rgba(214,101,1,0.3)] hover:scale-[1.02]"
                 >Подключить каталог</button>
                 <button onClick={() => setModalOpen(true)}
                   className="text-sm text-white/30 hover:text-white/60 transition-colors duration-200 underline underline-offset-4"
