@@ -189,11 +189,11 @@ export default function Hero() {
           <div className="absolute top-1/2 z-50 -translate-y-1/2" style={{ left: `${position}%` }}
             onMouseDown={(e) => { e.stopPropagation(); setDrag(true) }}
             onTouchStart={(e) => { e.stopPropagation(); setDrag(true) }}>
-            <div className="-translate-x-1/2 w-12 h-12 flex items-center justify-center">
-              <div className="absolute w-14 h-14 bg-white/20 blur-xl rounded-full" />
-              <div className="relative w-10 h-10 bg-white rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.2)] flex items-center justify-center">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M5 9H13M5 9L7.5 6.5M5 9L7.5 11.5M13 9L10.5 6.5M13 9L10.5 11.5" stroke="#1E1E1E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <div className="-translate-x-1/2 w-16 h-16 flex items-center justify-center">
+              <div className="absolute w-20 h-20 bg-white/20 blur-xl rounded-full" />
+              <div className="relative w-14 h-14 bg-white rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.25)] flex items-center justify-center border-2 border-[#d66501]/30">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 12H17M7 12L10 9M7 12L10 15M17 12L14 9M17 12L14 15" stroke="#d66501" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
             </div>

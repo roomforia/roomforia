@@ -97,7 +97,7 @@ export default function Pricing() {
           </div>
 
           {/* STATS */}
-          <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6 md:mb-16">
+          <div className="flex flex-col sm:grid sm:grid-cols-3 gap-2 md:gap-4 mb-6 md:mb-16">
             {stats.map((item, i) => (
               <motion.div
                 key={i}
@@ -105,10 +105,10 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
-                className="bg-gray-50 rounded-2xl px-3 md:px-6 py-4 md:py-5"
+                className="bg-gray-50 rounded-2xl px-4 md:px-6 py-4 md:py-5 flex sm:block items-center gap-4"
               >
-                <div className="text-lg md:text-2xl font-semibold text-[#855dda] mb-1">{item.num}</div>
-                <p className="text-gray-500 text-xs md:text-sm">{item.label}</p>
+                <div className="text-xl md:text-2xl font-semibold text-[#855dda] flex-shrink-0">{item.num}</div>
+                <p className="text-gray-500 text-sm md:text-sm">{item.label}</p>
               </motion.div>
             ))}
           </div>

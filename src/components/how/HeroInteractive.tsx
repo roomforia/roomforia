@@ -259,10 +259,10 @@ export default function HeroInteractive() {
           {/* Лёгкий оверлей */}
           <div className="absolute inset-0 bg-black/5 pointer-events-none" />
 
-          {/* PHONE — absolute внутри, не обрезается clip-path */}
+          {/* PHONE — скрыт на мобиле, только десктоп */}
           <div
             ref={phoneRef}
-            className="absolute z-20 pointer-events-none"
+            className="hidden md:block absolute z-20 pointer-events-none"
             style={{
               width: "clamp(100px, 25vw, 190px)",
               height: "clamp(216px, 54vw, 410px)",
