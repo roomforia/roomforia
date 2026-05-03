@@ -125,14 +125,14 @@ export default function FAQSection() {
                     onClick={() => toggle(i)}
                     className="w-full flex items-start justify-between gap-6 py-5 text-left group"
                   >
-                    <span className={`text-sm md:text-lg font-semibold leading-snug transition-colors duration-200 ${isOpen ? "text-[#1E1E1E]" : "text-[#1E1E1E] group-hover:text-[#855dda]"}`}>
+                    <span className={`text-sm md:text-lg font-semibold leading-snug transition-colors duration-200 ${isOpen ? "text-[#1E1E1E]" : "text-[#1E1E1E] group-hover:text-[#d66501]"}`}>
                       {faq.q}
                     </span>
                     <span
                       className="flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 mt-0.5"
                       style={{
-                        borderColor: isOpen ? "#855dda" : "#e5e7eb",
-                        backgroundColor: isOpen ? "#855dda" : "transparent",
+                        borderColor: isOpen ? "#d66501" : "#e5e7eb",
+                        backgroundColor: isOpen ? "#d66501" : "transparent",
                       }}
                     >
                       <svg

@@ -37,7 +37,7 @@ export default function FinalCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           className="text-[20px] md:text-3xl lg:text-4xl font-medium tracking-tight leading-snug mb-6"
-          style={{ background: "linear-gradient(90deg, #d66501, #855dda)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+          style={{ background: "linear-gradient(90deg, #d66501, #e8920a)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
         >
           Скачайте приложение «Румфория» и создайте интерьер своей мечты
         </motion.p>

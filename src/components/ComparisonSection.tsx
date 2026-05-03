@@ -28,7 +28,7 @@ export default function ComparisonSection() {
           <p className="text-gray-400 text-sm md:text-base font-medium uppercase tracking-widest mb-4">Румфория — это когда:</p>
           <h2 className="text-[28px] md:text-5xl lg:text-[56px] font-semibold text-[#1E1E1E] leading-tight tracking-tight mb-8 md:mb-12">
             Быстро и понятно на каждом этапе.{" "}
-            <span style={{ color: "#855dda" }}>Профессиональный результат за минуты</span>
+            <span style={{ color: "#d66501" }}>Профессиональный результат за минуты</span>
           </h2>
 
           <div className="flex flex-col mb-8 md:mb-10">
@@ -44,7 +44,7 @@ export default function ComparisonSection() {
                 <div className="relative h-[1px] overflow-hidden">
                   <div className="absolute inset-0 bg-gray-200" />
                   <div
-                    className="absolute inset-0 bg-[#855dda] origin-left scale-x-0 group-hover:scale-x-100"
+                    className="absolute inset-0 bg-[#d66501] origin-left scale-x-0 group-hover:scale-x-100"
                     style={{ transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
                   />
                 </div>
@@ -58,7 +58,7 @@ export default function ComparisonSection() {
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 + 0.3 }}
-                    className="w-2 h-2 rounded-full bg-gray-300 flex-shrink-0 mt-2 group-hover:bg-[#855dda] transition-colors duration-500"
+                    className="w-2 h-2 rounded-full bg-gray-300 flex-shrink-0 mt-2 group-hover:bg-[#d66501] transition-colors duration-500"
                   />
                 </div>
               </motion.div>

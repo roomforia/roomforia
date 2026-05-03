@@ -82,7 +82,7 @@ export default function FlowSection() {
             ))}
             <span
               className="text-[28px] md:text-5xl lg:text-[56px] tracking-tight leading-tight ml-3 md:ml-4"
-              style={{ color: "#855dda", fontWeight: 700, fontStyle: "italic" }}
+              style={{ color: "#d66501", fontWeight: 700, fontStyle: "italic" }}
             >
               Roomforia
             </span>
@@ -179,7 +179,7 @@ export default function FlowSection() {
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 className="bg-white/90 backdrop-blur-md rounded-2xl px-4 py-4 md:px-5 md:py-5 shadow-lg"
               >
-                <span className="text-[10px] md:text-xs font-mono text-[#855dda] block mb-1.5 uppercase tracking-wider">
+                <span className="text-[10px] md:text-xs font-mono text-[#d66501] block mb-1.5 uppercase tracking-wider">
                   {steps[active].tag}
                 </span>
                 <h3 className="text-sm md:text-base font-semibold text-[#1E1E1E] leading-snug mb-2">

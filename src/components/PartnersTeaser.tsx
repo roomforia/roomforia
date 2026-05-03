@@ -25,7 +25,7 @@ export default function PartnersTeaser() {
           </div>
           <Link
             href="/partners"
-            className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full border-2 border-[#855dda] text-[#855dda] text-sm font-semibold hover:bg-[#855dda] hover:text-white transition-all duration-200 self-start md:self-auto"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full border-2 border-[#d66501] text-[#d66501] text-sm font-semibold hover:bg-[#d66501] hover:text-white transition-all duration-200 self-start md:self-auto"
           >
             Перейти в раздел для партнёров
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

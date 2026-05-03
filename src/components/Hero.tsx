@@ -80,10 +80,10 @@ export default function Hero() {
           <div className="mb-4 md:mb-0">
             <div className="flex flex-col items-center md:hidden">
               <p className="text-[36px] font-bold tracking-tight leading-[1.15] text-center">
-                <span style={{ color: "#855dda" }}>AI -</span>{" "}
+                <span style={{ color: "#d66501" }}>AI -</span>{" "}
                 <span style={{ color: "#d66501" }}>приложение для дизайна и</span>
               </p>
-              <p className="text-[36px] font-bold tracking-tight leading-[1.15] text-center" style={{ color: "#855dda" }}>
+              <p className="text-[36px] font-bold tracking-tight leading-[1.15] text-center" style={{ color: "#d66501" }}>
                 визуализации интерьера
               </p>
             </div>
@@ -91,12 +91,12 @@ export default function Hero() {
               <div className="flex items-center justify-center flex-wrap gap-x-0 mb-1 min-h-[110px]">
                 <motion.span initial={{ opacity: 0, x: -16, filter: "blur(12px)" }} animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                  className="text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05] mr-4" style={{ color: "#855dda" }}>
+                  className="text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05] mr-4" style={{ color: "#d66501" }}>
                   AI -
                 </motion.span>
                 {line1.map((char, i) => {
                   const pct = i / (line1.length + line2.length - 1)
-                  const r = Math.round(214 + (133 - 214) * pct), g = Math.round(101 + (93 - 101) * pct), b = Math.round(1 + (218 - 1) * pct)
+                  const r = Math.round(214 + (232 - 214) * pct), g = Math.round(101 + (146 - 101) * pct), b = Math.round(1 + (10 - 1) * pct)
                   return (
                     <motion.span key={`l1-${i}`} initial={{ opacity: 0, x: -16, filter: "blur(12px)" }} animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 + i * 0.04 }}
@@ -110,7 +110,7 @@ export default function Hero() {
               <div className="flex items-center justify-center flex-wrap gap-x-0 mb-8 min-h-[110px]">
                 {line2.map((char, i) => {
                   const pct = (line1.length + i) / (line1.length + line2.length - 1)
-                  const r = Math.round(214 + (133 - 214) * pct), g = Math.round(101 + (93 - 101) * pct), b = Math.round(1 + (218 - 1) * pct)
+                  const r = Math.round(214 + (232 - 214) * pct), g = Math.round(101 + (146 - 101) * pct), b = Math.round(1 + (10 - 1) * pct)
                   return (
                     <motion.span key={`l2-${i}`} initial={{ opacity: 0, x: -16, filter: "blur(12px)" }} animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                       transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.3 + (line1.length + i) * 0.04 }}
