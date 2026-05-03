@@ -28,7 +28,6 @@ export default function FlowSection() {
   const startX = useRef<number | null>(null)
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Интервал через ref — не вызывает ре-рендер сам по себе
   useEffect(() => {
     const interval = setInterval(() => {
       if (pausedRef.current) return
@@ -36,7 +35,7 @@ export default function FlowSection() {
       activeRef.current = next
       setDirection(1)
       setActive(next)
-    }, 4500)
+    }, 7000)
     return () => clearInterval(interval)
   }, [])
 
@@ -46,7 +45,6 @@ export default function FlowSection() {
     activeRef.current = index
     setActive(index)
     setActiveSpot(null)
-    // Пауза на 6 секунд
     pausedRef.current = true
     if (resumeTimer.current) clearTimeout(resumeTimer.current)
     resumeTimer.current = setTimeout(() => { pausedRef.current = false }, 6000)
@@ -62,7 +60,6 @@ export default function FlowSection() {
     if (diff > 60) goTo((activeRef.current - 1 + steps.length) % steps.length)
     else if (diff < -60) goTo((activeRef.current + 1) % steps.length)
     else {
-      // Не было свайпа — возобновляем
       if (resumeTimer.current) clearTimeout(resumeTimer.current)
       resumeTimer.current = setTimeout(() => { pausedRef.current = false }, 6000)
     }
@@ -72,7 +69,7 @@ export default function FlowSection() {
   return (
     <section className="py-10 md:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="text-left mb-14">
+        <div className="text-left mb-10 md:mb-14">
           <div className="flex items-end flex-wrap gap-x-0 overflow-hidden mb-0">
             {titleChars.map((char, i) => (
               <span
@@ -80,7 +77,7 @@ export default function FlowSection() {
                 className="text-[28px] md:text-5xl lg:text-[56px] font-bold tracking-tight text-[#1E1E1E] leading-tight"
                 style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.3em" : "auto" }}
               >
-                {char === " " ? "\u00A0" : char}
+                {char === " " ? " " : char}
               </span>
             ))}
             <span
@@ -99,15 +96,16 @@ export default function FlowSection() {
         </div>
       </div>
 
-      {/* Слайдер — фиксированная высота вместо aspect-ratio */}
+      {/* Слайдер */}
       <div>
         <div
-          className="relative w-full h-[56vw] md:h-[42vw] max-h-[720px] min-h-[200px] overflow-hidden cursor-grab active:cursor-grabbing select-none"
+          className="relative w-full h-[65vw] md:h-[52vw] max-h-[820px] min-h-[220px] overflow-hidden cursor-grab active:cursor-grabbing select-none"
           onMouseDown={(e) => handleStart(e.clientX)}
           onMouseUp={(e) => handleEnd(e.clientX)}
           onTouchStart={(e) => handleStart(e.touches[0].clientX)}
           onTouchEnd={(e) => handleEnd(e.changedTouches[0].clientX)}
         >
+          {/* Изображения — без оверлеев */}
           <AnimatePresence mode="sync" custom={direction}>
             <motion.div
               key={active}
@@ -134,10 +132,7 @@ export default function FlowSection() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="absolute inset-0 bg-black/40 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent pointer-events-none" />
-
+          {/* Интерактивные хотспоты на шаге 4 */}
           {steps[active].interactive && (
             <div className="absolute inset-0 pointer-events-auto">
               {furnitureSpots.map((spot) => (
@@ -173,45 +168,48 @@ export default function FlowSection() {
             </div>
           )}
 
-          <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 pointer-events-none">
+          {/* Карточка с текстом — справа снизу */}
+          <div className="absolute right-4 md:right-8 bottom-4 md:bottom-8 max-w-[220px] md:max-w-xs pointer-events-none z-10">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="bg-white/90 backdrop-blur-md rounded-2xl px-4 py-4 md:px-5 md:py-5 shadow-lg"
               >
-                <h3
-                  className="text-2xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight max-w-xl"
-                  style={{ letterSpacing: "0.02em" }}
-                >
+                <span className="text-[10px] md:text-xs font-mono text-[#855dda] block mb-1.5 uppercase tracking-wider">
+                  {steps[active].tag}
+                </span>
+                <h3 className="text-sm md:text-base font-semibold text-[#1E1E1E] leading-snug mb-2">
                   {steps[active].title}
                 </h3>
+                <p className="text-xs text-gray-400 leading-relaxed hidden md:block">
+                  {steps[active].subtitle}
+                </p>
+                <div className="flex items-center gap-2 mt-3">
+                  {steps.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={(e) => { e.stopPropagation(); goTo(i) }}
+                      className={`h-[3px] rounded-full transition-all duration-500 pointer-events-auto ${
+                        i === active ? "w-6 bg-[#d66501]" : "w-3 bg-gray-200 hover:bg-gray-300"
+                      }`}
+                    />
+                  ))}
+                  <span className="text-gray-300 text-[10px] font-mono ml-1">
+                    {String(active + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
+                  </span>
+                </div>
               </motion.div>
             </AnimatePresence>
-
-            <div className="flex items-center gap-4 mt-6">
-              <div className="flex gap-2">
-                {steps.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={(e) => { e.stopPropagation(); goTo(i) }}
-                    className={`h-[3px] rounded-full transition-all duration-500 pointer-events-auto ${
-                      i === active ? "w-8 bg-[#d66501]" : "w-4 bg-white/35 hover:bg-white/60"
-                    }`}
-                  />
-                ))}
-              </div>
-              <span className="text-white/40 text-xs font-mono">
-                {String(active + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
-              </span>
-            </div>
           </div>
 
+          {/* Стрелки навигации */}
           <button
             onClick={() => goTo((activeRef.current - 1 + steps.length) % steps.length)}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/15 hover:bg-black/30 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white transition-all duration-200 z-10"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -219,7 +217,7 @@ export default function FlowSection() {
           </button>
           <button
             onClick={() => goTo((activeRef.current + 1) % steps.length)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/15 hover:bg-black/30 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white transition-all duration-200 z-10"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -229,24 +227,6 @@ export default function FlowSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="hidden md:grid grid-cols-4 gap-4 mt-6">
-          {steps.map((step, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              className={`text-left p-4 rounded-2xl border-2 transition-all duration-300 bg-white ${
-                i === active ? "border-[#855dda] shadow-[0_4px_20px_rgba(133,93,218,0.15)]" : "border-gray-100 hover:border-[#855dda]/40"
-              }`}
-            >
-              <span className={`text-xs font-mono block mb-2 ${i === active ? "text-[#855dda]" : "text-gray-300"}`}>{step.tag}</span>
-              <span className="text-sm font-semibold text-gray-900 leading-snug block">{step.title}</span>
-              {i === active && step.subtitle && (
-                <span className="text-xs text-gray-400 mt-1 leading-relaxed block">{step.subtitle}</span>
-              )}
-            </button>
-          ))}
-        </div>
-
         <div className="mt-8">
           <a
             href="https://www.figma.com/proto/oKpcwYWl1oXTzZ8jGxdSvX/Mobile-App-Prototype_Design?page-id=0%3A7137&node-id=37320-1691&viewport=-79%2C-4447%2C0.52&t=sG3LJCgcdGCLn3Qt-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=37320%3A2244&show-proto-sidebar=1"
