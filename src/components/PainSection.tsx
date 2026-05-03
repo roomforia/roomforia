@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
 
 const pains = [
   "Смотрите Pinterest, собираете идеи и референсы",
@@ -12,94 +11,49 @@ const pains = [
   "Боитесь потратить деньги и не получить нужный результат",
 ]
 
-const titleChars = "Обычно всё выглядит примерно так".split("")
-
 export default function PainSection() {
   return (
     <section className="py-10 md:py-16 bg-white overflow-hidden">
-      <div className="relative w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
-        <div className="grid md:grid-cols-2 gap-0 min-h-[380px] md:min-h-[580px]">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-[28px] md:text-5xl lg:text-[56px] font-semibold tracking-tight text-[#1E1E1E] leading-[1.1] mb-8 md:mb-12"
+        >
+          Обычно всё выглядит примерно так:
+        </motion.h2>
 
-          {/* RIGHT — картинка (на мобиле идёт ПЕРВОЙ через order-first) */}
-          <div className="order-first md:order-last mx-6 mt-6 mb-0 md:my-10 md:mx-0 md:mr-10">
-            <div className="relative rounded-3xl overflow-hidden h-[260px] md:h-full md:min-h-[460px]">
-              <Image
-                src="/images/pain/pain-hero.png"
-                alt="Проблемы пользователей"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              {/* Затемнение */}
-              <div className="absolute inset-0 bg-black/50" />
-              {/* Заголовок поверх картинки */}
-              <div className="absolute inset-0 flex items-end px-5 md:px-8 pb-5 md:pb-10">
-                <div className="flex flex-wrap">
-                  {titleChars.map((char, i) => (
-                    <motion.span
-                      key={i}
-                      initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-                      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.03 }}
-                      className="text-[22px] md:text-4xl lg:text-[48px] font-semibold tracking-tight text-white leading-[1.2]"
-                      style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
-                    >
-                      {char === " " ? "\u00A0" : char}
-                    </motion.span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* LEFT — список болей (на мобиле идёт ВТОРЫМ) */}
-          <div className="order-last md:order-first flex flex-col justify-center px-6 md:px-10 py-6 md:py-16">
-            <div className="max-w-xl">
-              {pains.map((text, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: i * 0.12 }}
-                  className="group relative"
-                >
-                  <div className="relative h-[1px] overflow-hidden">
-                    <div className="absolute inset-0 bg-gray-100" />
-                    <div
-                      className="absolute inset-0 bg-[#855dda] origin-left scale-x-0 group-hover:scale-x-100"
-                      style={{ transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
-                    />
-                  </div>
-                  <div className="flex items-start gap-5 py-5 md:py-7">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(133,93,218,0.12)" }}>
-                      <span className="text-sm font-bold text-[#1E1E1E]">{i + 1}</span>
-                    </div>
-                    <p className="text-sm md:text-xl font-medium text-[#1E1E1E] leading-snug flex-1">
-                      {text}
-                    </p>
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: i * 0.12 + 0.3 }}
-                      className="w-2 h-2 rounded-full bg-gray-200 flex-shrink-0 mt-2 group-hover:bg-[#855dda] transition-colors duration-500"
-                    />
-                  </div>
-                </motion.div>
-              ))}
-              <div className="relative h-[1px] overflow-hidden">
-                <div className="absolute inset-0 bg-gray-100" />
-              </div>
-              <p className="text-sm md:text-base text-gray-400 mt-5 leading-relaxed">
-                В итоге — лишние расходы, переделки и ощущение, что можно было сделать лучше.
-              </p>
-            </div>
-          </div>
-
+        <div className="grid md:grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
+          {pains.map((text, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.07 }}
+              className="flex items-start gap-4 bg-gray-50 rounded-2xl px-5 py-5"
+            >
+              <span className="text-xs font-mono text-gray-300 flex-shrink-0 mt-0.5 w-5">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="text-sm md:text-base text-[#1E1E1E] leading-relaxed">{text}</p>
+            </motion.div>
+          ))}
         </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-sm md:text-base text-gray-400 border-t border-gray-100 pt-6 leading-relaxed"
+        >
+          В итоге — лишние расходы, переделки и ощущение, что можно было сделать лучше.
+        </motion.p>
+
       </div>
     </section>
   )

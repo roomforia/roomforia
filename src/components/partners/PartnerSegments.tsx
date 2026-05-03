@@ -53,7 +53,7 @@ export default function PartnerSegments() {
     if (!mounted) return
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % segments.length)
-    }, 5000)
+    }, 8000)
     return () => clearInterval(interval)
   }, [mounted])
 
