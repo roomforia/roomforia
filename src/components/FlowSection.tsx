@@ -206,10 +206,10 @@ export default function FlowSection() {
             </AnimatePresence>
           </div>
 
-          {/* Стрелки навигации */}
+          {/* Стрелки навигации — только десктоп */}
           <button
             onClick={() => goTo((activeRef.current - 1 + steps.length) % steps.length)}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/15 hover:bg-black/30 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white transition-all duration-200 z-10"
+            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/15 hover:bg-black/30 backdrop-blur-sm border border-white/30 items-center justify-center text-white transition-all duration-200 z-10"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -217,7 +217,7 @@ export default function FlowSection() {
           </button>
           <button
             onClick={() => goTo((activeRef.current + 1) % steps.length)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/15 hover:bg-black/30 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white transition-all duration-200 z-10"
+            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/15 hover:bg-black/30 backdrop-blur-sm border border-white/30 items-center justify-center text-white transition-all duration-200 z-10"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
