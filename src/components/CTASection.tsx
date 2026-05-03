@@ -33,7 +33,8 @@ const items = [
 ]
 
 const line1 = "AI и дизайн,".split("")
-const line2 = "встретившиеся в реальности".split("")
+const line2words = ["встретившиеся", "в", "реальности"]
+const line2wordOffsets = [0, 14, 16]
 
 export default function CTASection() {
   const [active, setActive] = useState(0)
@@ -89,18 +90,28 @@ export default function CTASection() {
                 ))}
               </div>
               <div className="flex flex-wrap items-end overflow-hidden mb-6">
-                {line2.map((char, i) => (
-                  <motion.span
-                    key={`l2-${i}`}
-                    initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 + (line1.length + i) * 0.04 }}
-                    className="text-5xl lg:text-[56px] font-bold tracking-tight text-[#1E1E1E] leading-[1.05]"
-                    style={{ display: char === " " ? "inline-block" : "inline", width: char === " " ? "0.28em" : "auto" }}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </motion.span>
+                {line2words.map((word, wi) => (
+                  <span key={wi} style={{ display: "inline-flex", whiteSpace: "nowrap" }}>
+                    {word.split("").map((char, ci) => {
+                      const i = line2wordOffsets[wi] + ci
+                      return (
+                        <motion.span
+                          key={`l2-${i}`}
+                          initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+                          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 + (line1.length + i) * 0.04 }}
+                          className="text-5xl lg:text-[56px] font-bold tracking-tight text-[#1E1E1E] leading-[1.05]"
+                          style={{ display: "inline" }}
+                        >
+                          {char}
+                        </motion.span>
+                      )
+                    })}
+                    {wi < line2words.length - 1 && (
+                      <span className="text-5xl lg:text-[56px] font-bold tracking-tight text-[#1E1E1E] leading-[1.05]" style={{ display: "inline-block", width: "0.28em" }}>&nbsp;</span>
+                    )}
+                  </span>
                 ))}
               </div>
             </div>
